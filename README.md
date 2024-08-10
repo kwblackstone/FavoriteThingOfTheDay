@@ -1,1 +1,1 @@
-Favorite Thing of the Day
+https://kwblackstone.github.io/FavoriteThingOfTheDay/
