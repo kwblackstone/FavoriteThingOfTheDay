@@ -12,6 +12,7 @@
             padding: 20px;
             background-color: #f4f4f4;
             text-align: center;
+            position: relative;
         }
         .gallery {
             display: flex;
@@ -45,10 +46,41 @@
             text-decoration: none;
             color: #007bff;
         }
+        .about-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .overlay-content {
+            max-width: 600px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
     <h1>Favorite Thing Of The Day -- August</h1>
+    <button class="about-btn" onclick="showOverlay()">About</button>
     <div class="nav">
         
     </div>
@@ -87,6 +119,25 @@
                 </div>
                 
     </div>
+    <div class="overlay" id="overlay" onclick="hideOverlay()">
+        <div class="overlay-content">
+            <h2>About This Gallery</h2>
+            <p>Everyday we ask our daughter what her favorite thing was that day, I thought it would be interesting to capture those as images utilizing Adobe Express.  Click on any image to view it in full size.</p>
+            <p>Click anywhere outside this box to close the overlay.</p>
+        </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        function showOverlay() {
+            document.getElementById('overlay').style.display = 'flex';
+        }
+        function hideOverlay() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+        // Prevents the overlay from closing when clicking inside the content area
+        document.querySelector('.overlay-content').addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>
 </body>
 </html>
