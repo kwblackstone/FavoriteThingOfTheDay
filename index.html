@@ -50,12 +50,17 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
+            background-color: white;
+            color: black;
+            border: 1px solid #ccc;
             padding: 10px 20px;
             cursor: pointer;
             font-size: 16px;
+            z-index: 0;  /* Ensures the button is behind the title */
+        }
+        h1 {
+            position: relative;
+            z-index: 1;  /* Ensures the title is above the button */
         }
         .overlay {
             position: fixed;
@@ -75,6 +80,8 @@
         .overlay-content {
             max-width: 600px;
             text-align: left;
+            position: relative;
+            z-index: 2;
         }
     </style>
 </head>
@@ -122,8 +129,7 @@
     <div class="overlay" id="overlay" onclick="hideOverlay()">
         <div class="overlay-content">
             <h2>About This Gallery</h2>
-            <p>Everyday we ask our daughter what her favorite thing was that day, I thought it would be interesting to capture those as images utilizing Adobe Express.  Click on any image to view it in full size.</p>
-            <p>Click anywhere outside this box to close the overlay.</p>
+            <p>Everyday we ask our daughter what her favorite thing was that day, I thought it would be interesting to capture those as images utilizing Adobe Express. Enjoy!</p>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
@@ -134,10 +140,6 @@
         function hideOverlay() {
             document.getElementById('overlay').style.display = 'none';
         }
-        // Prevents the overlay from closing when clicking inside the content area
-        document.querySelector('.overlay-content').addEventListener('click', function(event) {
-            event.stopPropagation();
-        });
     </script>
 </body>
 </html>
