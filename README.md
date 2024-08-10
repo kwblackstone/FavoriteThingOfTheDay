@@ -1,0 +1,1 @@
+Favorite Thing of the Day
