@@ -19,6 +19,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Clean Workspace
+        run: rm -rf ImageGalleryPrivate/
+
       - name: Checkout Private Repo
         uses: actions/checkout@v4
         with:
