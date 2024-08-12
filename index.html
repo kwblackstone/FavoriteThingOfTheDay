@@ -14,8 +14,8 @@
             position: relative;
         }
         h1 {
-            margin-bottom: 60px; /* Ensure space for buttons */
-            z-index: 1;  /* Ensures the title is above the buttons */
+            margin-bottom: 20px; /* Reduced to allow more space for the menu */
+            z-index: 1;  /* Ensures the title is above the menu */
         }
         .gallery {
             display: flex;
@@ -49,24 +49,33 @@
             text-decoration: none;
             color: #007bff;
         }
-        .slideshow-btn, .about-btn {
+        .menu {
             position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 30px;
             right: 10px;
             background-color: #f4f4f4;
-            color: black;
             border: 1px solid #ccc;
-            padding: 5px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            z-index: 0;  /* Ensures the buttons are behind the title */
-            width: 120px; /* Ensures both buttons are the same size */
-            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 3;
         }
-        .slideshow-btn {
-            top: 10px; /* Positioned above the About button */
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            text-align: left;
+            color: black;
+            text-decoration: none;
         }
-        .about-btn {
-            top: 50px; /* Positioned below the Slideshow button */
+        .dropdown a:hover {
+            background-color: #ddd;
         }
         .overlay {
             position: fixed;
@@ -125,8 +134,11 @@
 </head>
 <body>
     <h1>Favorite Thing Of The Day -- August</h1>
-    <button class="slideshow-btn" onclick="startSlideshow()">Slideshow</button>
-    <button class="about-btn" onclick="showOverlay()">About</button>
+    <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
+    <div class="dropdown" id="dropdown">
+        <a href="#" onclick="startSlideshow()">Slideshow</a>
+        <a href="#" onclick="showOverlay()">About</a>
+    </div>
     <div class="nav">
         
     </div>
@@ -192,11 +204,17 @@
         <div class="caption" id="fullscreen-caption"></div>
     </div>
     <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
         let currentSlideIndex = 0;
         let slideshowInterval;
 
         function showOverlay() {
             document.getElementById('overlay').style.display = 'flex';
+            document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
         }
         function hideOverlay() {
             document.getElementById('overlay').style.display = 'none';
@@ -207,6 +225,7 @@
             currentSlideIndex = 0; // Start with the most recent image
             nextSlide(); // Show the first slide immediately
             slideshowInterval = setInterval(nextSlide, 10000); // 10 seconds
+            document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
         }
 
         function nextSlide() {
@@ -232,6 +251,16 @@
 
         // Exit fullscreen mode when clicking anywhere on the screen
         document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu')) {
+                const dropdown = document.getElementById('dropdown');
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                }
+            }
+        }
     </script>
 </body>
 </html>
