@@ -137,6 +137,7 @@
     <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
     <div class="dropdown" id="dropdown">
         <a href="#" onclick="startSlideshow()">Slideshow</a>
+        <a href="#" onclick="shareGallery()">Share</a>
         <a href="#" onclick="showOverlay()">About</a>
     </div>
     <div class="nav">
@@ -224,7 +225,7 @@
             document.getElementById('fullscreen').style.display = 'flex';
             currentSlideIndex = 0; // Start with the most recent image
             nextSlide(); // Show the first slide immediately
-            slideshowInterval = setInterval(nextSlide, 10000); // 10 seconds
+            slideshowInterval = setInterval(nextSlide, 7000); // 7 seconds
             document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
         }
 
@@ -251,6 +252,13 @@
 
         // Exit fullscreen mode when clicking anywhere on the screen
         document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
+
+        function shareGallery() {
+            const galleryURL = window.location.href;
+            navigator.clipboard.writeText(galleryURL).then(() => {
+                alert("Gallery URL copied to clipboard!");
+            });
+        }
 
         // Close the dropdown if the user clicks outside of it
         window.onclick = function(event) {
