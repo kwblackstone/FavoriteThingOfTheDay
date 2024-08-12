@@ -13,6 +13,10 @@
             text-align: center;
             position: relative;
         }
+        h1 {
+            margin-bottom: 60px; /* Ensure space for buttons */
+            z-index: 1;  /* Ensures the title is above the buttons */
+        }
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -45,9 +49,8 @@
             text-decoration: none;
             color: #007bff;
         }
-        .about-btn {
+        .slideshow-btn, .about-btn {
             position: absolute;
-            top: 10px;
             right: 10px;
             background-color: #f4f4f4;
             color: black;
@@ -55,11 +58,13 @@
             padding: 5px 20px;
             cursor: pointer;
             font-size: 16px;
-            z-index: 0;  /* Ensures the button is behind the title */
+            z-index: 0;  /* Ensures the buttons are behind the title */
         }
-        h1 {
-            position: relative;
-            z-index: 1;  /* Ensures the title is above the button */
+        .slideshow-btn {
+            top: 10px; /* Positioned above the About button */
+        }
+        .about-btn {
+            top: 50px; /* Positioned below the Slideshow button */
         }
         .overlay {
             position: fixed;
@@ -82,10 +87,31 @@
             position: relative;
             z-index: 2;
         }
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+        .fullscreen img {
+            max-width: 100%;
+            max-height: 100%;
+            border: none;
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
     <h1>Favorite Thing Of The Day -- August</h1>
+    <button class="slideshow-btn" onclick="startSlideshow()">Slideshow</button>
     <button class="about-btn" onclick="showOverlay()">About</button>
     <div class="nav">
         
@@ -94,48 +120,48 @@
         
                 <div class="gallery-item">
                     <div class="date">August 11, 2024</div>
-                    <a href="data/August 2024/2024-08-11-The aerial arts show.jpeg" data-lightbox="gallery" data-title="The aerial arts show">
-                        <img src="data/August 2024/2024-08-11-The aerial arts show.jpeg" alt="The aerial arts show">
+                    <a href="data/August 2024/2024-08-11-The aerial arts show.jpeg" data-title="The aerial arts show">
+                        <img src="data/August 2024/2024-08-11-The aerial arts show.jpeg" alt="The aerial arts show" loading="lazy">
                     </a>
                     <div class="caption">The aerial arts show</div>
                 </div>
                 
                 <div class="gallery-item">
                     <div class="date">August 10, 2024</div>
-                    <a href="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" data-lightbox="gallery" data-title="Playing with Mommy, Daddy, and Celeste">
-                        <img src="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" alt="Playing with Mommy, Daddy, and Celeste">
+                    <a href="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" data-title="Playing with Mommy, Daddy, and Celeste">
+                        <img src="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" alt="Playing with Mommy, Daddy, and Celeste" loading="lazy">
                     </a>
                     <div class="caption">Playing with Mommy, Daddy, and Celeste</div>
                 </div>
                 
                 <div class="gallery-item">
                     <div class="date">August 09, 2024</div>
-                    <a href="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" data-lightbox="gallery" data-title="Riding on a butterfly">
-                        <img src="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" alt="Riding on a butterfly">
+                    <a href="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" data-title="Riding on a butterfly">
+                        <img src="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" alt="Riding on a butterfly" loading="lazy">
                     </a>
                     <div class="caption">Riding on a butterfly</div>
                 </div>
                 
                 <div class="gallery-item">
                     <div class="date">August 08, 2024</div>
-                    <a href="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" data-lightbox="gallery" data-title="Watch my new hanging trick">
-                        <img src="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" alt="Watch my new hanging trick">
+                    <a href="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" data-title="Watch my new hanging trick">
+                        <img src="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" alt="Watch my new hanging trick" loading="lazy">
                     </a>
                     <div class="caption">Watch my new hanging trick</div>
                 </div>
                 
                 <div class="gallery-item">
                     <div class="date">August 07, 2024</div>
-                    <a href="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" data-lightbox="gallery" data-title="Daddy, I can do a flip">
-                        <img src="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip">
+                    <a href="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" data-title="Daddy, I can do a flip">
+                        <img src="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" loading="lazy">
                     </a>
                     <div class="caption">Daddy, I can do a flip</div>
                 </div>
                 
                 <div class="gallery-item">
                     <div class="date">August 06, 2024</div>
-                    <a href="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" data-lightbox="gallery" data-title="It's my birthday, Yippee">
-                        <img src="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee">
+                    <a href="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" data-title="It's my birthday, Yippee">
+                        <img src="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" loading="lazy">
                     </a>
                     <div class="caption">It's my birthday, Yippee</div>
                 </div>
@@ -147,6 +173,9 @@
             <p>Everyday we ask our five year old daughter what her favorite thing was that day. I thought it would be interesting to capture those as images utilizing Adobe Express. Enjoy!</p>
         </div>
     </div>
+    <div class="fullscreen" id="fullscreen">
+        <img id="fullscreen-img" src="" alt="Slideshow Image">
+    </div>
     <script>
         function showOverlay() {
             document.getElementById('overlay').style.display = 'flex';
@@ -154,6 +183,34 @@
         function hideOverlay() {
             document.getElementById('overlay').style.display = 'none';
         }
+
+        let currentSlideIndex = 0;
+        let slideshowInterval;
+
+        function startSlideshow() {
+            document.getElementById('fullscreen').style.display = 'flex';
+            slideshowInterval = setInterval(nextSlide, 10000); // 10 seconds
+            nextSlide(); // Show the first slide immediately
+        }
+
+        function nextSlide() {
+            const images = document.querySelectorAll('.gallery img');
+            if (images.length === 0) return;
+
+            currentSlideIndex = (currentSlideIndex + 1) % images.length;
+            const img = images[currentSlideIndex];
+            const fullscreenImg = document.getElementById('fullscreen-img');
+            fullscreenImg.src = img.src;
+            fullscreenImg.alt = img.alt;
+        }
+
+        function stopSlideshow() {
+            clearInterval(slideshowInterval);
+            document.getElementById('fullscreen').style.display = 'none';
+        }
+
+        // Exit fullscreen mode when clicking anywhere on the screen
+        document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
     </script>
 </body>
 </html>
