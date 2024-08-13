@@ -33,6 +33,7 @@ jobs:
 
       - name: Check for Changes
         run: |
+          git status
           if git diff --quiet; then
             echo "No changes detected."
             echo "changes=false" >> $GITHUB_ENV
@@ -50,8 +51,8 @@ jobs:
           if [ -d "archives" ]; then
             git add archives/
           fi
-          if [ -d "images" ]; then
-            git add images/
+          if [ -d "image_pages" ]; then
+            git add image_pages/
           fi
           git commit -m "Auto-update website"
           git push origin main
