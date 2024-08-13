@@ -75,20 +75,21 @@
                 @media (max-width: 768px) {
                     .image-container {
                         max-width: 100%;
+                        margin-top: 100px; /* Push the image down to make room for the arrows */
                     }
                     .arrow {
-                        top: 20px; /* Place the arrows at the top of the screen */
-                        left: 50%;
-                        transform: translateX(-50%); /* Center the arrows horizontally */
+                        top: 18px;
+                        position: fixed;
+                        transform: translateX(-50%);
                     }
                     .arrow.left {
-                        left: calc(50% - 60px); /* Adjust the position of the left arrow */
-                        top: 20px; /* Place the arrows at the top of the screen */
+                        left: 45%;
+                        top: 18px;
                         transform: translateX(-50%);
                     }
                     .arrow.right {
-                        right: calc(50% - 60px); /* Adjust the position of the right arrow */
-                        top: 20px; /* Place the arrows at the top of the screen */
+                        left: 55%;
+                        top: 18px;
                         transform: translateX(-50%);
                     }
                     .caption {
