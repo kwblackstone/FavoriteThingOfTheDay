@@ -73,29 +73,26 @@
 
                 /* Mobile-specific styling */
                 @media (max-width: 768px) {
+                    .date-title {
+                        font-size: 32px;
+                        margin-top: 120px;
+                    }
                     .image-container {
                         max-width: 100%;
-                        margin-top: 120px; /* Push the image down to make room for the arrows */
+                        margin-top: 140px;
                     }
                     .arrow {
                         top: 10px;
                         position: fixed;
-                        transform: translateX(-50%);
                     }
                     .arrow.left {
-                        left: 45%;
-                        transform: translateX(-50%);
+                        left: calc(50% - 60px);
                     }
                     .arrow.right {
-                        left: 55%;
-                        transform: translateX(-50%);
+                        left: calc(50% + 60px);
                     }
                     .caption {
-                        font-size: 24px; /* Adjust the caption size for mobile */
-                    }
-                    .date-title {
-                        top: 40px;
-                        font-size: 32px; /* Adjust the title size for mobile */
+                        font-size: 24px;
                     }
                 }
             </style>
