@@ -74,16 +74,8 @@
                 /* Mobile-specific styling */
                 @media (max-width: 768px) {
                     .arrow {
-                        position: fixed;
                         top: 10px;
-                        width: 50px;
-                        height: 50px;
-                        background-color: rgba(0, 0, 0, 0.5);
-                        color: white;
-                        font-size: 24px;
-                        text-align: center;
-                        line-height: 50px;
-                        cursor: pointer;
+                        transform: translateY(0);
                         z-index: 10;
                     }
                     .arrow.left {
@@ -110,7 +102,9 @@
             <a class="back-link" href="../index.html" title="Back to Gallery">&#10006;</a>
             <div class="date-title">August 07, 2024</div>
             <div class="image-container">
-                <img src="../data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" title="Doing a new flip trick on the couch">
+                <a href="../data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" target="_blank">
+                    <img src="../data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" title="Doing a new flip trick on the couch">
+                </a>
                 <div class="caption">Daddy, I can do a flip</div>
                 <span class='arrow left' onclick='window.location.href="2024-08-08-Watch%20my%20new%20hanging%20trick.html";'>&#10094;</span>
                 <span class='arrow right' onclick='window.location.href="2024-08-06-It%27s%20my%20birthday%2C%20Yippee.html";'>&#10095;</span>
