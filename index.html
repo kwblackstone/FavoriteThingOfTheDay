@@ -1,341 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorite Thing Of The Day -- August</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: url('data/background.png') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-            position: relative;
-            color: #f4f4f4;
-        }
-        h1 {
-            margin-bottom: 20px;
-            z-index: 1;
-            color: #f4f4f4;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            z-index: 1;
-        }
-        .gallery img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
-        .gallery-item {
-            width: 300px;
-            text-align: center;
-            margin-bottom: 30px;
-            z-index: 1;
-        }
-        .date {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #f4f4f4;
-        }
-        .caption {
-            margin-top: 10px;
-            color: #f4f4f4;
-        }
-        .nav {
-            margin-top: 20px;
-            z-index: 1;
-        }
-        .nav a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #f4f4f4;
-        }
-        .menu {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 2;
-            cursor: pointer;
-            font-size: 24px;
-            color: #f4f4f4;
-            background: transparent;
-        }
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 30px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            z-index: 3;
-        }
-        .dropdown a {
-            display: block;
-            padding: 10px;
-            text-align: left;
-            color: #f4f4f4;
-            text-decoration: none;
-        }
-        .dropdown a:hover {
-            background-color: rgba(255, 255, 255, 0.2); /* Slightly visible hover effect */
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 20px;
-            padding: 20px;
-            box-sizing: border-box;
-            z-index: 999;
-        }
-        .overlay-content {
-            max-width: 600px;
-            text-align: left;
-            position: relative;
-            z-index: 2;
-        }
-        .fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            display: none;
-            flex-direction: column;
-        }
-        .fullscreen img {
-            max-width: 100%;
-            max-height: calc(100% - 50px);
-            border: none;
-            box-shadow: none;
-        }
-        .fullscreen .caption {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            text-align: center;
-            color: white;
-            font-size: 18px;
-            box-sizing: border-box;
-        }
-        .notification {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
-            z-index: 9999;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-size: 17px;
-        }
-        .notification.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-        @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-        @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
-    </style>
-</head>
-<body>
-    <h1>Favorite Thing Of The Day -- August</h1>
-    <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
-    <div class="dropdown" id="dropdown">
-        <a href="#" onclick="startSlideshow()">Slideshow</a>
-        <a href="#" onclick="shareGallery()">Share</a>
-        <a href="#" onclick="showOverlay()">About</a>
-    </div>
-    <div class="nav">
-        
-    </div>
-    <div class="gallery">
-        
-                <div class="gallery-item">
-                    <div class="date">August 12, 2024</div>
-                    <a href="data/August 2024/2024-08-12-Swimming with Gemma.jpeg" data-title="Swimming with Gemma">
-                        <img src="data/August 2024/2024-08-12-Swimming with Gemma.jpeg" alt="Swimming with Gemma" title="She started her new level of swimming, Seal, with teacher Gemma" loading="lazy">
-                    </a>
-                    <div class="caption">Swimming with Gemma</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="date">August 11, 2024</div>
-                    <a href="data/August 2024/2024-08-11-The aerial arts show.jpeg" data-title="The aerial arts show">
-                        <img src="data/August 2024/2024-08-11-The aerial arts show.jpeg" alt="The aerial arts show" title="We all went and saw an Aerial Arts show at Echo, entitled Perennial" loading="lazy">
-                    </a>
-                    <div class="caption">The aerial arts show</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="date">August 10, 2024</div>
-                    <a href="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" data-title="Playing with Mommy, Daddy, and Celeste">
-                        <img src="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" alt="Playing with Mommy, Daddy, and Celeste" title="Celeste came over, we played Monster and then went to the park" loading="lazy">
-                    </a>
-                    <div class="caption">Playing with Mommy, Daddy, and Celeste</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="date">August 09, 2024</div>
-                    <a href="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" data-title="Riding on a butterfly">
-                        <img src="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" alt="Riding on a butterfly" title="Our first butterfly visited the feeder she gave to Mommy" loading="lazy">
-                    </a>
-                    <div class="caption">Riding on a butterfly</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="date">August 08, 2024</div>
-                    <a href="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" data-title="Watch my new hanging trick">
-                        <img src="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" alt="Watch my new hanging trick" title="She would hang upside-down on her trapeze with no hands" loading="lazy">
-                    </a>
-                    <div class="caption">Watch my new hanging trick</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="date">August 07, 2024</div>
-                    <a href="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" data-title="Daddy, I can do a flip">
-                        <img src="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" title="Doing a new flip trick on the couch" loading="lazy">
-                    </a>
-                    <div class="caption">Daddy, I can do a flip</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="date">August 06, 2024</div>
-                    <a href="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" data-title="It's my birthday, Yippee">
-                        <img src="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" title="Fifth birthday party at home with friends, familiy, and ofcourse a pinata!" loading="lazy">
-                    </a>
-                    <div class="caption">It's my birthday, Yippee</div>
-                </div>
-                
-    </div>
-    <div class="overlay" id="overlay" onclick="hideOverlay()">
-        <div class="overlay-content">
-            <h2>About This Gallery</h2>
-            <p>Everyday we ask our five year old daughter what her favorite thing was that day. I thought it would be interesting to capture those as images utilizing Adobe Express. Enjoy!</p>
-        </div>
-    </div>
-    <div class="fullscreen" id="fullscreen">
-        <img id="fullscreen-img" src="" alt="Slideshow Image">
-        <div class="caption" id="fullscreen-caption"></div>
-    </div>
-    <div id="notification" class="notification">URL Copied</div>
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdown');
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        }
-
-        let currentSlideIndex = 0;
-        let slideshowInterval;
-
-        function showOverlay() {
-            document.getElementById('overlay').style.display = 'flex';
-            document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
-        }
-        function hideOverlay() {
-            document.getElementById('overlay').style.display = 'none';
-        }
-
-        function startSlideshow() {
-            document.getElementById('fullscreen').style.display = 'flex';
-            currentSlideIndex = 0; // Start with the most recent image
-            nextSlide(); // Show the first slide immediately
-            slideshowInterval = setInterval(nextSlide, 7000); // 7 seconds
-            document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
-        }
-
-        function nextSlide() {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            if (galleryItems.length === 0) return;
-
-            const img = galleryItems[currentSlideIndex].querySelector('img');
-            const captionText = galleryItems[currentSlideIndex].querySelector('.caption').innerText;
-            const fullscreenImg = document.getElementById('fullscreen-img');
-            const fullscreenCaption = document.getElementById('fullscreen-caption');
-
-            fullscreenImg.src = img.src;
-            fullscreenImg.alt = img.alt;
-            fullscreenCaption.textContent = captionText;
-
-            currentSlideIndex = (currentSlideIndex + 1) % galleryItems.length;
-        }
-
-        function stopSlideshow() {
-            clearInterval(slideshowInterval);
-            document.getElementById('fullscreen').style.display = 'none';
-        }
-
-        // Exit fullscreen mode when clicking anywhere on the screen
-        document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
-
-        function shareGallery() {
-            const galleryURL = window.location.href;
-            const title = document.title;
-            const text = "Check out this gallery!";
-            // Web Share API is supported
-            if (navigator.share) {
-                navigator.share({
-                    title: title,
-                    text: text,
-                    url: galleryURL,
-                }).then(() => {
-                    console.log("Successfully shared");
-                }).catch((error) => {
-                    console.error("Error sharing", error);
-                });
-            } else {
-                // Fallback for devices/browsers without Web Share API
-                navigator.clipboard.writeText(galleryURL).then(() => {
-                    const notification = document.getElementById('notification');
-                    notification.classList.add('show');
-                    setTimeout(() => {
-                        notification.classList.remove('show');
-                    }, 3000); // The notification will disappear after 3 seconds
-                });
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Favorite Thing Of The Day -- August</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background: url('data/background.png') no-repeat center center fixed;
+                background-size: cover;
+                text-align: center;
+                position: relative;
+                color: #f4f4f4;
             }
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-            if (!event.target.matches('.menu')) {
+            h1 {
+                margin-bottom: 20px;
+                z-index: 1;
+                color: #f4f4f4;
+            }
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+                z-index: 1;
+            }
+            .gallery img {
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #ccc;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+            .gallery-item {
+                width: 300px;
+                text-align: center;
+                margin-bottom: 30px;
+                z-index: 1;
+            }
+            .date {
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #f4f4f4;
+            }
+            .caption {
+                margin-top: 10px;
+                color: #f4f4f4;
+            }
+            .nav {
+                margin-top: 20px;
+                z-index: 1;
+            }
+            .nav a {
+                margin: 0 10px;
+                text-decoration: none;
+                color: #f4f4f4;
+            }
+            .menu {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 2;
+                cursor: pointer;
+                font-size: 24px;
+                color: #f4f4f4;
+                background: transparent;
+            }
+            .dropdown {
+                display: none;
+                position: absolute;
+                top: 30px;
+                right: 10px;
+                background-color: rgba(0, 0, 0, 0.7);
+                border: 1px solid #ccc;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                z-index: 3;
+            }
+            .dropdown a {
+                display: block;
+                padding: 10px;
+                text-align: left;
+                color: #f4f4f4;
+                text-decoration: none;
+            }
+            .dropdown a:hover {
+                background-color: rgba(255, 255, 255, 0.2); /* Slightly visible hover effect */
+            }
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 20px;
+                padding: 20px;
+                box-sizing: border-box;
+                z-index: 999;
+            }
+            .overlay-content {
+                max-width: 600px;
+                text-align: left;
+                position: relative;
+                z-index: 2;
+            }
+            .fullscreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                display: none;
+                flex-direction: column;
+            }
+            .fullscreen img {
+                max-width: 100%;
+                max-height: calc(100% - 50px);
+                border: none;
+                box-shadow: none;
+            }
+            .fullscreen .caption {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 10px;
+                text-align: center;
+                color: white;
+                font-size: 18px;
+                box-sizing: border-box;
+            }
+            .notification {
+                visibility: hidden;
+                min-width: 250px;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                border-radius: 2px;
+                padding: 16px;
+                position: fixed;
+                z-index: 9999;
+                left: 50%;
+                bottom: 30px;
+                transform: translateX(-50%);
+                font-size: 17px;
+            }
+            .notification.show {
+                visibility: visible;
+                animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
+            @keyframes fadein {
+                from {bottom: 0; opacity: 0;}
+                to {bottom: 30px; opacity: 1;}
+            }
+            @keyframes fadeout {
+                from {bottom: 30px; opacity: 1;}
+                to {bottom: 0; opacity: 0;}
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Favorite Thing Of The Day -- August</h1>
+        <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
+        <div class="dropdown" id="dropdown">
+            <a href="#" onclick="startSlideshow()">Slideshow</a>
+            <a href="#" onclick="shareGallery()">Share</a>
+            <a href="#" onclick="showOverlay()">About</a>
+        </div>
+        <div class="nav">
+            
+        </div>
+        <div class="gallery">
+            
+        <div class="gallery-item">
+            <div class="date">August 12, 2024</div>
+            <a href="images/2024-08-12-Swimming with Gemma.html" data-title="Swimming with Gemma">
+                <img src="data/August 2024/2024-08-12-Swimming with Gemma.jpeg" alt="Swimming with Gemma" title="She started her new level of swimming, Seal, with teacher Gemma" loading="lazy">
+            </a>
+            <div class="caption">Swimming with Gemma</div>
+        </div>
+        
+        <div class="gallery-item">
+            <div class="date">August 11, 2024</div>
+            <a href="images/2024-08-11-The aerial arts show.html" data-title="The aerial arts show">
+                <img src="data/August 2024/2024-08-11-The aerial arts show.jpeg" alt="The aerial arts show" title="We all went and saw an Aerial Arts show at Echo, entitled Perennial" loading="lazy">
+            </a>
+            <div class="caption">The aerial arts show</div>
+        </div>
+        
+        <div class="gallery-item">
+            <div class="date">August 10, 2024</div>
+            <a href="images/2024-08-10-Playing with Mommy, Daddy, and Celeste.html" data-title="Playing with Mommy, Daddy, and Celeste">
+                <img src="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" alt="Playing with Mommy, Daddy, and Celeste" title="Celeste came over, we played Monster and then went to the park" loading="lazy">
+            </a>
+            <div class="caption">Playing with Mommy, Daddy, and Celeste</div>
+        </div>
+        
+        <div class="gallery-item">
+            <div class="date">August 09, 2024</div>
+            <a href="images/2024-08-09-Riding on a butterfly.html" data-title="Riding on a butterfly">
+                <img src="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" alt="Riding on a butterfly" title="Our first butterfly visited the feeder she gave to Mommy" loading="lazy">
+            </a>
+            <div class="caption">Riding on a butterfly</div>
+        </div>
+        
+        <div class="gallery-item">
+            <div class="date">August 08, 2024</div>
+            <a href="images/2024-08-08-Watch my new hanging trick.html" data-title="Watch my new hanging trick">
+                <img src="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" alt="Watch my new hanging trick" title="She would hang upside-down on her trapeze with no hands" loading="lazy">
+            </a>
+            <div class="caption">Watch my new hanging trick</div>
+        </div>
+        
+        <div class="gallery-item">
+            <div class="date">August 07, 2024</div>
+            <a href="images/2024-08-07-Daddy, I can do a flip.html" data-title="Daddy, I can do a flip">
+                <img src="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" title="Doing a new flip trick on the couch" loading="lazy">
+            </a>
+            <div class="caption">Daddy, I can do a flip</div>
+        </div>
+        
+        <div class="gallery-item">
+            <div class="date">August 06, 2024</div>
+            <a href="images/2024-08-06-It's my birthday, Yippee.html" data-title="It's my birthday, Yippee">
+                <img src="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" title="Fifth birthday party at home with friends, familiy, and ofcourse a pinata!" loading="lazy">
+            </a>
+            <div class="caption">It's my birthday, Yippee</div>
+        </div>
+        
+        </div>
+        <div class="overlay" id="overlay" onclick="hideOverlay()">
+            <div class="overlay-content">
+                <h2>About This Gallery</h2>
+                <p>Everyday we ask our five year old daughter what her favorite thing was that day. I thought it would be interesting to capture those as images utilizing Adobe Express. Enjoy!</p>
+            </div>
+        </div>
+        <div class="fullscreen" id="fullscreen">
+            <img id="fullscreen-img" src="" alt="Slideshow Image">
+            <div class="caption" id="fullscreen-caption"></div>
+        </div>
+        <div id="notification" class="notification">URL Copied</div>
+        <script>
+            function toggleDropdown() {
                 const dropdown = document.getElementById('dropdown');
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            }
+
+            let currentSlideIndex = 0;
+            let slideshowInterval;
+
+            function showOverlay() {
+                document.getElementById('overlay').style.display = 'flex';
+                document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
+            }
+            function hideOverlay() {
+                document.getElementById('overlay').style.display = 'none';
+            }
+
+            function startSlideshow() {
+                document.getElementById('fullscreen').style.display = 'flex';
+                currentSlideIndex = 0; // Start with the most recent image
+                nextSlide(); // Show the first slide immediately
+                slideshowInterval = setInterval(nextSlide, 7000); // 7 seconds
+                document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
+            }
+
+            function nextSlide() {
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                if (galleryItems.length === 0) return;
+
+                const img = galleryItems[currentSlideIndex].querySelector('img');
+                const captionText = galleryItems[currentSlideIndex].querySelector('.caption').innerText;
+                const fullscreenImg = document.getElementById('fullscreen-img');
+                const fullscreenCaption = document.getElementById('fullscreen-caption');
+
+                fullscreenImg.src = img.src;
+                fullscreenImg.alt = img.alt;
+                fullscreenCaption.textContent = captionText;
+
+                currentSlideIndex = (currentSlideIndex + 1) % galleryItems.length;
+            }
+
+            function stopSlideshow() {
+                clearInterval(slideshowInterval);
+                document.getElementById('fullscreen').style.display = 'none';
+            }
+
+            // Exit fullscreen mode when clicking anywhere on the screen
+            document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
+
+            function shareGallery() {
+                const galleryURL = window.location.href;
+                const title = document.title;
+                const text = "Check out this gallery!";
+                // Web Share API is supported
+                if (navigator.share) {
+                    navigator.share({
+                        title: title,
+                        text: text,
+                        url: galleryURL,
+                    }).then(() => {
+                        console.log("Successfully shared");
+                    }).catch((error) => {
+                        console.error("Error sharing", error);
+                    });
+                } else {
+                    // Fallback for devices/browsers without Web Share API
+                    navigator.clipboard.writeText(galleryURL).then(() => {
+                        const notification = document.getElementById('notification');
+                        notification.classList.add('show');
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                        }, 3000); // The notification will disappear after 3 seconds
+                    });
                 }
             }
-        }
-    </script>
-</body>
-</html>
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.menu')) {
+                    const dropdown = document.getElementById('dropdown');
+                    if (dropdown.style.display === 'block') {
+                        dropdown.style.display = 'none';
+                    }
+                }
+            }
+        </script>
+    </body>
+    </html>
+    
