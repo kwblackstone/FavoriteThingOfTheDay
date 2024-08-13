@@ -38,6 +38,7 @@
             text-align: center;
             margin-bottom: 30px;
             z-index: 1;
+            cursor: pointer;
         }
         .date {
             font-weight: bold;
@@ -278,8 +279,8 @@
     <div class="fullscreen" id="fullscreen">
         <span class="arrow left" onclick="previousSlide()">&#10094;</span>
         <span class="arrow right" onclick="nextSlide()">&#10095;</span>
-        <span class="Close" onclick="stopSlideshow()">&#8962;</span>
-        <img id="fullscreen-img" src="" alt="Slideshow Image">
+        <span class="close" onclick="exitFullscreen()">&#8962;</span>
+        <img id="fullscreen-img" src="" alt="Fullscreen Image">
         <div class="caption" id="fullscreen-caption"></div>
     </div>
     <div id="notification" class="notification">URL Copied</div>
@@ -340,9 +341,9 @@
             fullscreenCaption.textContent = captionText;
         }
 
-        function stopSlideshow() {
-            clearInterval(slideshowInterval);
+        function exitFullscreen() {
             document.getElementById('fullscreen').style.display = 'none';
+            clearInterval(slideshowInterval);  // Ensure slideshow stops if it's running
         }
 
         function shareGallery() {
@@ -380,6 +381,32 @@
                     dropdown.style.display = 'none';
                 }
             }
+        }
+
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                showImageFullscreen(index);
+            });
+        });
+
+        function showImageFullscreen(index) {
+            currentSlideIndex = index;
+            updateFullscreenImage();
+            document.getElementById('fullscreen').style.display = 'flex';
+            document.querySelectorAll('.arrow, .close').forEach(el => el.style.display = 'block');
+        }
+
+        function updateFullscreenImage() {
+            const imgElement = galleryItems[currentSlideIndex].querySelector('img');
+            const imgSrc = imgElement.src;
+            const imgAlt = imgElement.alt;
+            const imgTitle = imgElement.title;
+
+            document.getElementById('fullscreen-img').src = imgSrc;
+            document.getElementById('fullscreen-img').alt = imgAlt;
+            document.getElementById('fullscreen-caption').textContent = imgTitle;
         }
     </script>
 </body>
