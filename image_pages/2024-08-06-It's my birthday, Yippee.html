@@ -12,7 +12,7 @@
                     margin: 0;
                     padding: 20px;
                     background-color: #f4f4f4;
-                    background: url('../../background.png') no-repeat center center fixed;
+                    background: url('../data/background.png') no-repeat center center fixed;
                     background-size: cover;
                 }
                 .image-container {
@@ -22,15 +22,15 @@
                 }
                 .image-container img {
                     max-width: 100%;
-                    max-height: calc(100vh - 150px); /* Adjust height for title and caption */
+                    max-height: calc(100vh - 200px);
                     height: auto;
                     border: 1px solid #ccc;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
                 }
                 .caption {
                     margin-top: 10px;
-                    font-size: 18px;
-                    color: #333;
+                    font-size: 36px;
+                    color: #f4f4f4;
                 }
                 .arrow {
                     position: absolute;
@@ -59,13 +59,14 @@
                     font-size: 24px;
                     cursor: pointer;
                     color: white;
+                    background-color: transparent !important;
                     background-color: rgba(0, 0, 0, 0.5);
                     padding: 10px;
                     text-decoration: none;
                 }
                 .date-title {
-                    font-size: 24px;
-                    color: #333;
+                    font-size: 48px;
+                    color: #f4f4f4;
                     margin-bottom: 20px;
                 }
             </style>
@@ -74,9 +75,9 @@
             <a class="back-link" href="../index.html" title="Back to Gallery">&#10006;</a>
             <div class="date-title">August 06, 2024</div>
             <div class="image-container">
-                <img src="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" title="Fifth birthday party at home with friends, familiy, and ofcourse a pinata!">
+                <img src="../data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" title="Fifth birthday party at home with friends, familiy, and ofcourse a pinata!">
                 <div class="caption">It's my birthday, Yippee</div>
-                <span class='arrow left' onclick='window.location.href="image_pages/2024-08-07-Daddy, I can do a flip.html";'>&#10094;</span>
+                <span class='arrow left' onclick='window.location.href="2024-08-07-Daddy, I can do a flip.html";'>&#10094;</span>
                 
             </div>
         </body>
