@@ -74,24 +74,26 @@
                 /* Mobile-specific styling */
                 @media (max-width: 768px) {
                     .arrow {
-                        position: fixed; /* Fixed positioning in mobile only */
-                        top: 10px; /* Position at the top */
-                        transform: translateY(0);
-                        z-index: 10; /* Ensure it's above other elements */
+                        position: fixed;
+                        top: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        z-index: 10;
                     }
                     .arrow.left {
-                        left: calc(50% - 70px); /* Position left arrow when mobile */
+                        transform: translateX(-130%);
                     }
                     .arrow.right {
-                        left: calc(50% + 20px); /* Position right arrow when mobile */
+                        transform: translateX(130%);
                     }
                     .date-title {
                         font-size: 32px;
-                        margin-top: 70px;
+                        margin-top: 20px;  /* Reduced margin */
+                        margin-bottom: 10px;  /* Reduced bottom margin to bring title closer to image */
                     }
                     .image-container {
                         max-width: 100%;
-                        margin-top: 100px;
+                        margin-top: 0;  /* Removed additional margin */
                     }
                     .caption {
                         font-size: 24px;
