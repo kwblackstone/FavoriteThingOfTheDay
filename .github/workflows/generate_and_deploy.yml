@@ -38,14 +38,13 @@ jobs:
           CHANGED=$?
           if [ $CHANGED -ne 0 ]; then
             echo "Changes detected."
-            echo "::set-output name=changes::true"
+            echo "changes=true" >> $GITHUB_ENV
           else
             echo "No changes detected."
-            echo "::set-output name=changes::false"
-          fi
+            echo "changes=false" >> $GITHUB_ENV
 
       - name: Commit and Push Changes
-        if: steps.check_changes.outputs.changes == 'true'
+        if: env.changes == 'true'
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
@@ -57,5 +56,5 @@ jobs:
           git push origin main
 
       - name: No Changes Detected
-        if: steps.check_changes.outputs.changes == 'false'
+        if: env.changes == 'false'
         run: echo "No changes to deploy. Workflow completed without changes."
