@@ -34,7 +34,6 @@
                 }
                 .arrow {
                     position: absolute;
-                    top: 50%;
                     width: 50px;
                     height: 50px;
                     background-color: rgba(0, 0, 0, 0.5);
@@ -46,10 +45,12 @@
                 }
                 .arrow.left {
                     left: 10px;
+                    top: 50%;
                     transform: translateY(-50%);
                 }
                 .arrow.right {
                     right: 10px;
+                    top: 50%;
                     transform: translateY(-50%);
                 }
                 .back-link {
@@ -68,6 +69,34 @@
                     font-size: 48px;
                     color: #f4f4f4;
                     margin-bottom: 20px;
+                }
+
+                /* Mobile-specific styling */
+                @media (max-width: 768px) {
+                    .image-container {
+                        max-width: 100%;
+                    }
+                    .arrow {
+                        top: 20px; /* Place the arrows at the top of the screen */
+                        left: 50%;
+                        transform: translateX(-50%); /* Center the arrows horizontally */
+                    }
+                    .arrow.left {
+                        left: calc(50% - 60px); /* Adjust the position of the left arrow */
+                        top: 20px; /* Place the arrows at the top of the screen */
+                        transform: translateX(-50%);
+                    }
+                    .arrow.right {
+                        right: calc(50% - 60px); /* Adjust the position of the right arrow */
+                        top: 20px; /* Place the arrows at the top of the screen */
+                        transform: translateX(-50%);
+                    }
+                    .caption {
+                        font-size: 24px; /* Adjust the caption size for mobile */
+                    }
+                    .date-title {
+                        font-size: 32px; /* Adjust the title size for mobile */
+                    }
                 }
             </style>
         </head>
