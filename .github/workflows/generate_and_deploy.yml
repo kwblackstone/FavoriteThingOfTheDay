@@ -33,6 +33,7 @@ jobs:
 
       - name: Check for Changes
         id: check_changes
+        shell: bash
         run: |
           git diff --quiet
           CHANGED=$?
