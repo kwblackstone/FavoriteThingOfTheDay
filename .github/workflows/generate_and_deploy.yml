@@ -46,11 +46,11 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add index.html
+          git add .
           if [ -d "archives" ]; then
             git add archives/
           fi
-          git commit -m "Auto-update index.html and archive pages"
+          git commit -m "Auto-update website"
           git push origin main
 
       - name: No Changes Detected
