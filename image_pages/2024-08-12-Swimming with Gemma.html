@@ -11,9 +11,7 @@
                     text-align: center;
                     margin: 0;
                     padding: 20px;
-                    background: url('data/background.png') no-repeat center center fixed;
-                    background-size: cover;
-                    color: #f4f4f4;
+                    background-color: #f4f4f4;
                 }
                 .image-container {
                     max-width: 80%;
@@ -22,6 +20,7 @@
                 }
                 .image-container img {
                     max-width: 100%;
+                    max-height: calc(100vh - 150px); /* Adjust height for title and caption */
                     height: auto;
                     border: 1px solid #ccc;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -73,10 +72,10 @@
             <a class="back-link" href="../index.html" title="Back to Gallery">&#10006;</a>
             <div class="date-title">August 12, 2024</div>
             <div class="image-container">
-                <img src="../data/August 2024/2024-08-12-Swimming with Gemma.jpeg" alt="Swimming with Gemma" title="She started her new level of swimming, Seal, with teacher Gemma">
+                <img src="data/August 2024/2024-08-12-Swimming with Gemma.jpeg" alt="Swimming with Gemma" title="She started her new level of swimming, Seal, with teacher Gemma">
                 <div class="caption">Swimming with Gemma</div>
                 
-                <span class='arrow right' onclick='window.location.href="/home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/image_pages/2024-08-11-The aerial arts show.html";'>&#10095;</span>
+                <span class='arrow right' onclick='window.location.href="2024-08-11-The aerial arts show.html";'>&#10095;</span>
             </div>
         </body>
         </html>
