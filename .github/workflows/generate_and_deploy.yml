@@ -29,7 +29,7 @@ jobs:
 
       - name: Run HTML Generation Script
         run: |
-          python3 ${{ github.workspace }}/ImageGalleryPrivate/src/generate.py ${{ github.workspace }}/data ${{ github.workspace }}/index.html
+          python3 ${{ github.workspace }}/ImageGalleryPrivate/src/main.py ${{ github.workspace }}/data ${{ github.workspace }}/index.html
 
       - name: Check for Changes
         run: |
