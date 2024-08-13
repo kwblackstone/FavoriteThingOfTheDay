@@ -141,6 +141,35 @@
             font-size: 18px;
             box-sizing: border-box;
         }
+        .fullscreen .arrow {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+        .fullscreen .arrow.left {
+            left: 10px;
+            transform: translateY(-50%);
+        }
+        .fullscreen .arrow.right {
+            right: 10px;
+            transform: translateY(-50%);
+        }
+        .fullscreen .close {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
         .notification {
             visibility: hidden;
             min-width: 250px;
@@ -247,18 +276,21 @@
         </div>
     </div>
     <div class="fullscreen" id="fullscreen">
+        <span class="arrow left" onclick="previousSlide()">&#10094;</span>
+        <span class="arrow right" onclick="nextSlide()">&#10095;</span>
+        <span class="Close" onclick="stopSlideshow()">&#8962;</span>
         <img id="fullscreen-img" src="" alt="Slideshow Image">
         <div class="caption" id="fullscreen-caption"></div>
     </div>
     <div id="notification" class="notification">URL Copied</div>
     <script>
+        let currentSlideIndex = 0;
+        let slideshowInterval;
+
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
-
-        let currentSlideIndex = 0;
-        let slideshowInterval;
 
         function showOverlay() {
             document.getElementById('overlay').style.display = 'flex';
@@ -292,13 +324,26 @@
             currentSlideIndex = (currentSlideIndex + 1) % galleryItems.length;
         }
 
+        function previousSlide() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            if (galleryItems.length === 0) return;
+
+            currentSlideIndex = (currentSlideIndex - 1 + galleryItems.length) % galleryItems.length;
+
+            const img = galleryItems[currentSlideIndex].querySelector('img');
+            const captionText = galleryItems[currentSlideIndex].querySelector('.caption').innerText;
+            const fullscreenImg = document.getElementById('fullscreen-img');
+            const fullscreenCaption = document.getElementById('fullscreen-caption');
+
+            fullscreenImg.src = img.src;
+            fullscreenImg.alt = img.alt;
+            fullscreenCaption.textContent = captionText;
+        }
+
         function stopSlideshow() {
             clearInterval(slideshowInterval);
             document.getElementById('fullscreen').style.display = 'none';
         }
-
-        // Exit fullscreen mode when clicking anywhere on the screen
-        document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
 
         function shareGallery() {
             const galleryURL = window.location.href;
