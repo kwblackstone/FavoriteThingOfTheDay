@@ -129,6 +129,8 @@
                 max-height: calc(100% - 50px);
                 border: none;
                 box-shadow: none;
+                transition: opacity 0.33s ease-in-out;
+                opacity: 0;
             }
             .fullscreen .caption {
                 position: absolute;
@@ -138,8 +140,12 @@
                 padding: 10px;
                 text-align: center;
                 color: white;
-                font-size: 18px;
+                font-size: 36px;
                 box-sizing: border-box;
+            }
+            .fullscreen #fullscreen-title {
+                font-size: 48px;
+                color: #f4f4f4;
             }
             .notification {
                 visibility: hidden;
@@ -174,9 +180,11 @@
         <h1>Favorite Thing Of The Day -- August</h1>
         <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
         <div class="dropdown" id="dropdown">
-            <a href="#" onclick="startSlideshow()">Slideshow</a>
-            <a href="#" onclick="shareGallery()">Share</a>
             <a href="#" onclick="showOverlay()">About</a>
+            <a href="#" onclick="shareGallery()">Share</a>
+            <a href="#" onclick="startSlideshow()">Slideshow</a>
+            <input type="checkbox" id="shuffle-checkbox">
+            <label for="shuffle-checkbox" id="shuffle-label">Shuffle</label>
         </div>
         <div class="nav">
             
@@ -185,7 +193,7 @@
             
         <div class="gallery-item">
             <div class="date">August 16, 2024</div>
-             <a href="image_pages/2024-08-16-Swinging on the monkey bars at the park with Momma.html" data-title="Swinging on the monkey bars at the park with Momma">
+             <a href="image_pages/2024-08-16-Swinging on the monkey bars at the park with Momma.html" data-title="August 16, 2024">
                 <img src="data/August 2024/2024-08-16-Swinging on the monkey bars at the park with Momma.jpeg" alt="Swinging on the monkey bars at the park with Momma" title="Went to the park after swimming class" loading="lazy">
             </a>
             <div class="caption">Swinging on the monkey bars at the park with Momma</div>
@@ -193,7 +201,7 @@
         
         <div class="gallery-item">
             <div class="date">August 15, 2024</div>
-             <a href="image_pages/2024-08-15-Picking out new yellow slipper shoes.html" data-title="Picking out new yellow slipper shoes">
+             <a href="image_pages/2024-08-15-Picking out new yellow slipper shoes.html" data-title="August 15, 2024">
                 <img src="data/August 2024/2024-08-15-Picking out new yellow slipper shoes.jpeg" alt="Picking out new yellow slipper shoes" title="She picked out new yellow native shoes, size 12!" loading="lazy">
             </a>
             <div class="caption">Picking out new yellow slipper shoes</div>
@@ -201,7 +209,7 @@
         
         <div class="gallery-item">
             <div class="date">August 14, 2024</div>
-             <a href="image_pages/2024-08-14-Going swimming with Mamma at open swim.html" data-title="Going swimming with Mamma at open swim">
+             <a href="image_pages/2024-08-14-Going swimming with Mamma at open swim.html" data-title="August 14, 2024">
                 <img src="data/August 2024/2024-08-14-Going swimming with Mamma at open swim.jpeg" alt="Going swimming with Mamma at open swim" title="She went swimming today before her aerial arts class" loading="lazy">
             </a>
             <div class="caption">Going swimming with Mamma at open swim</div>
@@ -209,7 +217,7 @@
         
         <div class="gallery-item">
             <div class="date">August 13, 2024</div>
-             <a href="image_pages/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.html" data-title="Eating kid size pizzas for lunch with Aunt Monica">
+             <a href="image_pages/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.html" data-title="August 13, 2024">
                 <img src="data/August 2024/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.jpeg" alt="Eating kid size pizzas for lunch with Aunt Monica" title="Had Lunch with Aunt Monica between Swimming and 5 yr doctor's appointment" loading="lazy">
             </a>
             <div class="caption">Eating kid size pizzas for lunch with Aunt Monica</div>
@@ -217,7 +225,7 @@
         
         <div class="gallery-item">
             <div class="date">August 12, 2024</div>
-             <a href="image_pages/2024-08-12-Swimming with Gemma.html" data-title="Swimming with Gemma">
+             <a href="image_pages/2024-08-12-Swimming with Gemma.html" data-title="August 12, 2024">
                 <img src="data/August 2024/2024-08-12-Swimming with Gemma.jpeg" alt="Swimming with Gemma" title="She started her new level of swimming, Seal, with teacher Gemma" loading="lazy">
             </a>
             <div class="caption">Swimming with Gemma</div>
@@ -225,7 +233,7 @@
         
         <div class="gallery-item">
             <div class="date">August 11, 2024</div>
-             <a href="image_pages/2024-08-11-The aerial arts show.html" data-title="The aerial arts show">
+             <a href="image_pages/2024-08-11-The aerial arts show.html" data-title="August 11, 2024">
                 <img src="data/August 2024/2024-08-11-The aerial arts show.jpeg" alt="The aerial arts show" title="We all went and saw an Aerial Arts show at Echo, entitled Perennial" loading="lazy">
             </a>
             <div class="caption">The aerial arts show</div>
@@ -233,7 +241,7 @@
         
         <div class="gallery-item">
             <div class="date">August 10, 2024</div>
-             <a href="image_pages/2024-08-10-Playing with Mommy, Daddy, and Celeste.html" data-title="Playing with Mommy, Daddy, and Celeste">
+             <a href="image_pages/2024-08-10-Playing with Mommy, Daddy, and Celeste.html" data-title="August 10, 2024">
                 <img src="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" alt="Playing with Mommy, Daddy, and Celeste" title="Celeste came over, we played Monster and then went to the park" loading="lazy">
             </a>
             <div class="caption">Playing with Mommy, Daddy, and Celeste</div>
@@ -241,7 +249,7 @@
         
         <div class="gallery-item">
             <div class="date">August 09, 2024</div>
-             <a href="image_pages/2024-08-09-Riding on a butterfly.html" data-title="Riding on a butterfly">
+             <a href="image_pages/2024-08-09-Riding on a butterfly.html" data-title="August 09, 2024">
                 <img src="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" alt="Riding on a butterfly" title="Our first butterfly visited the feeder she gave to Mommy" loading="lazy">
             </a>
             <div class="caption">Riding on a butterfly</div>
@@ -249,7 +257,7 @@
         
         <div class="gallery-item">
             <div class="date">August 08, 2024</div>
-             <a href="image_pages/2024-08-08-Watch my new hanging trick.html" data-title="Watch my new hanging trick">
+             <a href="image_pages/2024-08-08-Watch my new hanging trick.html" data-title="August 08, 2024">
                 <img src="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" alt="Watch my new hanging trick" title="She would hang upside-down on her trapeze with no hands" loading="lazy">
             </a>
             <div class="caption">Watch my new hanging trick</div>
@@ -257,7 +265,7 @@
         
         <div class="gallery-item">
             <div class="date">August 07, 2024</div>
-             <a href="image_pages/2024-08-07-Daddy, I can do a flip.html" data-title="Daddy, I can do a flip">
+             <a href="image_pages/2024-08-07-Daddy, I can do a flip.html" data-title="August 07, 2024">
                 <img src="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" title="Doing a new flip trick on the couch" loading="lazy">
             </a>
             <div class="caption">Daddy, I can do a flip</div>
@@ -265,7 +273,7 @@
         
         <div class="gallery-item">
             <div class="date">August 06, 2024</div>
-             <a href="image_pages/2024-08-06-It's my birthday, Yippee.html" data-title="It's my birthday, Yippee">
+             <a href="image_pages/2024-08-06-It's my birthday, Yippee.html" data-title="August 06, 2024">
                 <img src="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" title="Fifth birthday party at home with friends, familiy, and ofcourse a pinata!" loading="lazy">
             </a>
             <div class="caption">It's my birthday, Yippee</div>
@@ -279,7 +287,8 @@
             </div>
         </div>
         <div class="fullscreen" id="fullscreen">
-            <img id="fullscreen-img" src="" alt="Slideshow Image">
+            <div id="fullscreen-title" class="title"></div> <!-- Container for dynamic title -->
+            <img id="fullscreen-img" src="" alt="Slideshow Image" title="">
             <div class="caption" id="fullscreen-caption"></div>
         </div>
         <div id="notification" class="notification">URL Copied</div>
@@ -289,12 +298,30 @@
                 dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
             }
 
-            let currentSlideIndex = 0;
+            let currentSlideIndex = -1;
             let slideshowInterval;
+            const shuffleCheckbox = document.getElementById('shuffle-checkbox');
+            shuffleCheckbox.onclick = function(event) {
+                if (!this.checked) {  // If the checkbox is unchecked
+                    const galleryItems = document.querySelectorAll('.gallery-item');
+                    currentSlideIndex = -1;
+                }
+                event.stopPropagation();
+            };
+            const shuffleLabel = document.getElementById('shuffle-label');
+            shuffleLabel.onclick = function(event) {
+                event.stopPropagation();
+                setTimeout(() => {
+                    if (!shuffleCheckbox.checked) {  // If the checkbox is now unchecked after the label click
+                        const galleryItems = document.querySelectorAll('.gallery-item');
+                        currentSlideIndex = -1;
+                    }
+                }, 0);
+            };
 
             function showOverlay() {
                 document.getElementById('overlay').style.display = 'flex';
-                document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
+                document.getElementById('dropdown').style.display = 'none';
             }
             function hideOverlay() {
                 document.getElementById('overlay').style.display = 'none';
@@ -302,26 +329,43 @@
 
             function startSlideshow() {
                 document.getElementById('fullscreen').style.display = 'flex';
-                currentSlideIndex = 0; // Start with the most recent image
-                nextSlide(); // Show the first slide immediately
-                slideshowInterval = setInterval(nextSlide, 7000); // 7 seconds
-                document.getElementById('dropdown').style.display = 'none';  // Close the dropdown
+                nextSlide();
+                slideshowInterval = setInterval(nextSlide, 7000);
+                document.getElementById('dropdown').style.display = 'none';
             }
 
             function nextSlide() {
                 const galleryItems = document.querySelectorAll('.gallery-item');
                 if (galleryItems.length === 0) return;
-
-                const img = galleryItems[currentSlideIndex].querySelector('img');
-                const captionText = galleryItems[currentSlideIndex].querySelector('.caption').innerText;
                 const fullscreenImg = document.getElementById('fullscreen-img');
                 const fullscreenCaption = document.getElementById('fullscreen-caption');
+                const fullscreenTitle = document.getElementById('fullscreen-title');
 
-                fullscreenImg.src = img.src;
-                fullscreenImg.alt = img.alt;
-                fullscreenCaption.textContent = captionText;
+                // Fade out
+                fullscreenImg.style.opacity = 0;
 
-                currentSlideIndex = (currentSlideIndex + 1) % galleryItems.length;
+                setTimeout(() => {
+                    if (shuffleCheckbox.checked) {
+                        currentSlideIndex = Math.floor(Math.random() * galleryItems.length);
+                    } else {
+                        currentSlideIndex = (currentSlideIndex + 1) % galleryItems.length;
+                    }
+
+                    const img = galleryItems[currentSlideIndex].querySelector('img');
+                    const captionText = galleryItems[currentSlideIndex].querySelector('.caption').innerText;
+                    const anchor = img.closest('a');
+                    const title = anchor.getAttribute('data-title') || '';
+                    const tooltip = img.title;
+
+                    fullscreenImg.src = img.src;
+                    fullscreenImg.alt = img.alt;
+                    fullscreenImg.title = tooltip;
+                    fullscreenCaption.textContent = captionText;
+                    fullscreenTitle.textContent = title;
+
+                    // Fade in
+                    fullscreenImg.style.opacity = 1;
+                }, 330); // Match the duration of the CSS transition
             }
 
             function stopSlideshow() {
