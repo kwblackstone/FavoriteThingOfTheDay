@@ -118,11 +118,11 @@
                 background-color: #000;
                 color: white;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                justify-content: flex-start;
                 align-items: center;
                 z-index: 9999;
                 display: none;
-                flex-direction: column;
             }
             .fullscreen img {
                 max-width: 100%;
@@ -146,6 +146,8 @@
             .fullscreen #fullscreen-title {
                 font-size: 48px;
                 color: #f4f4f4;
+                margin-top: 20px;
+                align-self: center; 
             }
             .notification {
                 visibility: hidden;
