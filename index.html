@@ -109,6 +109,10 @@
                 position: relative;
                 z-index: 2;
             }
+            .body-no-scroll {
+                overflow: hidden;
+                height: 100%; /* Optional, ensures no vertical scroll bar */
+            }
             .fullscreen {
                 position: fixed;
                 top: 0;
@@ -348,6 +352,7 @@
 
             function startSlideshow() {
                 document.getElementById('fullscreen').style.display = 'flex';
+                document.body.classList.add('body-no-scroll'); // Disable scrolling
                 nextSlide();
                 slideshowInterval = setInterval(nextSlide, 7000);
                 document.getElementById('dropdown').style.display = 'none';
@@ -390,6 +395,7 @@
             function stopSlideshow() {
                 clearInterval(slideshowInterval);
                 document.getElementById('fullscreen').style.display = 'none';
+                document.body.classList.remove('body-no-scroll'); // Enable scrolling
             }
 
             // Exit fullscreen mode when clicking anywhere on the screen
