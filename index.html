@@ -123,6 +123,7 @@
                 align-items: center;
                 z-index: 9999;
                 display: none;
+                padding: 20px;
             }
             .fullscreen img {
                 max-width: 100%;
@@ -133,8 +134,7 @@
                 opacity: 0;
             }
             .fullscreen .caption {
-                position: absolute;
-                bottom: 0;
+                margin-top: 20px;
                 width: 100%;
                 background-color: rgba(0, 0, 0, 0.7);
                 padding: 10px;
@@ -176,6 +176,11 @@
                 from {bottom: 30px; opacity: 1;}
                 to {bottom: 0; opacity: 0;}
             }
+            /* Mobile-specific styling */
+            @media (max-width: 768px) {
+                .fullscreen #fullscreen-title {
+                    margin-top: 64px;
+                }
         </style>
     </head>
     <body>
