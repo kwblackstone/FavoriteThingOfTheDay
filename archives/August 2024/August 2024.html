@@ -9,7 +9,7 @@
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 20px;
-                background: url('data/background.png') no-repeat center center fixed;
+                background: url('../../data/background.png') no-repeat center center fixed;
                 background-size: cover;
                 text-align: center;
                 position: relative;
@@ -48,14 +48,38 @@
                 margin-top: 10px;
                 color: #f4f4f4;
             }
-            .nav {
-                margin-top: 20px;
-                z-index: 1;
+            .nav, .dropdown {
+                display: none;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.7);
+                border: 1px solid #ccc;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                z-index: 3;
+                padding: 10px;
             }
-            .nav a {
-                margin: 0 10px;
-                text-decoration: none;
+            .nav a, .dropdown a {
+                display: block;
+                padding: 10px;
+                text-align: left;
                 color: #f4f4f4;
+                text-decoration: none;
+            }
+            .nav a:hover, .dropdown a:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+            .calendar {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                z-index: 2;
+                cursor: pointer;
+                font-size: 36px;
+                color: #f4f4f4;
+                background: transparent;
+                border: none;
+            }
+            .calendar:hover {
+                color: #cccccc;
             }
             .menu {
                 position: absolute;
@@ -67,25 +91,13 @@
                 color: #f4f4f4;
                 background: transparent;
             }
+            .nav {
+                top: 50px;
+                left: 10px;
+            }
             .dropdown {
-                display: none;
-                position: absolute;
-                top: 30px;
+                top: 50px;
                 right: 10px;
-                background-color: rgba(0, 0, 0, 0.7);
-                border: 1px solid #ccc;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-                z-index: 3;
-            }
-            .dropdown a {
-                display: block;
-                padding: 10px;
-                text-align: left;
-                color: #f4f4f4;
-                text-decoration: none;
-            }
-            .dropdown a:hover {
-                background-color: rgba(255, 255, 255, 0.2); /* Slightly visible hover effect */
             }
             .overlay {
                 position: fixed;
@@ -111,7 +123,7 @@
             }
             .body-no-scroll {
                 overflow: hidden;
-                height: 100%; /* Optional, ensures no vertical scroll bar */
+                height: 100%;
             }
             .fullscreen {
                 position: fixed;
@@ -152,7 +164,7 @@
                 color: #f4f4f4;
                 margin-top: 20px;
                 margin-bottom: 20px;
-                align-self: center; 
+                align-self: center;
             }
             .notification {
                 visibility: hidden;
@@ -181,17 +193,13 @@
                 from {bottom: 30px; opacity: 1;}
                 to {bottom: 0; opacity: 0;}
             }
-            /* Mobile-specific styling */
-            @media (max-width: 768px) {
-                .fullscreen #fullscreen-title {
-                    margin-top: 64px;
-                }
-                .fullscreen {
-                    padding: 0px;
-                }
         </style>
     </head>
     <body>
+        <button class="calendar" onclick="toggleNav()">&#128197;</button> <!-- Calendar icon -->
+        <div class="nav" id="nav-links">
+            <a href="../../index.html">September 2024</a>
+        </div>
         <h1>Favorite Thing Of The Day -- August 2024</h1>
         <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
         <div class="dropdown" id="dropdown">
@@ -201,15 +209,12 @@
             <input type="checkbox" id="shuffle-checkbox">
             <label for="shuffle-checkbox" id="shuffle-label">Shuffle</label>
         </div>
-        <div class="nav">
-            <a href="archives/September 2024.html">September 2024</a>
-        </div>
         <div class="gallery">
             
         <div class="gallery-item">
             <div class="date">August 31, 2024</div>
              <a href="image_pages/2024-08-31-Going to the summer concert in the park.html" data-title="August 31, 2024">
-                <img src="data/August 2024/2024-08-31-Going to the summer concert in the park.jpeg" alt="Going to the summer concert in the park" title="Fun day around town, started with gymnastics, did some shopping, and ended with this year's final summer concert in the park" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-31-Going to the summer concert in the park.jpeg" alt="Going to the summer concert in the park" title="Fun day around town, started with gymnastics, did some shopping, and ended with this year's final summer concert in the park" loading="lazy">
             </a>
             <div class="caption">Going to the summer concert in the park</div>
         </div>
@@ -217,7 +222,7 @@
         <div class="gallery-item">
             <div class="date">August 30, 2024</div>
              <a href="image_pages/2024-08-30-Having beverages with Mommy and Daddy on the flagstone in the back yard.html" data-title="August 30, 2024">
-                <img src="data/August 2024/2024-08-30-Having beverages with Mommy and Daddy on the flagstone in the back yard.jpeg" alt="Having beverages with Mommy and Daddy on the flagstone in the back yard" title="Relaxing day, went to a new park, did some floating, then ended the day out in the yard with BYH for dinner" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-30-Having beverages with Mommy and Daddy on the flagstone in the back yard.jpeg" alt="Having beverages with Mommy and Daddy on the flagstone in the back yard" title="Relaxing day, went to a new park, did some floating, then ended the day out in the yard with BYH for dinner" loading="lazy">
             </a>
             <div class="caption">Having beverages with Mommy and Daddy on the flagstone in the back yard</div>
         </div>
@@ -225,7 +230,7 @@
         <div class="gallery-item">
             <div class="date">August 29, 2024</div>
              <a href="image_pages/2024-08-29-Played hide n go seek with Daddy.html" data-title="August 29, 2024">
-                <img src="data/August 2024/2024-08-29-Played hide n go seek with Daddy.jpeg" alt="Played hide n go seek with Daddy" title="Had a chill day today at home playing with Mommy and then Daddy after work" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-29-Played hide n go seek with Daddy.jpeg" alt="Played hide n go seek with Daddy" title="Had a chill day today at home playing with Mommy and then Daddy after work" loading="lazy">
             </a>
             <div class="caption">Played hide n go seek with Daddy</div>
         </div>
@@ -233,7 +238,7 @@
         <div class="gallery-item">
             <div class="date">August 28, 2024</div>
              <a href="image_pages/2024-08-28-Showing teacher Julie the toys in my bedroom.html" data-title="August 28, 2024">
-                <img src="data/August 2024/2024-08-28-Showing teacher Julie the toys in my bedroom.jpeg" alt="Showing teacher Julie the toys in my bedroom" title="Teacher Julie came over today to see her room, and get to know us better before school starts" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-28-Showing teacher Julie the toys in my bedroom.jpeg" alt="Showing teacher Julie the toys in my bedroom" title="Teacher Julie came over today to see her room, and get to know us better before school starts" loading="lazy">
             </a>
             <div class="caption">Showing teacher Julie the toys in my bedroom</div>
         </div>
@@ -241,7 +246,7 @@
         <div class="gallery-item">
             <div class="date">August 27, 2024</div>
              <a href="image_pages/2024-08-27-Playing indoors on the monkey section at Cedarwood elementary.html" data-title="August 27, 2024">
-                <img src="data/August 2024/2024-08-27-Playing indoors on the monkey section at Cedarwood elementary.jpeg" alt="Playing indoors on the monkey section at Cedarwood elementary" title="She got to visit her upcoming elementary classroom with her future classmates and teacher" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-27-Playing indoors on the monkey section at Cedarwood elementary.jpeg" alt="Playing indoors on the monkey section at Cedarwood elementary" title="She got to visit her upcoming elementary classroom with her future classmates and teacher" loading="lazy">
             </a>
             <div class="caption">Playing indoors on the monkey section at Cedarwood elementary</div>
         </div>
@@ -249,7 +254,7 @@
         <div class="gallery-item">
             <div class="date">August 26, 2024</div>
              <a href="image_pages/2024-08-26-Making sand cakes with Juniper on the beach.html" data-title="August 26, 2024">
-                <img src="data/August 2024/2024-08-26-Making sand cakes with Juniper on the beach.jpeg" alt="Making sand cakes with Juniper on the beach" title="Went to Kelly point park with her friend Juniper" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-26-Making sand cakes with Juniper on the beach.jpeg" alt="Making sand cakes with Juniper on the beach" title="Went to Kelly point park with her friend Juniper" loading="lazy">
             </a>
             <div class="caption">Making sand cakes with Juniper on the beach</div>
         </div>
@@ -257,7 +262,7 @@
         <div class="gallery-item">
             <div class="date">August 25, 2024</div>
              <a href="image_pages/2024-08-25-Playing with Moo Moo, our orange cat, in the window sill.html" data-title="August 25, 2024">
-                <img src="data/August 2024/2024-08-25-Playing with Moo Moo, our orange cat, in the window sill.jpeg" alt="Playing with Moo Moo, our orange cat, in the window sill" title="We opened up the windows in my office, which the cats love, and she played with them" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-25-Playing with Moo Moo, our orange cat, in the window sill.jpeg" alt="Playing with Moo Moo, our orange cat, in the window sill" title="We opened up the windows in my office, which the cats love, and she played with them" loading="lazy">
             </a>
             <div class="caption">Playing with Moo Moo, our orange cat, in the window sill</div>
         </div>
@@ -265,7 +270,7 @@
         <div class="gallery-item">
             <div class="date">August 24, 2024</div>
              <a href="image_pages/2024-08-24-Playing soccer with Celeste and Charlotte.html" data-title="August 24, 2024">
-                <img src="data/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpeg" alt="Playing soccer with Celeste and Charlotte" title="She played alot with her old preschool buddies at Celeste's going away party" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpeg" alt="Playing soccer with Celeste and Charlotte" title="She played alot with her old preschool buddies at Celeste's going away party" loading="lazy">
             </a>
             <div class="caption">Playing soccer with Celeste and Charlotte</div>
         </div>
@@ -273,7 +278,7 @@
         <div class="gallery-item">
             <div class="date">August 23, 2024</div>
              <a href="image_pages/2024-08-23-Playing tag with Tanner, who is a boy with a blue jacket, at the park.html" data-title="August 23, 2024">
-                <img src="data/August 2024/2024-08-23-Playing tag with Tanner, who is a boy with a blue jacket, at the park.jpeg" alt="Playing tag with Tanner, who is a boy with a blue jacket, at the park" title="Her last day of Swim lessons in Sellwood, had a great park nearby where she liked to play" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-23-Playing tag with Tanner, who is a boy with a blue jacket, at the park.jpeg" alt="Playing tag with Tanner, who is a boy with a blue jacket, at the park" title="Her last day of Swim lessons in Sellwood, had a great park nearby where she liked to play" loading="lazy">
             </a>
             <div class="caption">Playing tag with Tanner, who is a boy with a blue jacket, at the park</div>
         </div>
@@ -281,7 +286,7 @@
         <div class="gallery-item">
             <div class="date">August 22, 2024</div>
              <a href="image_pages/2024-08-22-Coloring and writing with Mommy.html" data-title="August 22, 2024">
-                <img src="data/August 2024/2024-08-22-Coloring and writing with Mommy.jpeg" alt="Coloring and writing with Mommy" title="Lots of coloring and writing letters today after swimming." loading="lazy">
+                <img src="../.././data/August 2024/2024-08-22-Coloring and writing with Mommy.jpeg" alt="Coloring and writing with Mommy" title="Lots of coloring and writing letters today after swimming." loading="lazy">
             </a>
             <div class="caption">Coloring and writing with Mommy</div>
         </div>
@@ -289,7 +294,7 @@
         <div class="gallery-item">
             <div class="date">August 21, 2024</div>
              <a href="image_pages/2024-08-21-Having Mommy and Daddy at aerial arts.html" data-title="August 21, 2024">
-                <img src="data/August 2024/2024-08-21-Having Mommy and Daddy at aerial arts.jpeg" alt="Having Mommy and Daddy at aerial arts" title="Her final aerial arts class today, we got to sit in and watch her tumble and trapeze skills" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-21-Having Mommy and Daddy at aerial arts.jpeg" alt="Having Mommy and Daddy at aerial arts" title="Her final aerial arts class today, we got to sit in and watch her tumble and trapeze skills" loading="lazy">
             </a>
             <div class="caption">Having Mommy and Daddy at aerial arts</div>
         </div>
@@ -297,7 +302,7 @@
         <div class="gallery-item">
             <div class="date">August 20, 2024</div>
              <a href="image_pages/2024-08-20-Making my salad with kale, tomatoes, basil, chives, salt and olive oil.html" data-title="August 20, 2024">
-                <img src="data/August 2024/2024-08-20-Making my salad with kale, tomatoes, basil, chives, salt and olive oil.jpg" alt="Making my salad with kale, tomatoes, basil, chives, salt and olive oil" title="She loves to pick items from the garden and make our dinner salad" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-20-Making my salad with kale, tomatoes, basil, chives, salt and olive oil.jpg" alt="Making my salad with kale, tomatoes, basil, chives, salt and olive oil" title="She loves to pick items from the garden and make our dinner salad" loading="lazy">
             </a>
             <div class="caption">Making my salad with kale, tomatoes, basil, chives, salt and olive oil</div>
         </div>
@@ -305,7 +310,7 @@
         <div class="gallery-item">
             <div class="date">August 19, 2024</div>
              <a href="image_pages/2024-08-19-Going out to dinner for Aunt Janet's Birthday.html" data-title="August 19, 2024">
-                <img src="data/August 2024/2024-08-19-Going out to dinner for Aunt Janet's Birthday.jpeg" alt="Going out to dinner for Aunt Janet's Birthday" title="Went to And & Louis Oyster Bar, its becomming tradition." loading="lazy">
+                <img src="../.././data/August 2024/2024-08-19-Going out to dinner for Aunt Janet's Birthday.jpeg" alt="Going out to dinner for Aunt Janet's Birthday" title="Went to And & Louis Oyster Bar, its becomming tradition." loading="lazy">
             </a>
             <div class="caption">Going out to dinner for Aunt Janet's Birthday</div>
         </div>
@@ -313,7 +318,7 @@
         <div class="gallery-item">
             <div class="date">August 18, 2024</div>
              <a href="image_pages/2024-08-18-Eating a rainbow popsicle for dessert.html" data-title="August 18, 2024">
-                <img src="data/August 2024/2024-08-18-Eating a rainbow popsicle for dessert.jpeg" alt="Eating a rainbow popsicle for dessert" title="A pretty relaxing Sunday" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-18-Eating a rainbow popsicle for dessert.jpeg" alt="Eating a rainbow popsicle for dessert" title="A pretty relaxing Sunday" loading="lazy">
             </a>
             <div class="caption">Eating a rainbow popsicle for dessert</div>
         </div>
@@ -321,7 +326,7 @@
         <div class="gallery-item">
             <div class="date">August 17, 2024</div>
              <a href="image_pages/2024-08-17-Climbing a big tree at the soap box derby.html" data-title="August 17, 2024">
-                <img src="data/August 2024/2024-08-17-Climbing a big tree at the soap box derby.jpeg" alt="Climbing a big tree at the soap box derby" title="Went to the annual soapbox derby at Mt. Tabor" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-17-Climbing a big tree at the soap box derby.jpeg" alt="Climbing a big tree at the soap box derby" title="Went to the annual soapbox derby at Mt. Tabor" loading="lazy">
             </a>
             <div class="caption">Climbing a big tree at the soap box derby</div>
         </div>
@@ -329,7 +334,7 @@
         <div class="gallery-item">
             <div class="date">August 16, 2024</div>
              <a href="image_pages/2024-08-16-Swinging on the monkey bars at the park with Momma.html" data-title="August 16, 2024">
-                <img src="data/August 2024/2024-08-16-Swinging on the monkey bars at the park with Momma.jpeg" alt="Swinging on the monkey bars at the park with Momma" title="Went to the park after swimming class" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-16-Swinging on the monkey bars at the park with Momma.jpeg" alt="Swinging on the monkey bars at the park with Momma" title="Went to the park after swimming class" loading="lazy">
             </a>
             <div class="caption">Swinging on the monkey bars at the park with Momma</div>
         </div>
@@ -337,7 +342,7 @@
         <div class="gallery-item">
             <div class="date">August 15, 2024</div>
              <a href="image_pages/2024-08-15-Picking out new yellow shoes.html" data-title="August 15, 2024">
-                <img src="data/August 2024/2024-08-15-Picking out new yellow shoes.jpeg" alt="Picking out new yellow shoes" title="She picked out new yellow native shoes, size 12!" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-15-Picking out new yellow shoes.jpeg" alt="Picking out new yellow shoes" title="She picked out new yellow native shoes, size 12!" loading="lazy">
             </a>
             <div class="caption">Picking out new yellow shoes</div>
         </div>
@@ -345,7 +350,7 @@
         <div class="gallery-item">
             <div class="date">August 14, 2024</div>
              <a href="image_pages/2024-08-14-Going swimming with Mamma at open swim.html" data-title="August 14, 2024">
-                <img src="data/August 2024/2024-08-14-Going swimming with Mamma at open swim.jpeg" alt="Going swimming with Mamma at open swim" title="She went swimming today before her aerial arts class" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-14-Going swimming with Mamma at open swim.jpeg" alt="Going swimming with Mamma at open swim" title="She went swimming today before her aerial arts class" loading="lazy">
             </a>
             <div class="caption">Going swimming with Mamma at open swim</div>
         </div>
@@ -353,7 +358,7 @@
         <div class="gallery-item">
             <div class="date">August 13, 2024</div>
              <a href="image_pages/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.html" data-title="August 13, 2024">
-                <img src="data/August 2024/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.jpeg" alt="Eating kid size pizzas for lunch with Aunt Monica" title="Had lunch with Aunt Monica between swimming and her 5 year doctor's checkup" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.jpeg" alt="Eating kid size pizzas for lunch with Aunt Monica" title="Had lunch with Aunt Monica between swimming and her 5 year doctor's checkup" loading="lazy">
             </a>
             <div class="caption">Eating kid size pizzas for lunch with Aunt Monica</div>
         </div>
@@ -361,7 +366,7 @@
         <div class="gallery-item">
             <div class="date">August 12, 2024</div>
              <a href="image_pages/2024-08-12-Swimming with Gemma.html" data-title="August 12, 2024">
-                <img src="data/August 2024/2024-08-12-Swimming with Gemma.jpeg" alt="Swimming with Gemma" title="She started her new level of swimming, Seal, with teacher Gemma" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-12-Swimming with Gemma.jpeg" alt="Swimming with Gemma" title="She started her new level of swimming, Seal, with teacher Gemma" loading="lazy">
             </a>
             <div class="caption">Swimming with Gemma</div>
         </div>
@@ -369,7 +374,7 @@
         <div class="gallery-item">
             <div class="date">August 11, 2024</div>
              <a href="image_pages/2024-08-11-The aerial arts show.html" data-title="August 11, 2024">
-                <img src="data/August 2024/2024-08-11-The aerial arts show.jpeg" alt="The aerial arts show" title="We all went and saw an Aerial Arts show at Echo, entitled Perennial" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-11-The aerial arts show.jpeg" alt="The aerial arts show" title="We all went and saw an Aerial Arts show at Echo, entitled Perennial" loading="lazy">
             </a>
             <div class="caption">The aerial arts show</div>
         </div>
@@ -377,7 +382,7 @@
         <div class="gallery-item">
             <div class="date">August 10, 2024</div>
              <a href="image_pages/2024-08-10-Playing with Mommy, Daddy, and Celeste.html" data-title="August 10, 2024">
-                <img src="data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" alt="Playing with Mommy, Daddy, and Celeste" title="Celeste came over, we played Monster and then went to the park" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpeg" alt="Playing with Mommy, Daddy, and Celeste" title="Celeste came over, we played Monster and then went to the park" loading="lazy">
             </a>
             <div class="caption">Playing with Mommy, Daddy, and Celeste</div>
         </div>
@@ -385,7 +390,7 @@
         <div class="gallery-item">
             <div class="date">August 09, 2024</div>
              <a href="image_pages/2024-08-09-Riding on a butterfly.html" data-title="August 09, 2024">
-                <img src="data/August 2024/2024-08-09-Riding on a butterfly.jpeg" alt="Riding on a butterfly" title="Our first hummingbird visited the feeder she gave to Mommy today" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-09-Riding on a butterfly.jpeg" alt="Riding on a butterfly" title="Our first hummingbird visited the feeder she gave to Mommy today" loading="lazy">
             </a>
             <div class="caption">Riding on a butterfly</div>
         </div>
@@ -393,7 +398,7 @@
         <div class="gallery-item">
             <div class="date">August 08, 2024</div>
              <a href="image_pages/2024-08-08-Watch my new hanging trick.html" data-title="August 08, 2024">
-                <img src="data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" alt="Watch my new hanging trick" title="She would hang upside-down on her trapeze with no hands" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-08-Watch my new hanging trick.jpeg" alt="Watch my new hanging trick" title="She would hang upside-down on her trapeze with no hands" loading="lazy">
             </a>
             <div class="caption">Watch my new hanging trick</div>
         </div>
@@ -401,7 +406,7 @@
         <div class="gallery-item">
             <div class="date">August 07, 2024</div>
              <a href="image_pages/2024-08-07-Daddy, I can do a flip.html" data-title="August 07, 2024">
-                <img src="data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" title="Doing a new flip trick on the couch" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-07-Daddy, I can do a flip.jpeg" alt="Daddy, I can do a flip" title="Doing a new flip trick on the couch" loading="lazy">
             </a>
             <div class="caption">Daddy, I can do a flip</div>
         </div>
@@ -409,7 +414,7 @@
         <div class="gallery-item">
             <div class="date">August 06, 2024</div>
              <a href="image_pages/2024-08-06-It's my birthday, Yippee.html" data-title="August 06, 2024">
-                <img src="data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" title="Fifth birthday party at home with friends, familiy, and ofcourse a pinata!" loading="lazy">
+                <img src="../.././data/August 2024/2024-08-06-It's my birthday, Yippee.jpeg" alt="It's my birthday, Yippee" title="Fifth birthday party at home with friends, familiy, and ofcourse a pinata!" loading="lazy">
             </a>
             <div class="caption">It's my birthday, Yippee</div>
         </div>
@@ -428,6 +433,11 @@
         </div>
         <div id="notification" class="notification">URL Copied</div>
         <script>
+            function toggleNav() {
+                const nav = document.getElementById('nav-links');
+                nav.style.display = nav.style.display === 'block' ? 'block' : 'block';
+            }
+
             function toggleDropdown() {
                 const dropdown = document.getElementById('dropdown');
                 dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -437,7 +447,7 @@
             let slideshowInterval;
             const shuffleCheckbox = document.getElementById('shuffle-checkbox');
             shuffleCheckbox.onclick = function(event) {
-                if (!this.checked) {  // If the checkbox is unchecked
+                if (!this.checked) {
                     const galleryItems = document.querySelectorAll('.gallery-item');
                     currentSlideIndex = -1;
                 }
@@ -447,7 +457,7 @@
             shuffleLabel.onclick = function(event) {
                 event.stopPropagation();
                 setTimeout(() => {
-                    if (!shuffleCheckbox.checked) {  // If the checkbox is now unchecked after the label click
+                    if (!shuffleCheckbox.checked) {
                         const galleryItems = document.querySelectorAll('.gallery-item');
                         currentSlideIndex = -1;
                     }
@@ -464,7 +474,7 @@
 
             function startSlideshow() {
                 document.getElementById('fullscreen').style.display = 'flex';
-                document.body.classList.add('body-no-scroll'); // Disable scrolling
+                document.body.classList.add('body-no-scroll');
                 nextSlide();
                 slideshowInterval = setInterval(nextSlide, 7000);
                 document.getElementById('dropdown').style.display = 'none';
@@ -477,7 +487,6 @@
                 const fullscreenCaption = document.getElementById('fullscreen-caption');
                 const fullscreenTitle = document.getElementById('fullscreen-title');
 
-                // Fade out
                 fullscreenImg.style.opacity = 0;
 
                 setTimeout(() => {
@@ -499,25 +508,22 @@
                     fullscreenCaption.textContent = captionText;
                     fullscreenTitle.textContent = title;
 
-                    // Fade in
                     fullscreenImg.style.opacity = 1;
-                }, 330); // Match the duration of the CSS transition
+                }, 330);
             }
 
             function stopSlideshow() {
                 clearInterval(slideshowInterval);
                 document.getElementById('fullscreen').style.display = 'none';
-                document.body.classList.remove('body-no-scroll'); // Enable scrolling
+                document.body.classList.remove('body-no-scroll');
             }
 
-            // Exit fullscreen mode when clicking anywhere on the screen
             document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
 
             function shareGallery() {
                 const galleryURL = window.location.href;
                 const title = document.title;
                 const text = "Check out this gallery!";
-                // Web Share API is supported
                 if (navigator.share) {
                     navigator.share({
                         title: title,
@@ -529,19 +535,23 @@
                         console.error("Error sharing", error);
                     });
                 } else {
-                    // Fallback for devices/browsers without Web Share API
                     navigator.clipboard.writeText(galleryURL).then(() => {
                         const notification = document.getElementById('notification');
                         notification.classList.add('show');
                         setTimeout(() => {
                             notification.classList.remove('show');
-                        }, 3000); // The notification will disappear after 3 seconds
+                        }, 3000);
                     });
                 }
             }
 
-            // Close the dropdown if the user clicks outside of it
             window.onclick = function(event) {
+                if (!event.target.matches('.calendar')) {
+                    const nav = document.getElementById('nav-links');
+                    if (nav.style.display === 'block') {
+                        nav.style.display = 'none';
+                    }
+                }
                 if (!event.target.matches('.menu')) {
                     const dropdown = document.getElementById('dropdown');
                     if (dropdown.style.display === 'block') {

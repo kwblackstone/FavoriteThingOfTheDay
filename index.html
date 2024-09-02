@@ -48,14 +48,38 @@
                 margin-top: 10px;
                 color: #f4f4f4;
             }
-            .nav {
-                margin-top: 20px;
-                z-index: 1;
+            .nav, .dropdown {
+                display: none;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.7);
+                border: 1px solid #ccc;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                z-index: 3;
+                padding: 10px;
             }
-            .nav a {
-                margin: 0 10px;
-                text-decoration: none;
+            .nav a, .dropdown a {
+                display: block;
+                padding: 10px;
+                text-align: left;
                 color: #f4f4f4;
+                text-decoration: none;
+            }
+            .nav a:hover, .dropdown a:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+            .calendar {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                z-index: 2;
+                cursor: pointer;
+                font-size: 36px;
+                color: #f4f4f4;
+                background: transparent;
+                border: none;
+            }
+            .calendar:hover {
+                color: #cccccc;
             }
             .menu {
                 position: absolute;
@@ -67,25 +91,13 @@
                 color: #f4f4f4;
                 background: transparent;
             }
+            .nav {
+                top: 50px;
+                left: 10px;
+            }
             .dropdown {
-                display: none;
-                position: absolute;
-                top: 30px;
+                top: 50px;
                 right: 10px;
-                background-color: rgba(0, 0, 0, 0.7);
-                border: 1px solid #ccc;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-                z-index: 3;
-            }
-            .dropdown a {
-                display: block;
-                padding: 10px;
-                text-align: left;
-                color: #f4f4f4;
-                text-decoration: none;
-            }
-            .dropdown a:hover {
-                background-color: rgba(255, 255, 255, 0.2); /* Slightly visible hover effect */
             }
             .overlay {
                 position: fixed;
@@ -111,7 +123,7 @@
             }
             .body-no-scroll {
                 overflow: hidden;
-                height: 100%; /* Optional, ensures no vertical scroll bar */
+                height: 100%;
             }
             .fullscreen {
                 position: fixed;
@@ -152,7 +164,7 @@
                 color: #f4f4f4;
                 margin-top: 20px;
                 margin-bottom: 20px;
-                align-self: center; 
+                align-self: center;
             }
             .notification {
                 visibility: hidden;
@@ -181,17 +193,13 @@
                 from {bottom: 30px; opacity: 1;}
                 to {bottom: 0; opacity: 0;}
             }
-            /* Mobile-specific styling */
-            @media (max-width: 768px) {
-                .fullscreen #fullscreen-title {
-                    margin-top: 64px;
-                }
-                .fullscreen {
-                    padding: 0px;
-                }
         </style>
     </head>
     <body>
+        <button class="calendar" onclick="toggleNav()">&#128197;</button> <!-- Calendar icon -->
+        <div class="nav" id="nav-links">
+            <a href="archives/August 2024/August 2024.html">August 2024</a>
+        </div>
         <h1>Favorite Thing Of The Day -- September</h1>
         <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
         <div class="dropdown" id="dropdown">
@@ -201,15 +209,12 @@
             <input type="checkbox" id="shuffle-checkbox">
             <label for="shuffle-checkbox" id="shuffle-label">Shuffle</label>
         </div>
-        <div class="nav">
-            <a href="archives/August 2024.html">August 2024</a>
-        </div>
         <div class="gallery">
             
         <div class="gallery-item">
             <div class="date">September 01, 2024</div>
              <a href="image_pages/2024-09-01-The white feather capes at Cirque du Soleil.html" data-title="September 01, 2024">
-                <img src="data/September 2024/2024-09-01-The white feather capes at Cirque du Soleil.jpeg" alt="The white feather capes at Cirque du Soleil" title="We went to Kooza, her first Cirque show, followed by dinner at Dame" loading="lazy">
+                <img src="././data/September 2024/2024-09-01-The white feather capes at Cirque du Soleil.jpeg" alt="The white feather capes at Cirque du Soleil" title="We went to Kooza, her first Cirque show, followed by dinner at Dame" loading="lazy">
             </a>
             <div class="caption">The white feather capes at Cirque du Soleil</div>
         </div>
@@ -228,6 +233,11 @@
         </div>
         <div id="notification" class="notification">URL Copied</div>
         <script>
+            function toggleNav() {
+                const nav = document.getElementById('nav-links');
+                nav.style.display = nav.style.display === 'block' ? 'block' : 'block';
+            }
+
             function toggleDropdown() {
                 const dropdown = document.getElementById('dropdown');
                 dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -237,7 +247,7 @@
             let slideshowInterval;
             const shuffleCheckbox = document.getElementById('shuffle-checkbox');
             shuffleCheckbox.onclick = function(event) {
-                if (!this.checked) {  // If the checkbox is unchecked
+                if (!this.checked) {
                     const galleryItems = document.querySelectorAll('.gallery-item');
                     currentSlideIndex = -1;
                 }
@@ -247,7 +257,7 @@
             shuffleLabel.onclick = function(event) {
                 event.stopPropagation();
                 setTimeout(() => {
-                    if (!shuffleCheckbox.checked) {  // If the checkbox is now unchecked after the label click
+                    if (!shuffleCheckbox.checked) {
                         const galleryItems = document.querySelectorAll('.gallery-item');
                         currentSlideIndex = -1;
                     }
@@ -264,7 +274,7 @@
 
             function startSlideshow() {
                 document.getElementById('fullscreen').style.display = 'flex';
-                document.body.classList.add('body-no-scroll'); // Disable scrolling
+                document.body.classList.add('body-no-scroll');
                 nextSlide();
                 slideshowInterval = setInterval(nextSlide, 7000);
                 document.getElementById('dropdown').style.display = 'none';
@@ -277,7 +287,6 @@
                 const fullscreenCaption = document.getElementById('fullscreen-caption');
                 const fullscreenTitle = document.getElementById('fullscreen-title');
 
-                // Fade out
                 fullscreenImg.style.opacity = 0;
 
                 setTimeout(() => {
@@ -299,25 +308,22 @@
                     fullscreenCaption.textContent = captionText;
                     fullscreenTitle.textContent = title;
 
-                    // Fade in
                     fullscreenImg.style.opacity = 1;
-                }, 330); // Match the duration of the CSS transition
+                }, 330);
             }
 
             function stopSlideshow() {
                 clearInterval(slideshowInterval);
                 document.getElementById('fullscreen').style.display = 'none';
-                document.body.classList.remove('body-no-scroll'); // Enable scrolling
+                document.body.classList.remove('body-no-scroll');
             }
 
-            // Exit fullscreen mode when clicking anywhere on the screen
             document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
 
             function shareGallery() {
                 const galleryURL = window.location.href;
                 const title = document.title;
                 const text = "Check out this gallery!";
-                // Web Share API is supported
                 if (navigator.share) {
                     navigator.share({
                         title: title,
@@ -329,19 +335,23 @@
                         console.error("Error sharing", error);
                     });
                 } else {
-                    // Fallback for devices/browsers without Web Share API
                     navigator.clipboard.writeText(galleryURL).then(() => {
                         const notification = document.getElementById('notification');
                         notification.classList.add('show');
                         setTimeout(() => {
                             notification.classList.remove('show');
-                        }, 3000); // The notification will disappear after 3 seconds
+                        }, 3000);
                     });
                 }
             }
 
-            // Close the dropdown if the user clicks outside of it
             window.onclick = function(event) {
+                if (!event.target.matches('.calendar')) {
+                    const nav = document.getElementById('nav-links');
+                    if (nav.style.display === 'block') {
+                        nav.style.display = 'none';
+                    }
+                }
                 if (!event.target.matches('.menu')) {
                     const dropdown = document.getElementById('dropdown');
                     if (dropdown.style.display === 'block') {
