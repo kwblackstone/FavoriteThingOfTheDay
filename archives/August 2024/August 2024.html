@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Favorite Thing Of The Day -- August 2024</title>
         <style>
             body {
@@ -59,6 +60,7 @@
             }
             .nav a, .dropdown a {
                 display: block;
+                top: 100px;
                 padding: 10px;
                 text-align: left;
                 color: #f4f4f4;
@@ -68,35 +70,39 @@
                 background-color: rgba(255, 255, 255, 0.2);
             }
             .calendar {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                z-index: 2;
-                cursor: pointer;
-                font-size: 28px;
-                color: #f4f4f4;
                 background: transparent;
                 border: none;
+                cursor: pointer;
+                display: inline-block;
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                font-size: 28px;
+                vertical-align: middle;
+                color: #f4f4f4;
+                z-index: 1000;
+                transform: scale(2);
             }
             .calendar:hover {
                 color: #cccccc;
             }
             .menu {
                 position: absolute;
-                top: 10px;
-                right: 10px;
+                top: 25px;
+                right: 25px;
                 z-index: 2;
                 cursor: pointer;
                 font-size: 24px;
                 color: #f4f4f4;
                 background: transparent;
+                transform: scale(2);
             }
             .nav {
-                top: 50px;
+                top: 75px;
                 left: 10px;
             }
             .dropdown {
-                top: 50px;
+                top: 75px;
                 right: 10px;
             }
             .overlay {
@@ -193,12 +199,30 @@
                 from {bottom: 30px; opacity: 1;}
                 to {bottom: 0; opacity: 0;}
             }
+            /* Mobile-specific styling */
+            @media (max-width: 768px) {
+                .calendar {
+                    top: 10px;
+                    left: 10px;
+                    transform: scale(1);
+                }
+                .menu {
+                    top: 10px;
+                    right: 10px;
+                    transform: scale(1);
+                }
+                .nav {
+                    top: 25px;
+                }
+                .dropdown {
+                    top: 25px;
+                }
         </style>
     </head>
     <body>
-        <button class="calendar" onclick="toggleNav()">📅</button> <!-- Calendar icon -->
-        <div class="nav" id="nav-links">
-            <a href="../../index.html">September 2024</a>
+        <button class="calendar"><i class="material-icons">today</i></button>
+        <div class="nav" id="nav-links" style="display: none;"> <!-- Ensure this is initially hidden -->
+            <a href="../../index.html">Current</a>
         </div>
         <h1>Favorite Thing Of The Day -- August 2024</h1>
         <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
@@ -435,7 +459,11 @@
         <script>
             function toggleNav() {
                 const nav = document.getElementById('nav-links');
-                nav.style.display = nav.style.display === 'block' ? 'block' : 'block';
+                if (nav.style.display === 'block') {
+                    nav.style.display = 'none';
+                } else {
+                    nav.style.display = 'block';
+                }
             }
 
             function toggleDropdown() {
@@ -519,6 +547,13 @@
             }
 
             document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
+            document.addEventListener('DOMContentLoaded', function() {
+                const calendarButton = document.querySelector('.calendar');
+                calendarButton.addEventListener('click', function(event) {
+                    toggleNav();
+                    event.stopPropagation();
+                });
+            });
 
             function shareGallery() {
                 const galleryURL = window.location.href;
