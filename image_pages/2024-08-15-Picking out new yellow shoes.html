@@ -4,10 +4,10 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <base href="https://kwblackstone.github.io/FavoriteThingOfTheDay/">
+            <base href=".">
             <title>August 15, 2024 - Picking out new yellow shoes</title>
-            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-14-Going%20swimming%20with%20Mamma%20at%20open%20swim.html" as="document">
-            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-16-Swinging%20on%20the%20monkey%20bars%20at%20the%20park%20with%20Momma.html" as="document">
+            <link rel="prefetch" href="../image_pages/2024-08-14-Going%20swimming%20with%20Mamma%20at%20open%20swim.html" as="document">
+            <link rel="prefetch" href="../image_pages/2024-08-16-Swinging%20on%20the%20monkey%20bars%20at%20the%20park%20with%20Momma.html" as="document">
             <script>
                 function navigateToImage(imagePage) {
                     const params = new URLSearchParams(window.location.search);
@@ -24,7 +24,7 @@
                     if (params.get('from') === 'main') {
                         backLink.href = "index.html";
                     } else {
-                        backLink.href = "https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/archives/August 2024/August 2024.html";
+                        backLink.href = "./home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/archives/August 2024/August 2024.html";
                     }
                 }
                 window.onload = setBackLink;
@@ -36,7 +36,7 @@
                     margin: 0;
                     padding: 20px;
                     background-color: #f4f4f4;
-                    background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
+                    background: url('./data/background.png') no-repeat center center fixed;
                     background-size: cover;
                 }
                 .image-container {
@@ -129,12 +129,12 @@
             <a class="back-link" href="#" title="Back to Gallery">&#10006;</a>
             <div class="date-title">August 15, 2024</div>
             <div class="image-container">
-                <a href="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/August 2024/2024-08-15-Picking out new yellow shoes.jpeg" target="_blank">
-                    <img src="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/August 2024/2024-08-15-Picking out new yellow shoes.jpeg" alt="Picking out new yellow shoes" title="She picked out new yellow native shoes, size 12!">
+                <a href=".data/August 2024/2024-08-15-Picking out new yellow shoes.jpeg" target="_blank">
+                    <img src=".data/August 2024/2024-08-15-Picking out new yellow shoes.jpeg" alt="Picking out new yellow shoes" title="She picked out new yellow native shoes, size 12!">
                 </a>
                 <div class="caption">Picking out new yellow shoes</div>
-                <span class='arrow left' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-16-Swinging%20on%20the%20monkey%20bars%20at%20the%20park%20with%20Momma.html");'>&#10094;</span>
-                <span class='arrow right' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-14-Going%20swimming%20with%20Mamma%20at%20open%20swim.html");'>&#10095;</span>
+                <span class='arrow left' onclick='navigateToImage("../image_pages/2024-08-16-Swinging%20on%20the%20monkey%20bars%20at%20the%20park%20with%20Momma.html");'>&#10094;</span>
+                <span class='arrow right' onclick='navigateToImage("../image_pages/2024-08-14-Going%20swimming%20with%20Mamma%20at%20open%20swim.html");'>&#10095;</span>
             </div>
         </body>
         </html>
