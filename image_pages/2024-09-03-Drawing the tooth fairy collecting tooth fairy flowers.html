@@ -21,9 +21,9 @@
                     const params = new URLSearchParams(window.location.search);
                     const backLink = document.querySelector('.back-link');
                     if (params.get('from') === 'main') {
-                        backLink.href = "index.html";
+                        backLink.href = "../index.html";
                     } else {
-                        backLink.href = "..//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/index.html";
+                        backLink.href = "/home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/index.html";
                     }
                 }
                 window.onload = setBackLink;
@@ -35,7 +35,7 @@
                     margin: 0;
                     padding: 20px;
                     background-color: #f4f4f4;
-                    background: url('../https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
+                    background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
                     background-size: cover;
                 }
                 .image-container {
