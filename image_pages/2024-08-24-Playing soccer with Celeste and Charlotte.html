@@ -4,9 +4,31 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <base href="https://kwblackstone.github.io/FavoriteThingOfTheDay/">
             <title>August 24, 2024 - Playing soccer with Celeste and Charlotte</title>
-            <link rel="prefetch" href="2024-08-25-Playing%20with%20Moo%20Moo%2C%20our%20orange%20cat%2C%20in%20the%20window%20sill.html" as="document">
-            <link rel="prefetch" href="2024-08-23-Playing%20tag%20with%20Tanner%2C%20who%20is%20a%20boy%20with%20a%20blue%20jacket%2C%20at%20the%20park.html" as="document">
+            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-23-Playing%20tag%20with%20Tanner%2C%20who%20is%20a%20boy%20with%20a%20blue%20jacket%2C%20at%20the%20park.html" as="document">
+            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-25-Playing%20with%20Moo%20Moo%2C%20our%20orange%20cat%2C%20in%20the%20window%20sill.html" as="document">
+            <script>
+                function navigateToImage(imagePage) {
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get('from') === 'main') {
+                        imagePage += "?from=main";
+                    }
+                    window.location.href = imagePage;
+                }
+            </script>
+            <script>
+                function setBackLink() {
+                    const params = new URLSearchParams(window.location.search);
+                    const backLink = document.querySelector('.back-link');
+                    if (params.get('from') === 'main') {
+                        backLink.href = "index.html";
+                    } else {
+                        backLink.href = "https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/archives/August 2024/August 2024.html";
+                    }
+                }
+                window.onload = setBackLink;
+            </script>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -14,7 +36,7 @@
                     margin: 0;
                     padding: 20px;
                     background-color: #f4f4f4;
-                    background: url('.././data/background.png') no-repeat center center fixed;
+                    background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
                     background-size: cover;
                 }
                 .image-container {
@@ -104,15 +126,15 @@
             </style>
         </head>
         <body>
-            <a class="back-link" href="../archives/August 2024/August 2024.html" title="Back to Gallery">&#10006;</a>
+            <a class="back-link" href="#" title="Back to Gallery">&#10006;</a>
             <div class="date-title">August 24, 2024</div>
             <div class="image-container">
-                <a href="../../../data/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpeg" target="_blank">
-                    <img src="../../../data/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpeg" alt="Playing soccer with Celeste and Charlotte" title="She played alot with her old preschool buddies at Celeste's going away party">
+                <a href="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpeg" target="_blank">
+                    <img src="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpeg" alt="Playing soccer with Celeste and Charlotte" title="She played alot with her old preschool buddies at Celeste's going away party">
                 </a>
                 <div class="caption">Playing soccer with Celeste and Charlotte</div>
-                <span class='arrow left' onclick='window.location.href="2024-08-25-Playing%20with%20Moo%20Moo%2C%20our%20orange%20cat%2C%20in%20the%20window%20sill.html";'>&#10094;</span>
-                <span class='arrow right' onclick='window.location.href="2024-08-23-Playing%20tag%20with%20Tanner%2C%20who%20is%20a%20boy%20with%20a%20blue%20jacket%2C%20at%20the%20park.html";'>&#10095;</span>
+                <span class='arrow left' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-25-Playing%20with%20Moo%20Moo%2C%20our%20orange%20cat%2C%20in%20the%20window%20sill.html");'>&#10094;</span>
+                <span class='arrow right' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-23-Playing%20tag%20with%20Tanner%2C%20who%20is%20a%20boy%20with%20a%20blue%20jacket%2C%20at%20the%20park.html");'>&#10095;</span>
             </div>
         </body>
         </html>

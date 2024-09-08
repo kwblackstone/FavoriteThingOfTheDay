@@ -4,9 +4,31 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <base href="https://kwblackstone.github.io/FavoriteThingOfTheDay/">
             <title>August 29, 2024 - Played hide n go seek with Daddy</title>
-            <link rel="prefetch" href="2024-08-30-Having%20beverages%20with%20Mommy%20and%20Daddy%20on%20the%20flagstone%20in%20the%20back%20yard.html" as="document">
-            <link rel="prefetch" href="2024-08-28-Showing%20teacher%20Julie%20the%20toys%20in%20my%20bedroom.html" as="document">
+            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-28-Showing%20teacher%20Julie%20the%20toys%20in%20my%20bedroom.html" as="document">
+            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-30-Having%20beverages%20with%20Mommy%20and%20Daddy%20on%20the%20flagstone%20in%20the%20back%20yard.html" as="document">
+            <script>
+                function navigateToImage(imagePage) {
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get('from') === 'main') {
+                        imagePage += "?from=main";
+                    }
+                    window.location.href = imagePage;
+                }
+            </script>
+            <script>
+                function setBackLink() {
+                    const params = new URLSearchParams(window.location.search);
+                    const backLink = document.querySelector('.back-link');
+                    if (params.get('from') === 'main') {
+                        backLink.href = "index.html";
+                    } else {
+                        backLink.href = "https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/archives/August 2024/August 2024.html";
+                    }
+                }
+                window.onload = setBackLink;
+            </script>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -14,7 +36,7 @@
                     margin: 0;
                     padding: 20px;
                     background-color: #f4f4f4;
-                    background: url('.././data/background.png') no-repeat center center fixed;
+                    background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
                     background-size: cover;
                 }
                 .image-container {
@@ -104,15 +126,15 @@
             </style>
         </head>
         <body>
-            <a class="back-link" href="../archives/August 2024/August 2024.html" title="Back to Gallery">&#10006;</a>
+            <a class="back-link" href="#" title="Back to Gallery">&#10006;</a>
             <div class="date-title">August 29, 2024</div>
             <div class="image-container">
-                <a href="../../../data/August 2024/2024-08-29-Played hide n go seek with Daddy.jpeg" target="_blank">
-                    <img src="../../../data/August 2024/2024-08-29-Played hide n go seek with Daddy.jpeg" alt="Played hide n go seek with Daddy" title="Had a chill day today at home playing with Mommy and then Daddy after work">
+                <a href="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/August 2024/2024-08-29-Played hide n go seek with Daddy.jpeg" target="_blank">
+                    <img src="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/August 2024/2024-08-29-Played hide n go seek with Daddy.jpeg" alt="Played hide n go seek with Daddy" title="Had a chill day today at home playing with Mommy and then Daddy after work">
                 </a>
                 <div class="caption">Played hide n go seek with Daddy</div>
-                <span class='arrow left' onclick='window.location.href="2024-08-30-Having%20beverages%20with%20Mommy%20and%20Daddy%20on%20the%20flagstone%20in%20the%20back%20yard.html";'>&#10094;</span>
-                <span class='arrow right' onclick='window.location.href="2024-08-28-Showing%20teacher%20Julie%20the%20toys%20in%20my%20bedroom.html";'>&#10095;</span>
+                <span class='arrow left' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-30-Having%20beverages%20with%20Mommy%20and%20Daddy%20on%20the%20flagstone%20in%20the%20back%20yard.html");'>&#10094;</span>
+                <span class='arrow right' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-08-28-Showing%20teacher%20Julie%20the%20toys%20in%20my%20bedroom.html");'>&#10095;</span>
             </div>
         </body>
         </html>

@@ -4,9 +4,31 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <base href="https://kwblackstone.github.io/FavoriteThingOfTheDay/">
             <title>September 05, 2024 - We made apples with red and white yarn in the Kindergarten classroom</title>
-            <link rel="prefetch" href="2024-09-06-Creating%20the%20family%20out%20of%20paper%2C%20with%20glitter%20glue%20during%20arts%20and%20crafts.html" as="document">
-            <link rel="prefetch" href="2024-09-04-Climbing%20on%20the%20playhouse%20in%20my%20kindergarten%20classroom%20while%20the%20babies%20sleep%20upstairs.html" as="document">
+            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-09-04-Climbing%20on%20the%20playhouse%20in%20my%20kindergarten%20classroom%20while%20the%20babies%20sleep%20upstairs.html" as="document">
+            <link rel="prefetch" href="https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-09-06-Creating%20the%20family%20out%20of%20paper%2C%20with%20glitter%20glue%20during%20arts%20and%20crafts.html" as="document">
+            <script>
+                function navigateToImage(imagePage) {
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get('from') === 'main') {
+                        imagePage += "?from=main";
+                    }
+                    window.location.href = imagePage;
+                }
+            </script>
+            <script>
+                function setBackLink() {
+                    const params = new URLSearchParams(window.location.search);
+                    const backLink = document.querySelector('.back-link');
+                    if (params.get('from') === 'main') {
+                        backLink.href = "index.html";
+                    } else {
+                        backLink.href = "https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/index.html";
+                    }
+                }
+                window.onload = setBackLink;
+            </script>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -14,7 +36,7 @@
                     margin: 0;
                     padding: 20px;
                     background-color: #f4f4f4;
-                    background: url('.././data/background.png') no-repeat center center fixed;
+                    background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
                     background-size: cover;
                 }
                 .image-container {
@@ -104,15 +126,15 @@
             </style>
         </head>
         <body>
-            <a class="back-link" href="../index.html" title="Back to Gallery">&#10006;</a>
+            <a class="back-link" href="#" title="Back to Gallery">&#10006;</a>
             <div class="date-title">September 05, 2024</div>
             <div class="image-container">
-                <a href="../data/September 2024/2024-09-05-We made apples with red and white yarn in the Kindergarten classroom.jpeg" target="_blank">
-                    <img src="../data/September 2024/2024-09-05-We made apples with red and white yarn in the Kindergarten classroom.jpeg" alt="We made apples with red and white yarn in the Kindergarten classroom" title="Another day of kindergarten, she is having lots of fun, and also brought home her leaf bouquet">
+                <a href="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/September 2024/2024-09-05-We made apples with red and white yarn in the Kindergarten classroom.jpeg" target="_blank">
+                    <img src="https://kwblackstone.github.io/FavoriteThingOfTheDay//home/runner/work/FavoriteThingOfTheDay/FavoriteThingOfTheDay/data/September 2024/2024-09-05-We made apples with red and white yarn in the Kindergarten classroom.jpeg" alt="We made apples with red and white yarn in the Kindergarten classroom" title="Another day of kindergarten, she is having lots of fun, and also brought home her leaf bouquet">
                 </a>
                 <div class="caption">We made apples with red and white yarn in the Kindergarten classroom</div>
-                <span class='arrow left' onclick='window.location.href="2024-09-06-Creating%20the%20family%20out%20of%20paper%2C%20with%20glitter%20glue%20during%20arts%20and%20crafts.html";'>&#10094;</span>
-                <span class='arrow right' onclick='window.location.href="2024-09-04-Climbing%20on%20the%20playhouse%20in%20my%20kindergarten%20classroom%20while%20the%20babies%20sleep%20upstairs.html";'>&#10095;</span>
+                <span class='arrow left' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-09-06-Creating%20the%20family%20out%20of%20paper%2C%20with%20glitter%20glue%20during%20arts%20and%20crafts.html");'>&#10094;</span>
+                <span class='arrow right' onclick='navigateToImage("https://kwblackstone.github.io/FavoriteThingOfTheDay/./image_pages/2024-09-04-Climbing%20on%20the%20playhouse%20in%20my%20kindergarten%20classroom%20while%20the%20babies%20sleep%20upstairs.html");'>&#10095;</span>
             </div>
         </body>
         </html>
