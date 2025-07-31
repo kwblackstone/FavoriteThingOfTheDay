@@ -1,687 +1,837 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <base href="https://kwblackstone.github.io/FavoriteThingOfTheDay/">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title>Favorite Thing Of The Day - March 2025</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 20px;
-                background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
-                background-size: cover;
-                text-align: center;
-                position: relative;
-                color: #f4f4f4;
-            }
-            h1 {
-                margin-bottom: 20px;
-                z-index: 1;
-                color: #f4f4f4;
-            }
-            .gallery {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 15px;
-                justify-content: center;
-                z-index: 1;
-            }
-            .gallery img {
-                max-width: 100%;
-                height: auto;
-                border: 1px solid #ccc;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            }
-            .gallery-item {
-                width: 300px;
-                text-align: center;
-                margin-bottom: 30px;
-                z-index: 1;
-            }
-            .gallery-item:last-child {
-                margin-bottom: 0;
-                padding-bottom: 0;
-            }
-            .date {
-                font-weight: bold;
-                margin-bottom: 10px;
-                color: #f4f4f4;
-            }
-            .caption {
-                margin-top: 10px;
-                color: #f4f4f4;
-            }
-            .previous-month-title {
-                width: 100%;
-                text-align: center;
-                clear: both;
-                margin: 30px 0;
-            }
-            .previous-month-title .previous-month-h1 {
-                font-size: 2em;
-                margin: 0 auto;
-                color: #f4f4f4;  /* Ensures it matches the style of the main title */
-            }
-            .navigation-links {
-                width: 100%;
-                text-align: center;
-                clear: both;
-                margin-top: 2px;
-            }
-            .navigation-links a {
-                color: #007BFF;
-                text-decoration: none;
-                font-size: 1.5em;
-                padding: 8px 12px;
-                border-radius: 5px;
-                transition: all 0.3s ease;
-                text-shadow: 1px 1px 2px #000000; /* Text shadow for better legibility */
-            }
-            .navigation-links a:hover, .navigation-links a:focus {
-                color: #0056b3; 
-                text-decoration: underline;
-            }
-            .nav, .dropdown {
-                display: none;
-                position: absolute;
-                background-color: rgba(0, 0, 0, 0.7);
-                border: 1px solid #ccc;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-                z-index: 3;
-                padding: 10px;
-            }
-            .nav a, .dropdown a {
-                display: block;
-                top: 100px;
-                padding: 10px;
-                text-align: left;
-                color: #f4f4f4;
-                text-decoration: none;
-            }
-            .nav a:hover, .dropdown a:hover {
-                background-color: rgba(255, 255, 255, 0.2);
-            }
-            .calendar {
-                background: transparent;
-                border: none;
-                cursor: pointer;
-                display: inline-block;
-                position: absolute;
-                top: 25px;
-                left: 25px;
-                font-size: 28px;
-                vertical-align: middle;
-                color: #f4f4f4;
-                z-index: 1000;
-                transform: scale(2);
-            }
-            .calendar:hover {
-                color: #cccccc;
-            }
-            .menu {
-                position: absolute;
-                top: 25px;
-                right: 25px;
-                z-index: 2;
-                cursor: pointer;
-                font-size: 24px;
-                color: #f4f4f4;
-                background: transparent;
-                transform: scale(2);
-            }
-            .nav {
-                top: 75px;
-                left: 10px;
-            }
-            .dropdown {
-                top: 75px;
-                right: 10px;
-            }
-            .overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.8);
-                display: none;
-                justify-content: center;
-                align-items: center;
-                color: white;
-                font-size: 20px;
-                padding: 20px;
-                box-sizing: border-box;
-                z-index: 999;
-            }
-            .overlay-content {
-                max-width: 600px;
-                text-align: left;
-                position: relative;
-                z-index: 2;
-            }
-            .body-no-scroll {
-                overflow: hidden;
-                height: 100%;
-            }
-            .fullscreen {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay//data/background.png') no-repeat center center fixed;
-                background-size: cover;
-                color: white;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                display: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-            }
-            .fullscreen img {
-                max-width: 80%;
-                max-height: 80vh;
-                border: none;
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-                transition: opacity 0.33s ease-in-out;
-                opacity: 0;
-                justify-content: center;
-                align-items: center;
-            }
-            .fullscreen .caption {
-                margin-top: 20px;
-                text-align: center;
-                color: white;
-                font-size: 36px;
-                box-sizing: border-box;
-                display: inline-block;
-                justify-content: center;
-                align-items: center;
-            }
-            .fullscreen #fullscreen-title {
-                font-size: 48px;
-                color: #f4f4f4;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                justify-content: center;
-                align-items: center;
-            }
-            .notification {
-                visibility: hidden;
-                min-width: 250px;
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                border-radius: 2px;
-                padding: 16px;
-                position: fixed;
-                z-index: 9999;
-                left: 50%;
-                bottom: 30px;
-                transform: translateX(-50%);
-                font-size: 17px;
-            }
-            .notification.show {
-                visibility: visible;
-                animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            }
-            @keyframes fadein {
-                from {bottom: 0; opacity: 0;}
-                to {bottom: 30px; opacity: 1;}
-            }
-            @keyframes fadeout {
-                from {bottom: 30px; opacity: 1;}
-                to {bottom: 0; opacity: 0;}
-            }
-            /* Mobile-specific styling */
-            @media (max-width: 768px) {
-                .calendar {
-                    top: 10px;
-                    left: 10px;
-                    transform: scale(1);
-                }
-                .menu {
-                    top: 10px;
-                    right: 10px;
-                    transform: scale(1);
-                }
-                .nav {
-                    top: 25px;
-                }
-                .dropdown {
-                    top: 25px;
-                }
-        </style>
-    </head>
-    <body>
-        <button class="calendar"><i class="material-icons">today</i></button>
-        <div class="nav" id="nav-links" style="display: none;"> <!-- Ensure this is initially hidden -->
-            <a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/index.html">Current</a><a href="archives/June 2025/June 2025.html">June 2025</a><a href="archives/May 2025/May 2025.html">May 2025</a><a href="archives/April 2025/April 2025.html">April 2025</a><a href="archives/February 2025/February 2025.html">February 2025</a><a href="archives/January 2025/January 2025.html">January 2025</a><a href="archives/December 2024/December 2024.html">December 2024</a><a href="archives/November 2024/November 2024.html">November 2024</a><a href="archives/October 2024/October 2024.html">October 2024</a><a href="archives/September 2024/September 2024.html">September 2024</a><a href="archives/August 2024/August 2024.html">August 2024</a>
-        </div>
-        <h1>Favorite Thing Of The Day<br><br>March 2025</h1>
-        <div class="menu" onclick="toggleDropdown()">&#x22EE;</div> <!-- Three dots -->
-        <div class="dropdown" id="dropdown">
-            <a href="javascript:void(0);" onclick="showOverlay()">About</a>
-            <a href="javascript:void(0);" onclick="shareGallery()">Share</a>
-            <a href="javascript:void(0);" onclick="startSlideshow()">Slideshow</a>
-            <input type="checkbox" id="shuffle-checkbox">
-            <label for="shuffle-checkbox" id="shuffle-label">Shuffle</label>
-        </div>
-        <div class="gallery">
-            
-        <div class="gallery-item">
-            <div class="date">March 31, 2025</div>
-             <a href="./image_pages/2025-03-31-Storytime with Aunt Monica before bed.html" data-title="March 31, 2025">
-                <img src="data/March 2025/2025-03-31-Storytime with Aunt Monica before bed.png" alt="Storytime with Aunt Monica before bed" title="Monica and Soren came over for a wonderful lamb pasta dish and then Aunt Monica got her ready for bed." loading="lazy">
-            </a>
-            <div class="caption">Storytime with Aunt Monica before bed</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 30, 2025</div>
-             <a href="./image_pages/2025-03-30-Making dessert for everyone with Uncle.html" data-title="March 30, 2025">
-                <img src="data/March 2025/2025-03-30-Making dessert for everyone with Uncle.png" alt="Making dessert for everyone with Uncle" title="Aja and Uncle came over for Beef bulgogi dinner and the two of them made "dessert" for us all." loading="lazy">
-            </a>
-            <div class="caption">Making dessert for everyone with Uncle</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 29, 2025</div>
-             <a href="./image_pages/2025-03-29-Riding my bike with Mommy to the park.html" data-title="March 29, 2025">
-                <img src="data/March 2025/2025-03-29-Riding my bike with Mommy to the park.png" alt="Riding my bike with Mommy to the park" title="A pretty relaxing Friday. Still practicing her bike riding on the way to the park. Afterwards Uncle and Aja came over for beef bulgogi." loading="lazy">
-            </a>
-            <div class="caption">Riding my bike with Mommy to the park</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 28, 2025</div>
-             <a href="./image_pages/2025-03-28-Playing at the wave pool with Eva.html" data-title="March 28, 2025">
-                <img src="data/March 2025/2025-03-28-Playing at the wave pool with Eva.png" alt="Playing at the wave pool with Eva" title="Her last day of Pedalheads bike camp, and then afterwards we went to a wave pool!" loading="lazy">
-            </a>
-            <div class="caption">Playing at the wave pool with Eva</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 27, 2025</div>
-             <a href="./image_pages/2025-03-27-Eating a popsickle with Alma.html" data-title="March 27, 2025">
-                <img src="data/March 2025/2025-03-27-Eating a popsickle with Alma.png" alt="Eating a popsickle with Alma" title="Alma came over to play as both of them are enjoying Spring Break." loading="lazy">
-            </a>
-            <div class="caption">Eating a popsickle with Alma</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 26, 2025</div>
-             <a href="./image_pages/2025-03-26-Riding on the bike with Mommy to get ice cream.html" data-title="March 26, 2025">
-                <img src="data/March 2025/2025-03-26-Riding on the bike with Mommy to get ice cream.jpeg" alt="Riding on the bike with Mommy to get ice cream" title="She is doing really well at bike camp, and now was off with Mommy to get ice cream before dinner." loading="lazy">
-            </a>
-            <div class="caption">Riding on the bike with Mommy to get ice cream</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 25, 2025</div>
-             <a href="./image_pages/2025-03-25-Having a picnic in the park with Cass.html" data-title="March 25, 2025">
-                <img src="data/March 2025/2025-03-25-Having a picnic in the park with Cass.jpeg" alt="Having a picnic in the park with Cass" title="Second day of bicycle camp followed by more buddy time with Cass." loading="lazy">
-            </a>
-            <div class="caption">Having a picnic in the park with Cass</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 24, 2025</div>
-             <a href="./image_pages/2025-03-24-Going to bike camp with Lucy, Willa, and Sally.html" data-title="March 24, 2025">
-                <img src="data/March 2025/2025-03-24-Going to bike camp with Lucy, Willa, and Sally.jpeg" alt="Going to bike camp with Lucy, Willa, and Sally" title="Today was her first day at Pedalheads bike camp with her friends.  Then they all came over afterwards for lemonade and play time." loading="lazy">
-            </a>
-            <div class="caption">Going to bike camp with Lucy, Willa, and Sally</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 23, 2025</div>
-             <a href="./image_pages/2025-03-23-Playing at Mila's House.html" data-title="March 23, 2025">
-                <img src="data/March 2025/2025-03-23-Playing at Mila's House.jpeg" alt="Playing at Mila's House" title="We went over to Mila's and made pizza." loading="lazy">
-            </a>
-            <div class="caption">Playing at Mila's House</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 22, 2025</div>
-             <a href="./image_pages/2025-03-22-Playing at Eva's house.html" data-title="March 22, 2025">
-                <img src="data/March 2025/2025-03-22-Playing at Eva's house.jpeg" alt="Playing at Eva's house" title="She had gymnastics in the afternoon, then some free gymnastics with Eva afterwards.  Then we went over to her house for fajitas and even more play." loading="lazy">
-            </a>
-            <div class="caption">Playing at Eva's house</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 21, 2025</div>
-             <a href="./image_pages/2025-03-21-Playing with Cass.html" data-title="March 21, 2025">
-                <img src="data/March 2025/2025-03-21-Playing with Cass.jpeg" alt="Playing with Cass" title="Last day of school before a two week spring break!  Cass and family came over for a congee dinner while the kids had Bless Your Heart." loading="lazy">
-            </a>
-            <div class="caption">Playing with Cass</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 20, 2025</div>
-             <a href="./image_pages/2025-03-20-Having an inside picnic with Mommy for dinner.html" data-title="March 20, 2025">
-                <img src="data/March 2025/2025-03-20-Having an inside picnic with Mommy for dinner.jpeg" alt="Having an inside picnic with Mommy for dinner" title="Typical day at school but it was raining outside so we came straight home, then they both had a picnic dinner while I went to go play soccer." loading="lazy">
-            </a>
-            <div class="caption">Having an inside picnic with Mommy for dinner</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 19, 2025</div>
-             <a href="./image_pages/2025-03-19-Cheese tasting with Mommy.html" data-title="March 19, 2025">
-                <img src="data/March 2025/2025-03-19-Cheese tasting with Mommy.jpeg" alt="Cheese tasting with Mommy" title="Family chiro today after school, followed by a donut and some cheese tasting." loading="lazy">
-            </a>
-            <div class="caption">Cheese tasting with Mommy</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 18, 2025</div>
-             <a href="./image_pages/2025-03-18-Telling knock knock jokes carpooling with Alma.html" data-title="March 18, 2025">
-                <img src="data/March 2025/2025-03-18-Telling knock knock jokes carpooling with Alma.jpeg" alt="Telling knock knock jokes carpooling with Alma" title="She played blue rat after school, then we carpooled with Alma and went to the last Tiger music class." loading="lazy">
-            </a>
-            <div class="caption">Telling knock knock jokes carpooling with Alma</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 17, 2025</div>
-             <a href="./image_pages/2025-03-17-Going to dinner with Eva at Kennedy School.html" data-title="March 17, 2025">
-                <img src="data/March 2025/2025-03-17-Going to dinner with Eva at Kennedy School.jpeg" alt="Going to dinner with Eva at Kennedy School" title="After class we headed over to the Kennedy school for St. Patricks Day to have dinner with Eva and her family.  Then we saw some Irish dancing before heading home." loading="lazy">
-            </a>
-            <div class="caption">Going to dinner with Eva at Kennedy School</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 16, 2025</div>
-             <a href="./image_pages/2025-03-16-Playing with Cass in their Queendom.html" data-title="March 16, 2025">
-                <img src="data/March 2025/2025-03-16-Playing with Cass in their Queendom.jpeg" alt="Playing with Cass in their Queendom" title="She went to the St. Patrick's Day parade with Cass, then we all went over to her house for the firepit and backyard fun!" loading="lazy">
-            </a>
-            <div class="caption">Playing with Cass in their Queendom</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 15, 2025</div>
-             <a href="./image_pages/2025-03-15-Doing gymnastics at Kenna's birthday party.html" data-title="March 15, 2025">
-                <img src="data/March 2025/2025-03-15-Doing gymnastics at Kenna's birthday party.jpeg" alt="Doing gymnastics at Kenna's birthday party" title="She had gymnastics today and then Kenna's birthday party was right after and at the same place!" loading="lazy">
-            </a>
-            <div class="caption">Doing gymnastics at Kenna's birthday party</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 14, 2025</div>
-             <a href="./image_pages/2025-03-14-Playing hide n seek with Juniper.html" data-title="March 14, 2025">
-                <img src="data/March 2025/2025-03-14-Playing hide n seek with Juniper.jpeg" alt="Playing hide n seek with Juniper" title="Juniper came over after school today, we made homemade pizzas for dinner and the girls did a lot of playing!" loading="lazy">
-            </a>
-            <div class="caption">Playing hide n seek with Juniper</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 13, 2025</div>
-             <a href="./image_pages/2025-03-13-Doing trapeze tricks with Uncle.html" data-title="March 13, 2025">
-                <img src="data/March 2025/2025-03-13-Doing trapeze tricks with Uncle.jpeg" alt="Doing trapeze tricks with Uncle" title="Uncle came over to watch her while we went to a parent's night at her school." loading="lazy">
-            </a>
-            <div class="caption">Doing trapeze tricks with Uncle</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 12, 2025</div>
-             <a href="./image_pages/2025-03-12-Getting a sticker at the eye doctors.html" data-title="March 12, 2025">
-                <img src="data/March 2025/2025-03-12-Getting a sticker at the eye doctors.jpeg" alt="Getting a sticker at the eye doctors" title="Played a bit after school at the playground and then went to the eye doctor. She has good strong eyes!" loading="lazy">
-            </a>
-            <div class="caption">Getting a sticker at the eye doctors</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 11, 2025</div>
-             <a href="./image_pages/2025-03-11-Playing blue rat after school with Alma and some friends.html" data-title="March 11, 2025">
-                <img src="data/March 2025/2025-03-11-Playing blue rat after school with Alma and some friends.jpeg" alt="Playing blue rat after school with Alma and some friends" title="Back to school today, the kids love playing blue rat, which is a game where everyone puts their shoe in until someone is it.  Then they play tag, when you are tagged you are also a blue rat and tag people as well." loading="lazy">
-            </a>
-            <div class="caption">Playing blue rat after school with Alma and some friends</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 10, 2025</div>
-             <a href="./image_pages/2025-03-10-Playing hungry hungry hippos with Mommy and Daddy.html" data-title="March 10, 2025">
-                <img src="data/March 2025/2025-03-10-Playing hungry hungry hippos with Mommy and Daddy.jpeg" alt="Playing hungry hungry hippos with Mommy and Daddy" title="She stayed home today to get some more rest before going back to school and we played lots of games." loading="lazy">
-            </a>
-            <div class="caption">Playing hungry hungry hippos with Mommy and Daddy</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 09, 2025</div>
-             <a href="./image_pages/2025-03-09-Eating sushi for dinner.html" data-title="March 09, 2025">
-                <img src="data/March 2025/2025-03-09-Eating sushi for dinner.jpeg" alt="Eating sushi for dinner" title="We got back home today, didn't eat any seafood while in Chicago so she was craving sushi for dinner tonight. Her favorite is just a simple salmon roll." loading="lazy">
-            </a>
-            <div class="caption">Eating sushi for dinner</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 08, 2025</div>
-             <a href="./image_pages/2025-03-08-Playing games at Kenny and Dani's arcade.html" data-title="March 08, 2025">
-                <img src="data/March 2025/2025-03-08-Playing games at Kenny and Dani's arcade.jpeg" alt="Playing games at Kenny and Dani's arcade" title="We drove out to spend the day with Kenny, Dani, and River." loading="lazy">
-            </a>
-            <div class="caption">Playing games at Kenny and Dani's arcade</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 07, 2025</div>
-             <a href="./image_pages/2025-03-07-Getting ice cream with Grandma and Daddy.html" data-title="March 07, 2025">
-                <img src="data/March 2025/2025-03-07-Getting ice cream with Grandma and Daddy.jpeg" alt="Getting ice cream with Grandma and Daddy" title="We went shopping at a toy store and grabbed a nice treat afterwards." loading="lazy">
-            </a>
-            <div class="caption">Getting ice cream with Grandma and Daddy</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 06, 2025</div>
-             <a href="./image_pages/2025-03-06-Making a paperclip drawing book with cat stickers.html" data-title="March 06, 2025">
-                <img src="data/March 2025/2025-03-06-Making a paperclip drawing book with cat stickers.jpeg" alt="Making a paperclip drawing book with cat stickers" title="She is having a great time playing in Chicago, lots of drawing and building." loading="lazy">
-            </a>
-            <div class="caption">Making a paperclip drawing book with cat stickers</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 05, 2025</div>
-             <a href="./image_pages/2025-03-05-Running in the snow.html" data-title="March 05, 2025">
-                <img src="data/March 2025/2025-03-05-Running in the snow.jpeg" alt="Running in the snow" title="We made it to Chicago and she loved running amongst the trees at the GGs." loading="lazy">
-            </a>
-            <div class="caption">Running in the snow</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 04, 2025</div>
-             <a href="./image_pages/2025-03-04-Meow singing with Alma.html" data-title="March 04, 2025">
-                <img src="data/March 2025/2025-03-04-Meow singing with Alma.jpeg" alt="Meow singing with Alma" title="We carpooled with Alma again today and the two of them are definitely cat lovers!" loading="lazy">
-            </a>
-            <div class="caption">Meow singing with Alma</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 03, 2025</div>
-             <a href="./image_pages/2025-03-03-Telling knock knock jokes with Alma.html" data-title="March 03, 2025">
-                <img src="data/March 2025/2025-03-03-Telling knock knock jokes with Alma.jpeg" alt="Telling knock knock jokes with Alma" title="We carpooled with Alma on the way home from school and the two of them had a blast telling each other jokes." loading="lazy">
-            </a>
-            <div class="caption">Telling knock knock jokes with Alma</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 02, 2025</div>
-             <a href="./image_pages/2025-03-02-Picking out sticker books.html" data-title="March 02, 2025">
-                <img src="data/March 2025/2025-03-02-Picking out sticker books.jpeg" alt="Picking out sticker books" title="We picked out sticker books before our upcoming trip to Chicago." loading="lazy">
-            </a>
-            <div class="caption">Picking out sticker books</div>
-        </div>
-        
-        <div class="gallery-item">
-            <div class="date">March 01, 2025</div>
-             <a href="./image_pages/2025-03-01-Climbing the rope net at gymnastics.html" data-title="March 01, 2025">
-                <img src="data/March 2025/2025-03-01-Climbing the rope net at gymnastics.jpeg" alt="Climbing the rope net at gymnastics" title="She had gymnastics class today and then we ran some errands together while Mommy sailed." loading="lazy">
-            </a>
-            <div class="caption">Climbing the rope net at gymnastics</div>
-        </div>
-        
-    <div class="navigation-links">
-        <a href='archives/April 2025/April 2025.html'>April</a> <a href='archives/February 2025/February 2025.html'>February</a>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="https://kwblackstone.github.io/FavoriteThingOfTheDay/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Favorite Thing Of The Day - March 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: transparent;
+      text-align: center;
+      position: relative;
+      color: #f4f4f4;
+    }
+
+    /* Background layer */
+    .bg-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      z-index: -1;
+      pointer-events: none;
+    }
+    h1 {
+      margin-bottom: 20px;
+      z-index: 1;
+    }
+
+    .gallery {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .slideshow-pool {
+      display: none;
+    }
+
+    .gallery-item {
+      width: 300px;
+      text-align: center;
+      margin-bottom: 30px;
+      z-index: 1;
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .date {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #f4f4f4;
+    }
+
+    .caption {
+      margin-top: 10px;
+      color: #f4f4f4;
+    }
+
+    .calendar {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      font-size: 28px;
+      color: #f4f4f4;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transform: scale(2);
+      z-index: 1000;
+    }
+
+    .menu {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      z-index: 2;
+      cursor: pointer;
+      font-size: 24px;
+      color: #f4f4f4;
+      background: transparent;
+      transform: scale(2);
+    }
+
+    .nav,
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 75px;
+      background-color: rgba(0,0,0,0.7);
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      padding: 10px;
+      z-index: 3;
+    }
+
+    .nav {
+      left: 25px;
+    }
+
+    .dropdown {
+      right: 25px;
+    }
+
+    .nav a,
+    .dropdown a {
+      display: block;
+      padding: 10px;
+      text-align: left;
+      color: #f4f4f4;
+      text-decoration: none;
+    }
+
+    .nav a:hover,
+    .dropdown a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+      z-index: 999;
+    }
+
+    .overlay-content {
+      max-width: 600px;
+      text-align: left;
+      position: relative;
+      z-index: 2;
+    }
+
+    .fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://kwblackstone.github.io/FavoriteThingOfTheDay/data/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .fullscreen img {
+      max-width: 80%;
+      max-height: 80vh;
+      opacity: 0;
+      transition: opacity 0.33s ease-in-out;
+    }
+
+    .fullscreen .caption {
+      margin-top: 20px;
+      font-size: 36px;
+      box-sizing: border-box;
+      display: inline-block;
+      justify-content: center;
+      align-items: center;
+      color: #f4f4f4;
+    }
+
+    #fullscreen-title {
+      font-size: 48px;
+      color: #f4f4f4;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .notification {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 17px;
+      z-index: 9999;
+    }
+
+    .notification.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    .body-no-scroll {
+      overflow: hidden;
+    }
+
+    .nav-footer a {
+      color: #0056b3;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    @keyframes fadein {
+      from { bottom: 0; opacity: 0; }
+      to { bottom: 30px; opacity: 1; }
+    }
+
+    @keyframes fadeout {
+      from { bottom: 30px; opacity: 1; }
+      to { bottom: 0; opacity: 0; }
+    }
+  </style>
+  <style id="bg-style">
+    .bg-layer {
+      background-image: url('https://kwblackstone.github.io/FavoriteThingOfTheDay/data/background.jpg');
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-layer"></div>
+  <button class="calendar" onclick="toggleNav()"><i class="material-icons">today</i></button>
+  <div class="nav" id="nav-links"><a href="../FavoriteThingOfTheDay">Current</a><a href="archives/June 2025/June 2025.html">June 2025</a><a href="archives/May 2025/May 2025.html">May 2025</a><a href="archives/April 2025/April 2025.html">April 2025</a><a href="archives/March 2025/March 2025.html">March 2025</a><a href="archives/February 2025/February 2025.html">February 2025</a><a href="archives/January 2025/January 2025.html">January 2025</a><a href="archives/December 2024/December 2024.html">December 2024</a><a href="archives/November 2024/November 2024.html">November 2024</a><a href="archives/October 2024/October 2024.html">October 2024</a><a href="archives/September 2024/September 2024.html">September 2024</a><a href="archives/August 2024/August 2024.html">August 2024</a></div>
+  <h1>Favorite Thing Of The Day - March 2025</h1>
+  <div class="menu" onclick="toggleDropdown()">&#x22EE;</div>
+  <div class="dropdown" id="dropdown">
+    <a href="#" onclick="showOverlay()">About</a>
+    <a href="#" onclick="shareGallery()">Share</a>
+    <a href="#" id="slideshow-link">Slideshow</a>
+    <div style="margin-top: 10px;">
+      <label>
+        <input type="number" id="slideshow-duration" value="3" min="0" max="60" step="1" style="width: 36px;">
+        Duration (sec)
+      </label>
     </div>
-    
-        </div>
-        <div class="overlay" id="overlay" onclick="hideOverlay()">
-            <div class="overlay-content">
-                <h2>About This Gallery</h2>
-                <p>Everyday we ask our five year old daughter what her favorite thing was that day. I thought it would be interesting to capture those as images utilizing Adobe Express. Enjoy!</p>
-            </div>
-        </div>
-        <div class="fullscreen" id="fullscreen">
-            <div id="fullscreen-title" class="title"></div> <!-- Container for dynamic title -->
-            <img id="fullscreen-img" src="" alt="Slideshow Image" title="">
-            <div class="caption" id="fullscreen-caption"></div>
-        </div>
-        <div id="notification" class="notification">URL Copied</div>
-        <script>
-            function toggleNav() {
-                const nav = document.getElementById('nav-links');
-                if (nav.style.display === 'block') {
-                    nav.style.display = 'none';
-                } else {
-                    nav.style.display = 'block';
-                }
-            }
+    <div style="margin-top: 10px;">
+      <label>
+        <input type="checkbox" id="shuffle-checkbox">
+        Shuffle
+      </label>
+    </div>
+  </div>
+  <div class="gallery"><div class="gallery-item"><div class="date">March 31, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-31-Storytime with Aunt Monica before bed.html"><img data-src="data/March 2025/2025-03-31-Storytime with Aunt Monica before bed.jpg" data-mobile-src="data/mobile/March 2025/2025-03-31-Storytime with Aunt Monica before bed.jpg" alt="Storytime with Aunt Monica before bed" loading="lazy"></a><div class="caption">Storytime with Aunt Monica before bed</div></div><div class="gallery-item"><div class="date">March 30, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-30-Making dessert for everyone with Uncle.html"><img data-src="data/March 2025/2025-03-30-Making dessert for everyone with Uncle.jpg" data-mobile-src="data/mobile/March 2025/2025-03-30-Making dessert for everyone with Uncle.jpg" alt="Making dessert for everyone with Uncle" loading="lazy"></a><div class="caption">Making dessert for everyone with Uncle</div></div><div class="gallery-item"><div class="date">March 29, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-29-Riding my bike with Mommy to the park.html"><img data-src="data/March 2025/2025-03-29-Riding my bike with Mommy to the park.jpg" data-mobile-src="data/mobile/March 2025/2025-03-29-Riding my bike with Mommy to the park.jpg" alt="Riding my bike with Mommy to the park" loading="lazy"></a><div class="caption">Riding my bike with Mommy to the park</div></div><div class="gallery-item"><div class="date">March 28, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-28-Playing at the wave pool with Eva.html"><img data-src="data/March 2025/2025-03-28-Playing at the wave pool with Eva.jpg" data-mobile-src="data/mobile/March 2025/2025-03-28-Playing at the wave pool with Eva.jpg" alt="Playing at the wave pool with Eva" loading="lazy"></a><div class="caption">Playing at the wave pool with Eva</div></div><div class="gallery-item"><div class="date">March 27, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-27-Eating a popsickle with Alma.html"><img data-src="data/March 2025/2025-03-27-Eating a popsickle with Alma.jpg" data-mobile-src="data/mobile/March 2025/2025-03-27-Eating a popsickle with Alma.jpg" alt="Eating a popsickle with Alma" loading="lazy"></a><div class="caption">Eating a popsickle with Alma</div></div><div class="gallery-item"><div class="date">March 26, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-26-Riding on the bike with Mommy to get ice cream.html"><img data-src="data/March 2025/2025-03-26-Riding on the bike with Mommy to get ice cream.jpg" data-mobile-src="data/mobile/March 2025/2025-03-26-Riding on the bike with Mommy to get ice cream.jpg" alt="Riding on the bike with Mommy to get ice cream" loading="lazy"></a><div class="caption">Riding on the bike with Mommy to get ice cream</div></div><div class="gallery-item"><div class="date">March 25, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-25-Having a picnic in the park with Cass.html"><img data-src="data/March 2025/2025-03-25-Having a picnic in the park with Cass.jpg" data-mobile-src="data/mobile/March 2025/2025-03-25-Having a picnic in the park with Cass.jpg" alt="Having a picnic in the park with Cass" loading="lazy"></a><div class="caption">Having a picnic in the park with Cass</div></div><div class="gallery-item"><div class="date">March 24, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-24-Going to bike camp with Lucy, Willa, and Sally.html"><img data-src="data/March 2025/2025-03-24-Going to bike camp with Lucy, Willa, and Sally.jpg" data-mobile-src="data/mobile/March 2025/2025-03-24-Going to bike camp with Lucy, Willa, and Sally.jpg" alt="Going to bike camp with Lucy, Willa, and Sally" loading="lazy"></a><div class="caption">Going to bike camp with Lucy, Willa, and Sally</div></div><div class="gallery-item"><div class="date">March 23, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-23-Playing at Mila's House.html"><img data-src="data/March 2025/2025-03-23-Playing at Mila's House.jpg" data-mobile-src="data/mobile/March 2025/2025-03-23-Playing at Mila's House.jpg" alt="Playing at Mila's House" loading="lazy"></a><div class="caption">Playing at Mila's House</div></div><div class="gallery-item"><div class="date">March 22, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-22-Playing at Eva's house.html"><img data-src="data/March 2025/2025-03-22-Playing at Eva's house.jpg" data-mobile-src="data/mobile/March 2025/2025-03-22-Playing at Eva's house.jpg" alt="Playing at Eva's house" loading="lazy"></a><div class="caption">Playing at Eva's house</div></div><div class="gallery-item"><div class="date">March 21, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-21-Playing with Cass.html"><img data-src="data/March 2025/2025-03-21-Playing with Cass.jpg" data-mobile-src="data/mobile/March 2025/2025-03-21-Playing with Cass.jpg" alt="Playing with Cass" loading="lazy"></a><div class="caption">Playing with Cass</div></div><div class="gallery-item"><div class="date">March 20, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-20-Having an inside picnic with Mommy for dinner.html"><img data-src="data/March 2025/2025-03-20-Having an inside picnic with Mommy for dinner.jpg" data-mobile-src="data/mobile/March 2025/2025-03-20-Having an inside picnic with Mommy for dinner.jpg" alt="Having an inside picnic with Mommy for dinner" loading="lazy"></a><div class="caption">Having an inside picnic with Mommy for dinner</div></div><div class="gallery-item"><div class="date">March 19, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-19-Cheese tasting with Mommy.html"><img data-src="data/March 2025/2025-03-19-Cheese tasting with Mommy.jpg" data-mobile-src="data/mobile/March 2025/2025-03-19-Cheese tasting with Mommy.jpg" alt="Cheese tasting with Mommy" loading="lazy"></a><div class="caption">Cheese tasting with Mommy</div></div><div class="gallery-item"><div class="date">March 18, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-18-Telling knock knock jokes carpooling with Alma.html"><img data-src="data/March 2025/2025-03-18-Telling knock knock jokes carpooling with Alma.jpg" data-mobile-src="data/mobile/March 2025/2025-03-18-Telling knock knock jokes carpooling with Alma.jpg" alt="Telling knock knock jokes carpooling with Alma" loading="lazy"></a><div class="caption">Telling knock knock jokes carpooling with Alma</div></div><div class="gallery-item"><div class="date">March 17, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-17-Going to dinner with Eva at Kennedy School.html"><img data-src="data/March 2025/2025-03-17-Going to dinner with Eva at Kennedy School.jpg" data-mobile-src="data/mobile/March 2025/2025-03-17-Going to dinner with Eva at Kennedy School.jpg" alt="Going to dinner with Eva at Kennedy School" loading="lazy"></a><div class="caption">Going to dinner with Eva at Kennedy School</div></div><div class="gallery-item"><div class="date">March 16, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-16-Playing with Cass in their Queendom.html"><img data-src="data/March 2025/2025-03-16-Playing with Cass in their Queendom.jpg" data-mobile-src="data/mobile/March 2025/2025-03-16-Playing with Cass in their Queendom.jpg" alt="Playing with Cass in their Queendom" loading="lazy"></a><div class="caption">Playing with Cass in their Queendom</div></div><div class="gallery-item"><div class="date">March 15, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-15-Doing gymnastics at Kenna's birthday party.html"><img data-src="data/March 2025/2025-03-15-Doing gymnastics at Kenna's birthday party.jpg" data-mobile-src="data/mobile/March 2025/2025-03-15-Doing gymnastics at Kenna's birthday party.jpg" alt="Doing gymnastics at Kenna's birthday party" loading="lazy"></a><div class="caption">Doing gymnastics at Kenna's birthday party</div></div><div class="gallery-item"><div class="date">March 14, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-14-Playing hide n seek with Juniper.html"><img data-src="data/March 2025/2025-03-14-Playing hide n seek with Juniper.jpg" data-mobile-src="data/mobile/March 2025/2025-03-14-Playing hide n seek with Juniper.jpg" alt="Playing hide n seek with Juniper" loading="lazy"></a><div class="caption">Playing hide n seek with Juniper</div></div><div class="gallery-item"><div class="date">March 13, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-13-Doing trapeze tricks with Uncle.html"><img data-src="data/March 2025/2025-03-13-Doing trapeze tricks with Uncle.jpg" data-mobile-src="data/mobile/March 2025/2025-03-13-Doing trapeze tricks with Uncle.jpg" alt="Doing trapeze tricks with Uncle" loading="lazy"></a><div class="caption">Doing trapeze tricks with Uncle</div></div><div class="gallery-item"><div class="date">March 12, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-12-Getting a sticker at the eye doctors.html"><img data-src="data/March 2025/2025-03-12-Getting a sticker at the eye doctors.jpg" data-mobile-src="data/mobile/March 2025/2025-03-12-Getting a sticker at the eye doctors.jpg" alt="Getting a sticker at the eye doctors" loading="lazy"></a><div class="caption">Getting a sticker at the eye doctors</div></div><div class="gallery-item"><div class="date">March 11, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-11-Playing blue rat after school with Alma and some friends.html"><img data-src="data/March 2025/2025-03-11-Playing blue rat after school with Alma and some friends.jpg" data-mobile-src="data/mobile/March 2025/2025-03-11-Playing blue rat after school with Alma and some friends.jpg" alt="Playing blue rat after school with Alma and some friends" loading="lazy"></a><div class="caption">Playing blue rat after school with Alma and some friends</div></div><div class="gallery-item"><div class="date">March 10, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-10-Playing hungry hungry hippos with Mommy and Daddy.html"><img data-src="data/March 2025/2025-03-10-Playing hungry hungry hippos with Mommy and Daddy.jpg" data-mobile-src="data/mobile/March 2025/2025-03-10-Playing hungry hungry hippos with Mommy and Daddy.jpg" alt="Playing hungry hungry hippos with Mommy and Daddy" loading="lazy"></a><div class="caption">Playing hungry hungry hippos with Mommy and Daddy</div></div><div class="gallery-item"><div class="date">March 09, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-09-Eating sushi for dinner.html"><img data-src="data/March 2025/2025-03-09-Eating sushi for dinner.jpg" data-mobile-src="data/mobile/March 2025/2025-03-09-Eating sushi for dinner.jpg" alt="Eating sushi for dinner" loading="lazy"></a><div class="caption">Eating sushi for dinner</div></div><div class="gallery-item"><div class="date">March 08, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-08-Playing games at Kenny and Dani's arcade.html"><img data-src="data/March 2025/2025-03-08-Playing games at Kenny and Dani's arcade.jpg" data-mobile-src="data/mobile/March 2025/2025-03-08-Playing games at Kenny and Dani's arcade.jpg" alt="Playing games at Kenny and Dani's arcade" loading="lazy"></a><div class="caption">Playing games at Kenny and Dani's arcade</div></div><div class="gallery-item"><div class="date">March 07, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-07-Getting ice cream with Grandma and Daddy.html"><img data-src="data/March 2025/2025-03-07-Getting ice cream with Grandma and Daddy.jpg" data-mobile-src="data/mobile/March 2025/2025-03-07-Getting ice cream with Grandma and Daddy.jpg" alt="Getting ice cream with Grandma and Daddy" loading="lazy"></a><div class="caption">Getting ice cream with Grandma and Daddy</div></div><div class="gallery-item"><div class="date">March 06, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-06-Making a paperclip drawing book with cat stickers.html"><img data-src="data/March 2025/2025-03-06-Making a paperclip drawing book with cat stickers.jpg" data-mobile-src="data/mobile/March 2025/2025-03-06-Making a paperclip drawing book with cat stickers.jpg" alt="Making a paperclip drawing book with cat stickers" loading="lazy"></a><div class="caption">Making a paperclip drawing book with cat stickers</div></div><div class="gallery-item"><div class="date">March 05, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-05-Running in the snow.html"><img data-src="data/March 2025/2025-03-05-Running in the snow.jpg" data-mobile-src="data/mobile/March 2025/2025-03-05-Running in the snow.jpg" alt="Running in the snow" loading="lazy"></a><div class="caption">Running in the snow</div></div><div class="gallery-item"><div class="date">March 04, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-04-Meow singing with Alma.html"><img data-src="data/March 2025/2025-03-04-Meow singing with Alma.jpg" data-mobile-src="data/mobile/March 2025/2025-03-04-Meow singing with Alma.jpg" alt="Meow singing with Alma" loading="lazy"></a><div class="caption">Meow singing with Alma</div></div><div class="gallery-item"><div class="date">March 03, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-03-Telling knock knock jokes with Alma.html"><img data-src="data/March 2025/2025-03-03-Telling knock knock jokes with Alma.jpg" data-mobile-src="data/mobile/March 2025/2025-03-03-Telling knock knock jokes with Alma.jpg" alt="Telling knock knock jokes with Alma" loading="lazy"></a><div class="caption">Telling knock knock jokes with Alma</div></div><div class="gallery-item"><div class="date">March 02, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-02-Picking out sticker books.html"><img data-src="data/March 2025/2025-03-02-Picking out sticker books.jpg" data-mobile-src="data/mobile/March 2025/2025-03-02-Picking out sticker books.jpg" alt="Picking out sticker books" loading="lazy"></a><div class="caption">Picking out sticker books</div></div><div class="gallery-item"><div class="date">March 01, 2025</div><a href="https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-01-Climbing the rope net at gymnastics.html"><img data-src="data/March 2025/2025-03-01-Climbing the rope net at gymnastics.jpg" data-mobile-src="data/mobile/March 2025/2025-03-01-Climbing the rope net at gymnastics.jpg" alt="Climbing the rope net at gymnastics" loading="lazy"></a><div class="caption">Climbing the rope net at gymnastics</div></div></div>
+  <script>
+    const SLIDESHOW_DATA = [
+      {"src": "data/July 2025/2025-07-29-Running from the Daddy Snow Monster with Alma.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-29-Running from the Daddy Snow Monster with Alma.jpg", "caption": "Running from the Daddy Snow Monster with Alma", "date": "July 29, 2025"},
+    {"src": "data/July 2025/2025-07-28-Building a cat habitat in my closet.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-28-Building a cat habitat in my closet.jpg", "caption": "Building a cat habitat in my closet", "date": "July 28, 2025"},
+    {"src": "data/July 2025/2025-07-27-Watching Phineas and Ferb with Mommy and Daddy.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-27-Watching Phineas and Ferb with Mommy and Daddy.jpg", "caption": "Watching Phineas and Ferb with Mommy and Daddy", "date": "July 27, 2025"},
+    {"src": "data/July 2025/2025-07-26-Kicking the bubble ball at Roboto Octopodo.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-26-Kicking the bubble ball at Roboto Octopodo.jpg", "caption": "Kicking the bubble ball at Roboto Octopodo", "date": "July 26, 2025"},
+    {"src": "data/July 2025/2025-07-25-Playing the fishing game at camp.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-25-Playing the fishing game at camp.jpg", "caption": "Playing the fishing game at camp", "date": "July 25, 2025"},
+    {"src": "data/July 2025/2025-07-24-Making a fishingpole at camp.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-24-Making a fishingpole at camp.jpg", "caption": "Making a fishingpole at camp", "date": "July 24, 2025"},
+    {"src": "data/July 2025/2025-07-23-Dirt baking with Vivian.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-23-Dirt baking with Vivian.jpg", "caption": "Dirt baking with Vivian", "date": "July 23, 2025"},
+    {"src": "data/July 2025/2025-07-22-Sewing my starfish.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-22-Sewing my starfish.jpg", "caption": "Sewing my starfish", "date": "July 22, 2025"},
+    {"src": "data/July 2025/2025-07-21-Having a pizza picnic with Grandma and Grandpa on the porch.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-21-Having a pizza picnic with Grandma and Grandpa on the porch.jpg", "caption": "Having a pizza picnic with Grandma and Grandpa on the porch", "date": "July 21, 2025"},
+    {"src": "data/July 2025/2025-07-20-Playing cats with cousin Soren.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-20-Playing cats with cousin Soren.jpg", "caption": "Playing cats with cousin Soren", "date": "July 20, 2025"},
+    {"src": "data/July 2025/2025-07-19-Getting pie with Mommy and Aunt Monica.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-19-Getting pie with Mommy and Aunt Monica.jpg", "caption": "Getting pie with Mommy and Aunt Monica", "date": "July 19, 2025"},
+    {"src": "data/July 2025/2025-07-18-Meeting the fairies at camp.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-18-Meeting the fairies at camp.jpg", "caption": "Meeting the fairies at camp", "date": "July 18, 2025"},
+    {"src": "data/July 2025/2025-07-17-Getting Nicos ice cream with Daddy.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-17-Getting Nicos ice cream with Daddy.jpg", "caption": "Getting Nicos ice cream with Daddy", "date": "July 17, 2025"},
+    {"src": "data/July 2025/2025-07-16-Eating cherries carpooling home with Lucy from camp.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-16-Eating cherries carpooling home with Lucy from camp.jpg", "caption": "Eating cherries carpooling home with Lucy from camp", "date": "July 16, 2025"},
+    {"src": "data/July 2025/2025-07-15-Eating popsicles carpooling home with Lucy from camp.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-15-Eating popsicles carpooling home with Lucy from camp.jpg", "caption": "Eating popsicles carpooling home with Lucy from camp", "date": "July 15, 2025"},
+    {"src": "data/July 2025/2025-07-14-Riding the bus to witch camp with Lucy.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-14-Riding the bus to witch camp with Lucy.jpg", "caption": "Riding the bus to witch camp with Lucy", "date": "July 14, 2025"},
+    {"src": "data/July 2025/2025-07-13-Making cat beds in my room.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-13-Making cat beds in my room.jpg", "caption": "Making cat beds in my room", "date": "July 13, 2025"},
+    {"src": "data/July 2025/2025-07-12-Riding my bike with Grandpa at Fort Stevens.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-12-Riding my bike with Grandpa at Fort Stevens.jpg", "caption": "Riding my bike with Grandpa at Fort Stevens", "date": "July 12, 2025"},
+    {"src": "data/July 2025/2025-07-11-Swimming in the river with Kenna.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-11-Swimming in the river with Kenna.jpg", "caption": "Swimming in the river with Kenna", "date": "July 11, 2025"},
+    {"src": "data/July 2025/2025-07-10-Playing on the monkey bars with Lucy.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-10-Playing on the monkey bars with Lucy.jpg", "caption": "Playing on the monkey bars with Lucy", "date": "July 10, 2025"},
+    {"src": "data/July 2025/2025-07-09-Doing sticker books while listening to my Curious George toniebox.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-09-Doing sticker books while listening to my Curious George toniebox.jpg", "caption": "Doing sticker books while listening to my Curious George toniebox", "date": "July 09, 2025"},
+    {"src": "data/July 2025/2025-07-08-Swimming with Eva and the Mommy noodle monster.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-08-Swimming with Eva and the Mommy noodle monster.jpg", "caption": "Swimming with Eva and the Mommy noodle monster", "date": "July 08, 2025"},
+    {"src": "data/July 2025/2025-07-07-Cake at Aunt Monicas for Miss Monster's Birthday.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-07-Cake at Aunt Monicas for Miss Monster's Birthday.jpg", "caption": "Cake at Aunt Monicas for Miss Monster's Birthday", "date": "July 07, 2025"},
+    {"src": "data/July 2025/2025-07-06-Picking raspberries from the garden.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-06-Picking raspberries from the garden.jpg", "caption": "Picking raspberries from the garden", "date": "July 06, 2025"},
+    {"src": "data/July 2025/2025-07-05-Watching Winnie the Pooh on the plane.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-05-Watching Winnie the Pooh on the plane.jpg", "caption": "Watching Winnie the Pooh on the plane", "date": "July 05, 2025"},
+    {"src": "data/July 2025/2025-07-04-Watching fireworks on the porch with the dogs.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-04-Watching fireworks on the porch with the dogs.jpg", "caption": "Watching fireworks on the porch with the dogs", "date": "July 04, 2025"},
+    {"src": "data/July 2025/2025-07-03-Walking Cousin Nick's dogs on the beach.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-03-Walking Cousin Nick's dogs on the beach.jpg", "caption": "Walking Cousin Nick's dogs on the beach", "date": "July 03, 2025"},
+    {"src": "data/July 2025/2025-07-02-Aunt Monica putting me to bed.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-02-Aunt Monica putting me to bed.jpg", "caption": "Aunt Monica putting me to bed", "date": "July 02, 2025"},
+    {"src": "data/July 2025/2025-07-01-Feeding the seagulls.jpg", "mobileSrc": "data/mobile/July 2025/2025-07-01-Feeding the seagulls.jpg", "caption": "Feeding the seagulls", "date": "July 01, 2025"},
+    {"src": "data/June 2025/2025-06-30-Going grocery shopping with the family.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-30-Going grocery shopping with the family.jpg", "caption": "Going grocery shopping with the family", "date": "June 30, 2025"},
+    {"src": "data/June 2025/2025-06-29-Playing in the waves with Cousin Nick.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-29-Playing in the waves with Cousin Nick.jpg", "caption": "Playing in the waves with Cousin Nick", "date": "June 29, 2025"},
+    {"src": "data/June 2025/2025-06-28-Riding in the car with Aunt Monica.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-28-Riding in the car with Aunt Monica.jpg", "caption": "Riding in the car with Aunt Monica", "date": "June 28, 2025"},
+    {"src": "data/June 2025/2025-06-27-Cat time in my room.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-27-Cat time in my room.jpg", "caption": "Cat time in my room", "date": "June 27, 2025"},
+    {"src": "data/June 2025/2025-06-26-Swimming with Cass.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-26-Swimming with Cass.jpg", "caption": "Swimming with Cass", "date": "June 26, 2025"},
+    {"src": "data/June 2025/2025-06-25-Making a mug at Mole and Earthworm Clay Camp.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-25-Making a mug at Mole and Earthworm Clay Camp.jpg", "caption": "Making a mug at Mole and Earthworm Clay Camp", "date": "June 25, 2025"},
+    {"src": "data/June 2025/2025-06-24-Mole and Earthworm camp.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-24-Mole and Earthworm camp.jpg", "caption": "Mole and Earthworm camp", "date": "June 24, 2025"},
+    {"src": "data/June 2025/2025-06-23-Swimming with Daddy.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-23-Swimming with Daddy.jpg", "caption": "Swimming with Daddy", "date": "June 23, 2025"},
+    {"src": "data/June 2025/2025-06-22-Making a butterfly house in my room.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-22-Making a butterfly house in my room.jpg", "caption": "Making a butterfly house in my room", "date": "June 22, 2025"},
+    {"src": "data/June 2025/2025-06-21-Creating potions at Alma's witch birthday party.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-21-Creating potions at Alma's witch birthday party.jpg", "caption": "Creating potions at Alma's witch birthday party", "date": "June 21, 2025"},
+    {"src": "data/June 2025/2025-06-20-Playing with Johanna and Eva at the playground.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-20-Playing with Johanna and Eva at the playground.jpg", "caption": "Playing with Johanna and Eva at the playground", "date": "June 20, 2025"},
+    {"src": "data/June 2025/2025-06-19-Going to the Sounders game with Eva.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-19-Going to the Sounders game with Eva.jpg", "caption": "Going to the Sounders game with Eva", "date": "June 19, 2025"},
+    {"src": "data/June 2025/2025-06-18-The Hands on Musuem with Eva.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-18-The Hands on Musuem with Eva.jpg", "caption": "The Hands on Musuem with Eva", "date": "June 18, 2025"},
+    {"src": "data/June 2025/2025-06-17-Playing outside.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-17-Playing outside.jpg", "caption": "Playing outside", "date": "June 17, 2025"},
+    {"src": "data/June 2025/2025-06-16-Going to the splash pad with Lucy, Sally, and Willa.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-16-Going to the splash pad with Lucy, Sally, and Willa.jpg", "caption": "Going to the splash pad with Lucy, Sally, and Willa", "date": "June 16, 2025"},
+    {"src": "data/June 2025/2025-06-15-Going to the Portland Pickles game with Eva.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-15-Going to the Portland Pickles game with Eva.jpg", "caption": "Going to the Portland Pickles game with Eva", "date": "June 15, 2025"},
+    {"src": "data/June 2025/2025-06-14-Watching Garfield with Mommy and Daddy.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-14-Watching Garfield with Mommy and Daddy.jpg", "caption": "Watching Garfield with Mommy and Daddy", "date": "June 14, 2025"},
+    {"src": "data/June 2025/2025-06-13-Riding my bike around.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-13-Riding my bike around.jpg", "caption": "Riding my bike around", "date": "June 13, 2025"},
+    {"src": "data/June 2025/2025-06-12-Thimbleberry boat launch.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-12-Thimbleberry boat launch.jpg", "caption": "Thimbleberry boat launch", "date": "June 12, 2025"},
+    {"src": "data/June 2025/2025-06-11-Playing with my friends after school.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-11-Playing with my friends after school.jpg", "caption": "Playing with my friends after school", "date": "June 11, 2025"},
+    {"src": "data/June 2025/2025-06-10-Having Calisilla time in my room.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-10-Having Calisilla time in my room.jpg", "caption": "Having Calisilla time in my room", "date": "June 10, 2025"},
+    {"src": "data/June 2025/2025-06-09-Doing projects in my room with Mommy.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-09-Doing projects in my room with Mommy.jpg", "caption": "Doing projects in my room with Mommy", "date": "June 09, 2025"},
+    {"src": "data/June 2025/2025-06-08-Getting a vanilla strawberry cone with rainbow sprinkes at Salt n Straw.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-08-Getting a vanilla strawberry cone with rainbow sprinkes at Salt n Straw.jpg", "caption": "Getting a vanilla strawberry cone with rainbow sprinkes at Salt n Straw", "date": "June 08, 2025"},
+    {"src": "data/June 2025/2025-06-07-Gymanstics class with Mommy and Aunt Monica.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-07-Gymanstics class with Mommy and Aunt Monica.jpg", "caption": "Gymanstics class with Mommy and Aunt Monica", "date": "June 07, 2025"},
+    {"src": "data/June 2025/2025-06-06-Playing with my cats in my room.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-06-Playing with my cats in my room.jpg", "caption": "Playing with my cats in my room", "date": "June 06, 2025"},
+    {"src": "data/June 2025/2025-06-05-Happy Birthday Calisilla.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-05-Happy Birthday Calisilla.jpg", "caption": "Happy Birthday Calisilla", "date": "June 05, 2025"},
+    {"src": "data/June 2025/2025-06-04-Getting Nicos with Daddy.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-04-Getting Nicos with Daddy.jpg", "caption": "Getting Nicos with Daddy", "date": "June 04, 2025"},
+    {"src": "data/June 2025/2025-06-03-Getting Kulfi popsicle with Mommy.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-03-Getting Kulfi popsicle with Mommy.jpg", "caption": "Getting Kulfi popsicle with Mommy", "date": "June 03, 2025"},
+    {"src": "data/June 2025/2025-06-02-Watching Allison in Wonderland.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-02-Watching Allison in Wonderland.jpg", "caption": "Watching Allison in Wonderland", "date": "June 02, 2025"},
+    {"src": "data/June 2025/2025-06-01-Fashion show with Juniper.jpg", "mobileSrc": "data/mobile/June 2025/2025-06-01-Fashion show with Juniper.jpg", "caption": "Fashion show with Juniper", "date": "June 01, 2025"},
+    {"src": "data/May 2025/2025-05-31-Ms Pearl the clown at Isa's birthday party in the park.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-31-Ms Pearl the clown at Isa's birthday party in the park.jpg", "caption": "Ms Pearl the clown at Isa's birthday party in the park", "date": "May 31, 2025"},
+    {"src": "data/May 2025/2025-05-30-Going to the Portland Bangers game with Eva and Family.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-30-Going to the Portland Bangers game with Eva and Family.jpg", "caption": "Going to the Portland Bangers game with Eva and Family", "date": "May 30, 2025"},
+    {"src": "data/May 2025/2025-05-29-Getting my crown at school today.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-29-Getting my crown at school today.jpg", "caption": "Getting my crown at school today", "date": "May 29, 2025"},
+    {"src": "data/May 2025/2025-05-28-Swinging on the monkey bars and kicking the next one.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-28-Swinging on the monkey bars and kicking the next one.jpg", "caption": "Swinging on the monkey bars and kicking the next one", "date": "May 28, 2025"},
+    {"src": "data/May 2025/2025-05-27-Riding my bike to the playground.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-27-Riding my bike to the playground.jpg", "caption": "Riding my bike to the playground", "date": "May 27, 2025"},
+    {"src": "data/May 2025/2025-05-26-Playing as cats at the playground with Eva.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-26-Playing as cats at the playground with Eva.jpg", "caption": "Playing as cats at the playground with Eva", "date": "May 26, 2025"},
+    {"src": "data/May 2025/2025-05-25-Climbing the ninja ropes at Carl's Birthday.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-25-Climbing the ninja ropes at Carl's Birthday.jpg", "caption": "Climbing the ninja ropes at Carl's Birthday", "date": "May 25, 2025"},
+    {"src": "data/May 2025/2025-05-24-Eva and I putting on a show.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-24-Eva and I putting on a show.jpg", "caption": "Eva and I putting on a show", "date": "May 24, 2025"},
+    {"src": "data/May 2025/2025-05-23-Having a meatloaf picnic with Lucy, Sally, and Willa.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-23-Having a meatloaf picnic with Lucy, Sally, and Willa.jpg", "caption": "Having a meatloaf picnic with Lucy, Sally, and Willa", "date": "May 23, 2025"},
+    {"src": "data/May 2025/2025-05-22-Porch picnic dinner with Mommy.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-22-Porch picnic dinner with Mommy.jpg", "caption": "Porch picnic dinner with Mommy", "date": "May 22, 2025"},
+    {"src": "data/May 2025/2025-05-21-Swinging with Lucy at school.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-21-Swinging with Lucy at school.jpg", "caption": "Swinging with Lucy at school", "date": "May 21, 2025"},
+    {"src": "data/May 2025/2025-05-20-Playing with my classmates after music class.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-20-Playing with my classmates after music class.jpg", "caption": "Playing with my classmates after music class", "date": "May 20, 2025"},
+    {"src": "data/May 2025/2025-05-19-Painting with Gold and Red.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-19-Painting with Gold and Red.jpg", "caption": "Painting with Gold and Red", "date": "May 19, 2025"},
+    {"src": "data/May 2025/2025-05-18-Biking to the playground with Lucy.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-18-Biking to the playground with Lucy.jpg", "caption": "Biking to the playground with Lucy", "date": "May 18, 2025"},
+    {"src": "data/May 2025/2025-05-17-Going to Tokio Table with Johanna for Uncles birthday.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-17-Going to Tokio Table with Johanna for Uncles birthday.jpg", "caption": "Going to Tokio Table with Johanna for Uncles birthday", "date": "May 17, 2025"},
+    {"src": "data/May 2025/2025-05-16-Making dessert for Mommy and Daddy in my mud kitchen.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-16-Making dessert for Mommy and Daddy in my mud kitchen.jpg", "caption": "Making dessert for Mommy and Daddy in my mud kitchen", "date": "May 16, 2025"},
+    {"src": "data/May 2025/2025-05-15-Watching Aristocats.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-15-Watching Aristocats.jpg", "caption": "Watching Aristocats", "date": "May 15, 2025"},
+    {"src": "data/May 2025/2025-05-14-Coloring with Mommy and Daddy.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-14-Coloring with Mommy and Daddy.jpg", "caption": "Coloring with Mommy and Daddy", "date": "May 14, 2025"},
+    {"src": "data/May 2025/2025-05-13-Toucan music class with Eva.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-13-Toucan music class with Eva.jpg", "caption": "Toucan music class with Eva", "date": "May 13, 2025"},
+    {"src": "data/May 2025/2025-05-12-Playing in the bush after school with Nia and Mila.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-12-Playing in the bush after school with Nia and Mila.jpg", "caption": "Playing in the bush after school with Nia and Mila", "date": "May 12, 2025"},
+    {"src": "data/May 2025/2025-05-11-Riding my bike to dinner.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-11-Riding my bike to dinner.jpg", "caption": "Riding my bike to dinner", "date": "May 11, 2025"},
+    {"src": "data/May 2025/2025-05-10-Having a tea party with Mommy at the Mad Hatters.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-10-Having a tea party with Mommy at the Mad Hatters.jpg", "caption": "Having a tea party with Mommy at the Mad Hatters", "date": "May 10, 2025"},
+    {"src": "data/May 2025/2025-05-09-Playing with June, Leigh, and Kenna after school.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-09-Playing with June, Leigh, and Kenna after school.jpg", "caption": "Playing with June, Leigh, and Kenna after school", "date": "May 09, 2025"},
+    {"src": "data/May 2025/2025-05-08-Doing cartwheels at gymnastics class.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-08-Doing cartwheels at gymnastics class.jpg", "caption": "Doing cartwheels at gymnastics class", "date": "May 08, 2025"},
+    {"src": "data/May 2025/2025-05-07-Eating donuts with Daddy.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-07-Eating donuts with Daddy.jpg", "caption": "Eating donuts with Daddy", "date": "May 07, 2025"},
+    {"src": "data/May 2025/2025-05-06-Doing my Aerial lego set.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-06-Doing my Aerial lego set.jpg", "caption": "Doing my Aerial lego set", "date": "May 06, 2025"},
+    {"src": "data/May 2025/2025-05-05-All the butterflies.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-05-All the butterflies.jpg", "caption": "All the butterflies", "date": "May 05, 2025"},
+    {"src": "data/May 2025/2025-05-04-Petting the big fluffy cat at Daynas.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-04-Petting the big fluffy cat at Daynas.jpg", "caption": "Petting the big fluffy cat at Daynas", "date": "May 04, 2025"},
+    {"src": "data/May 2025/2025-05-03-Doing cartwheels in the park with the dogs.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-03-Doing cartwheels in the park with the dogs.jpg", "caption": "Doing cartwheels in the park with the dogs", "date": "May 03, 2025"},
+    {"src": "data/May 2025/2025-05-02-Climbing horse statues in Durango.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-02-Climbing horse statues in Durango.jpg", "caption": "Climbing horse statues in Durango", "date": "May 02, 2025"},
+    {"src": "data/May 2025/2025-05-01-Skipping around the Maypole with my classmates.jpg", "mobileSrc": "data/mobile/May 2025/2025-05-01-Skipping around the Maypole with my classmates.jpg", "caption": "Skipping around the Maypole with my classmates", "date": "May 01, 2025"},
+    {"src": "data/April 2025/2025-04-30-Eating Bless your heart with Uncle.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-30-Eating Bless your heart with Uncle.jpg", "caption": "Eating Bless your heart with Uncle", "date": "April 30, 2025"},
+    {"src": "data/April 2025/2025-04-29-Riding my bike and collecting flowers.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-29-Riding my bike and collecting flowers.jpg", "caption": "Riding my bike and collecting flowers", "date": "April 29, 2025"},
+    {"src": "data/April 2025/2025-04-28-Pedaling on my bike.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-28-Pedaling on my bike.jpg", "caption": "Pedaling on my bike", "date": "April 28, 2025"},
+    {"src": "data/April 2025/2025-04-27-Making flower crowns for Mommy and Daddy.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-27-Making flower crowns for Mommy and Daddy.jpg", "caption": "Making flower crowns for Mommy and Daddy", "date": "April 27, 2025"},
+    {"src": "data/April 2025/2025-04-26-Playing on the teeter totter at the park with Qianna and Dash.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-26-Playing on the teeter totter at the park with Qianna and Dash.jpg", "caption": "Playing on the teeter totter at the park with Qianna and Dash", "date": "April 26, 2025"},
+    {"src": "data/April 2025/2025-04-25-Playing at the playground after running a 5K for the trees.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-25-Playing at the playground after running a 5K for the trees.jpg", "caption": "Playing at the playground after running a 5K for the trees", "date": "April 25, 2025"},
+    {"src": "data/April 2025/2025-04-24-Watching Red Yarn and eating pizza.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-24-Watching Red Yarn and eating pizza.jpg", "caption": "Watching Red Yarn and eating pizza", "date": "April 24, 2025"},
+    {"src": "data/April 2025/2025-04-23-Digging for treasure in front of the house with Cass.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-23-Digging for treasure in front of the house with Cass.jpg", "caption": "Digging for treasure in front of the house with Cass", "date": "April 23, 2025"},
+    {"src": "data/April 2025/2025-04-22-Having a Moroccan Beef picnic on the porch.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-22-Having a Moroccan Beef picnic on the porch.jpg", "caption": "Having a Moroccan Beef picnic on the porch", "date": "April 22, 2025"},
+    {"src": "data/April 2025/2025-04-21-Making potions in my room.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-21-Making potions in my room.jpg", "caption": "Making potions in my room", "date": "April 21, 2025"},
+    {"src": "data/April 2025/2025-04-20-Playing duck duck goose on the trampoline.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-20-Playing duck duck goose on the trampoline.jpg", "caption": "Playing duck duck goose on the trampoline", "date": "April 20, 2025"},
+    {"src": "data/April 2025/2025-04-19-Dying Easter eggs with Mommy and Daddy.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-19-Dying Easter eggs with Mommy and Daddy.jpg", "caption": "Dying Easter eggs with Mommy and Daddy", "date": "April 19, 2025"},
+    {"src": "data/April 2025/2025-04-18-My lemonade stand at school.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-18-My lemonade stand at school.jpg", "caption": "My lemonade stand at school", "date": "April 18, 2025"},
+    {"src": "data/April 2025/2025-04-17-Preparing for the lemonade stand with Cass.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-17-Preparing for the lemonade stand with Cass.jpg", "caption": "Preparing for the lemonade stand with Cass", "date": "April 17, 2025"},
+    {"src": "data/April 2025/2025-04-16-Eating ice cream on the patio with Mommy.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-16-Eating ice cream on the patio with Mommy.jpg", "caption": "Eating ice cream on the patio with Mommy", "date": "April 16, 2025"},
+    {"src": "data/April 2025/2025-04-15-Having a Moroccan Beef picnic with Mom and Dad on the porch.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-15-Having a Moroccan Beef picnic with Mom and Dad on the porch.jpg", "caption": "Having a Moroccan Beef picnic with Mom and Dad on the porch", "date": "April 15, 2025"},
+    {"src": "data/April 2025/2025-04-14-Thinking about my imagination book during rest time.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-14-Thinking about my imagination book during rest time.jpg", "caption": "Thinking about my imagination book during rest time", "date": "April 14, 2025"},
+    {"src": "data/April 2025/2025-04-13-Eating chicken and rice at Hot Yai with Aunt Monica and Cousin Soren too.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-13-Eating chicken and rice at Hot Yai with Aunt Monica and Cousin Soren too.jpg", "caption": "Eating chicken and rice at Hot Yai with Aunt Monica and Cousin Soren too", "date": "April 13, 2025"},
+    {"src": "data/April 2025/2025-04-12-Throwing the ball to Monty with Cass.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-12-Throwing the ball to Monty with Cass.jpg", "caption": "Throwing the ball to Monty with Cass", "date": "April 12, 2025"},
+    {"src": "data/April 2025/2025-04-11-Eating pizza at Lucy, Sally, and Willas.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-11-Eating pizza at Lucy, Sally, and Willas.jpg", "caption": "Eating pizza at Lucy, Sally, and Willas", "date": "April 11, 2025"},
+    {"src": "data/April 2025/2025-04-10-Having a butterfly pizza picnic with Mommy.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-10-Having a butterfly pizza picnic with Mommy.jpg", "caption": "Having a butterfly pizza picnic with Mommy", "date": "April 10, 2025"},
+    {"src": "data/April 2025/2025-04-09-Getting donuts with Daddy.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-09-Getting donuts with Daddy.jpg", "caption": "Getting donuts with Daddy", "date": "April 09, 2025"},
+    {"src": "data/April 2025/2025-04-08-Toucan music class with Eva.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-08-Toucan music class with Eva.jpg", "caption": "Toucan music class with Eva", "date": "April 08, 2025"},
+    {"src": "data/April 2025/2025-04-07-Swinging with Maven.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-07-Swinging with Maven.jpg", "caption": "Swinging with Maven", "date": "April 07, 2025"},
+    {"src": "data/April 2025/2025-04-06-Eating dessert and drinking fancy water at the wine pickup.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-06-Eating dessert and drinking fancy water at the wine pickup.jpg", "caption": "Eating dessert and drinking fancy water at the wine pickup", "date": "April 06, 2025"},
+    {"src": "data/April 2025/2025-04-05-Watching clowns and skaters at the park.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-05-Watching clowns and skaters at the park.jpg", "caption": "Watching clowns and skaters at the park", "date": "April 05, 2025"},
+    {"src": "data/April 2025/2025-04-04-Going to the arcade with Cora.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-04-Going to the arcade with Cora.jpg", "caption": "Going to the arcade with Cora", "date": "April 04, 2025"},
+    {"src": "data/April 2025/2025-04-03-Getting Sushi for dinner with Mommy.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-03-Getting Sushi for dinner with Mommy.jpg", "caption": "Getting Sushi for dinner with Mommy", "date": "April 03, 2025"},
+    {"src": "data/April 2025/2025-04-02-Flying Freedom on the beach.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-02-Flying Freedom on the beach.jpg", "caption": "Flying Freedom on the beach", "date": "April 02, 2025"},
+    {"src": "data/April 2025/2025-04-01-Eating strawberry velvet cake by the campfire.jpg", "mobileSrc": "data/mobile/April 2025/2025-04-01-Eating strawberry velvet cake by the campfire.jpg", "caption": "Eating strawberry velvet cake by the campfire", "date": "April 01, 2025"},
+    {"src": "data/March 2025/2025-03-31-Storytime with Aunt Monica before bed.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-31-Storytime with Aunt Monica before bed.jpg", "caption": "Storytime with Aunt Monica before bed", "date": "March 31, 2025"},
+    {"src": "data/March 2025/2025-03-30-Making dessert for everyone with Uncle.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-30-Making dessert for everyone with Uncle.jpg", "caption": "Making dessert for everyone with Uncle", "date": "March 30, 2025"},
+    {"src": "data/March 2025/2025-03-29-Riding my bike with Mommy to the park.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-29-Riding my bike with Mommy to the park.jpg", "caption": "Riding my bike with Mommy to the park", "date": "March 29, 2025"},
+    {"src": "data/March 2025/2025-03-28-Playing at the wave pool with Eva.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-28-Playing at the wave pool with Eva.jpg", "caption": "Playing at the wave pool with Eva", "date": "March 28, 2025"},
+    {"src": "data/March 2025/2025-03-27-Eating a popsickle with Alma.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-27-Eating a popsickle with Alma.jpg", "caption": "Eating a popsickle with Alma", "date": "March 27, 2025"},
+    {"src": "data/March 2025/2025-03-26-Riding on the bike with Mommy to get ice cream.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-26-Riding on the bike with Mommy to get ice cream.jpg", "caption": "Riding on the bike with Mommy to get ice cream", "date": "March 26, 2025"},
+    {"src": "data/March 2025/2025-03-25-Having a picnic in the park with Cass.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-25-Having a picnic in the park with Cass.jpg", "caption": "Having a picnic in the park with Cass", "date": "March 25, 2025"},
+    {"src": "data/March 2025/2025-03-24-Going to bike camp with Lucy, Willa, and Sally.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-24-Going to bike camp with Lucy, Willa, and Sally.jpg", "caption": "Going to bike camp with Lucy, Willa, and Sally", "date": "March 24, 2025"},
+    {"src": "data/March 2025/2025-03-23-Playing at Mila's House.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-23-Playing at Mila's House.jpg", "caption": "Playing at Mila's House", "date": "March 23, 2025"},
+    {"src": "data/March 2025/2025-03-22-Playing at Eva's house.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-22-Playing at Eva's house.jpg", "caption": "Playing at Eva's house", "date": "March 22, 2025"},
+    {"src": "data/March 2025/2025-03-21-Playing with Cass.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-21-Playing with Cass.jpg", "caption": "Playing with Cass", "date": "March 21, 2025"},
+    {"src": "data/March 2025/2025-03-20-Having an inside picnic with Mommy for dinner.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-20-Having an inside picnic with Mommy for dinner.jpg", "caption": "Having an inside picnic with Mommy for dinner", "date": "March 20, 2025"},
+    {"src": "data/March 2025/2025-03-19-Cheese tasting with Mommy.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-19-Cheese tasting with Mommy.jpg", "caption": "Cheese tasting with Mommy", "date": "March 19, 2025"},
+    {"src": "data/March 2025/2025-03-18-Telling knock knock jokes carpooling with Alma.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-18-Telling knock knock jokes carpooling with Alma.jpg", "caption": "Telling knock knock jokes carpooling with Alma", "date": "March 18, 2025"},
+    {"src": "data/March 2025/2025-03-17-Going to dinner with Eva at Kennedy School.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-17-Going to dinner with Eva at Kennedy School.jpg", "caption": "Going to dinner with Eva at Kennedy School", "date": "March 17, 2025"},
+    {"src": "data/March 2025/2025-03-16-Playing with Cass in their Queendom.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-16-Playing with Cass in their Queendom.jpg", "caption": "Playing with Cass in their Queendom", "date": "March 16, 2025"},
+    {"src": "data/March 2025/2025-03-15-Doing gymnastics at Kenna's birthday party.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-15-Doing gymnastics at Kenna's birthday party.jpg", "caption": "Doing gymnastics at Kenna's birthday party", "date": "March 15, 2025"},
+    {"src": "data/March 2025/2025-03-14-Playing hide n seek with Juniper.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-14-Playing hide n seek with Juniper.jpg", "caption": "Playing hide n seek with Juniper", "date": "March 14, 2025"},
+    {"src": "data/March 2025/2025-03-13-Doing trapeze tricks with Uncle.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-13-Doing trapeze tricks with Uncle.jpg", "caption": "Doing trapeze tricks with Uncle", "date": "March 13, 2025"},
+    {"src": "data/March 2025/2025-03-12-Getting a sticker at the eye doctors.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-12-Getting a sticker at the eye doctors.jpg", "caption": "Getting a sticker at the eye doctors", "date": "March 12, 2025"},
+    {"src": "data/March 2025/2025-03-11-Playing blue rat after school with Alma and some friends.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-11-Playing blue rat after school with Alma and some friends.jpg", "caption": "Playing blue rat after school with Alma and some friends", "date": "March 11, 2025"},
+    {"src": "data/March 2025/2025-03-10-Playing hungry hungry hippos with Mommy and Daddy.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-10-Playing hungry hungry hippos with Mommy and Daddy.jpg", "caption": "Playing hungry hungry hippos with Mommy and Daddy", "date": "March 10, 2025"},
+    {"src": "data/March 2025/2025-03-09-Eating sushi for dinner.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-09-Eating sushi for dinner.jpg", "caption": "Eating sushi for dinner", "date": "March 09, 2025"},
+    {"src": "data/March 2025/2025-03-08-Playing games at Kenny and Dani's arcade.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-08-Playing games at Kenny and Dani's arcade.jpg", "caption": "Playing games at Kenny and Dani's arcade", "date": "March 08, 2025"},
+    {"src": "data/March 2025/2025-03-07-Getting ice cream with Grandma and Daddy.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-07-Getting ice cream with Grandma and Daddy.jpg", "caption": "Getting ice cream with Grandma and Daddy", "date": "March 07, 2025"},
+    {"src": "data/March 2025/2025-03-06-Making a paperclip drawing book with cat stickers.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-06-Making a paperclip drawing book with cat stickers.jpg", "caption": "Making a paperclip drawing book with cat stickers", "date": "March 06, 2025"},
+    {"src": "data/March 2025/2025-03-05-Running in the snow.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-05-Running in the snow.jpg", "caption": "Running in the snow", "date": "March 05, 2025"},
+    {"src": "data/March 2025/2025-03-04-Meow singing with Alma.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-04-Meow singing with Alma.jpg", "caption": "Meow singing with Alma", "date": "March 04, 2025"},
+    {"src": "data/March 2025/2025-03-03-Telling knock knock jokes with Alma.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-03-Telling knock knock jokes with Alma.jpg", "caption": "Telling knock knock jokes with Alma", "date": "March 03, 2025"},
+    {"src": "data/March 2025/2025-03-02-Picking out sticker books.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-02-Picking out sticker books.jpg", "caption": "Picking out sticker books", "date": "March 02, 2025"},
+    {"src": "data/March 2025/2025-03-01-Climbing the rope net at gymnastics.jpg", "mobileSrc": "data/mobile/March 2025/2025-03-01-Climbing the rope net at gymnastics.jpg", "caption": "Climbing the rope net at gymnastics", "date": "March 01, 2025"},
+    {"src": "data/February 2025/2025-02-28-Flossing with Aunt Monica.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-28-Flossing with Aunt Monica.jpg", "caption": "Flossing with Aunt Monica", "date": "February 28, 2025"},
+    {"src": "data/February 2025/2025-02-27-Playing Hide n Seek with Lucy, Willa, and Sally.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-27-Playing Hide n Seek with Lucy, Willa, and Sally.jpg", "caption": "Playing Hide n Seek with Lucy, Willa, and Sally", "date": "February 27, 2025"},
+    {"src": "data/February 2025/2025-02-26-Playing with my buddies on the playground.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-26-Playing with my buddies on the playground.jpg", "caption": "Playing with my buddies on the playground", "date": "February 26, 2025"},
+    {"src": "data/February 2025/2025-02-25-Elephant Valentines day card.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-25-Elephant Valentines day card.jpg", "caption": "Elephant Valentines day card", "date": "February 25, 2025"},
+    {"src": "data/February 2025/2025-02-24-Valentines party at school.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-24-Valentines party at school.jpg", "caption": "Valentines party at school", "date": "February 24, 2025"},
+    {"src": "data/February 2025/2025-02-23-Playing with Aunt Monicas cats.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-23-Playing with Aunt Monicas cats.jpg", "caption": "Playing with Aunt Monicas cats", "date": "February 23, 2025"},
+    {"src": "data/February 2025/2025-02-22-Playing cat game with Lucy, Willa, and Sally.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-22-Playing cat game with Lucy, Willa, and Sally.jpg", "caption": "Playing cat game with Lucy, Willa, and Sally", "date": "February 22, 2025"},
+    {"src": "data/February 2025/2025-02-21-Music class with Juniper.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-21-Music class with Juniper.jpg", "caption": "Music class with Juniper", "date": "February 21, 2025"},
+    {"src": "data/February 2025/2025-02-20-Playing on the playground near the Golden Gate Bridge.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-20-Playing on the playground near the Golden Gate Bridge.jpg", "caption": "Playing on the playground near the Golden Gate Bridge", "date": "February 20, 2025"},
+    {"src": "data/February 2025/2025-02-19-Taking the trolley with Mommy and Daddy.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-19-Taking the trolley with Mommy and Daddy.jpg", "caption": "Taking the trolley with Mommy and Daddy", "date": "February 19, 2025"},
+    {"src": "data/February 2025/2025-02-18-Feeding treats to Chika the cat.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-18-Feeding treats to Chika the cat.jpg", "caption": "Feeding treats to Chika the cat", "date": "February 18, 2025"},
+    {"src": "data/February 2025/2025-02-17-Shopping with Mommy.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-17-Shopping with Mommy.jpg", "caption": "Shopping with Mommy", "date": "February 17, 2025"},
+    {"src": "data/February 2025/2025-02-16-Finding sea urchins with the rocks on the beach.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-16-Finding sea urchins with the rocks on the beach.jpg", "caption": "Finding sea urchins with the rocks on the beach", "date": "February 16, 2025"},
+    {"src": "data/February 2025/2025-02-15-Doing my special trick on the rocks by the ocean.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-15-Doing my special trick on the rocks by the ocean.jpg", "caption": "Doing my special trick on the rocks by the ocean", "date": "February 15, 2025"},
+    {"src": "data/February 2025/2025-02-14-Reading stories.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-14-Reading stories.jpg", "caption": "Reading stories", "date": "February 14, 2025"},
+    {"src": "data/February 2025/2025-02-13-Building a snowman with Mommy.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-13-Building a snowman with Mommy.jpg", "caption": "Building a snowman with Mommy", "date": "February 13, 2025"},
+    {"src": "data/February 2025/2025-02-12-Going to dinner for Mom's birthday.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-12-Going to dinner for Mom's birthday.jpg", "caption": "Going to dinner for Mom's birthday", "date": "February 12, 2025"},
+    {"src": "data/February 2025/2025-02-11-Playing blue rat with Angel and Alma.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-11-Playing blue rat with Angel and Alma.jpg", "caption": "Playing blue rat with Angel and Alma", "date": "February 11, 2025"},
+    {"src": "data/February 2025/2025-02-10-Playing with my buddies outside.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-10-Playing with my buddies outside.jpg", "caption": "Playing with my buddies outside", "date": "February 10, 2025"},
+    {"src": "data/February 2025/2025-02-09-My Valentine's party.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-09-My Valentine's party.jpg", "caption": "My Valentine's party", "date": "February 09, 2025"},
+    {"src": "data/February 2025/2025-02-08-Doing a candlestick at gymnastics.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-08-Doing a candlestick at gymnastics.jpg", "caption": "Doing a candlestick at gymnastics", "date": "February 08, 2025"},
+    {"src": "data/February 2025/2025-02-07-Having popsicles with Alma.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-07-Having popsicles with Alma.jpg", "caption": "Having popsicles with Alma", "date": "February 07, 2025"},
+    {"src": "data/February 2025/2025-02-06-Making valentines with Mommy.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-06-Making valentines with Mommy.jpg", "caption": "Making valentines with Mommy", "date": "February 06, 2025"},
+    {"src": "data/February 2025/2025-02-05-It snowed at school today.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-05-It snowed at school today.jpg", "caption": "It snowed at school today", "date": "February 05, 2025"},
+    {"src": "data/February 2025/2025-02-04-Tiger music class with Eva.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-04-Tiger music class with Eva.jpg", "caption": "Tiger music class with Eva", "date": "February 04, 2025"},
+    {"src": "data/February 2025/2025-02-03-Building a house with Nia and Lucy at school.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-03-Building a house with Nia and Lucy at school.jpg", "caption": "Building a house with Nia and Lucy at school", "date": "February 03, 2025"},
+    {"src": "data/February 2025/2025-02-02-Playing sleeping Queens with Mommy and Daddy.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-02-Playing sleeping Queens with Mommy and Daddy.jpg", "caption": "Playing sleeping Queens with Mommy and Daddy", "date": "February 02, 2025"},
+    {"src": "data/February 2025/2025-02-01-Yurts of fun.jpg", "mobileSrc": "data/mobile/February 2025/2025-02-01-Yurts of fun.jpg", "caption": "Yurts of fun", "date": "February 01, 2025"},
+    {"src": "data/January 2025/2025-01-31-Stringing up valentines decorations.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-31-Stringing up valentines decorations.jpg", "caption": "Stringing up valentines decorations", "date": "January 31, 2025"},
+    {"src": "data/January 2025/2025-01-30-Watching Dee and friends.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-30-Watching Dee and friends.jpg", "caption": "Watching Dee and friends", "date": "January 30, 2025"},
+    {"src": "data/January 2025/2025-01-29-Playing rocket with Lucy and June at school.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-29-Playing rocket with Lucy and June at school.jpg", "caption": "Playing rocket with Lucy and June at school", "date": "January 29, 2025"},
+    {"src": "data/January 2025/2025-01-28-Doing my gymnastics bar tricks downstairs.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-28-Doing my gymnastics bar tricks downstairs.jpg", "caption": "Doing my gymnastics bar tricks downstairs", "date": "January 28, 2025"},
+    {"src": "data/January 2025/2025-01-27-Sewing a heart with gemstones with Mommy.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-27-Sewing a heart with gemstones with Mommy.jpg", "caption": "Sewing a heart with gemstones with Mommy", "date": "January 27, 2025"},
+    {"src": "data/January 2025/2025-01-26-Eating strawberry ice cream at salt n straw.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-26-Eating strawberry ice cream at salt n straw.jpg", "caption": "Eating strawberry ice cream at salt n straw", "date": "January 26, 2025"},
+    {"src": "data/January 2025/2025-01-25-Putting on a dance performance with Mila.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-25-Putting on a dance performance with Mila.jpg", "caption": "Putting on a dance performance with Mila", "date": "January 25, 2025"},
+    {"src": "data/January 2025/2025-01-24-Playing Go Fish at Uncle and Ajas.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-24-Playing Go Fish at Uncle and Ajas.jpg", "caption": "Playing Go Fish at Uncle and Ajas", "date": "January 24, 2025"},
+    {"src": "data/January 2025/2025-01-23-Playing Piglet and Rabbit downstairs with Mommy.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-23-Playing Piglet and Rabbit downstairs with Mommy.jpg", "caption": "Playing Piglet and Rabbit downstairs with Mommy", "date": "January 23, 2025"},
+    {"src": "data/January 2025/2025-01-22-Building a fairy house with Lucy at school.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-22-Building a fairy house with Lucy at school.jpg", "caption": "Building a fairy house with Lucy at school", "date": "January 22, 2025"},
+    {"src": "data/January 2025/2025-01-21-Carpooling with Alma.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-21-Carpooling with Alma.jpg", "caption": "Carpooling with Alma", "date": "January 21, 2025"},
+    {"src": "data/January 2025/2025-01-20-Collecting food as birds with kenna for winter.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-20-Collecting food as birds with kenna for winter.jpg", "caption": "Collecting food as birds with kenna for winter", "date": "January 20, 2025"},
+    {"src": "data/January 2025/2025-01-19-Drawing with Eva at dinner.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-19-Drawing with Eva at dinner.jpg", "caption": "Drawing with Eva at dinner", "date": "January 19, 2025"},
+    {"src": "data/January 2025/2025-01-18-Getting ice cream with Mommy and Daddy at Nicos.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-18-Getting ice cream with Mommy and Daddy at Nicos.jpg", "caption": "Getting ice cream with Mommy and Daddy at Nicos", "date": "January 18, 2025"},
+    {"src": "data/January 2025/2025-01-17-Snuggling with Daddy before bed.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-17-Snuggling with Daddy before bed.jpg", "caption": "Snuggling with Daddy before bed", "date": "January 17, 2025"},
+    {"src": "data/January 2025/2025-01-16-Making Valentines decorations.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-16-Making Valentines decorations.jpg", "caption": "Making Valentines decorations", "date": "January 16, 2025"},
+    {"src": "data/January 2025/2025-01-15-Making potions with Nia at school.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-15-Making potions with Nia at school.jpg", "caption": "Making potions with Nia at school", "date": "January 15, 2025"},
+    {"src": "data/January 2025/2025-01-14-Playing cat with Everette at school.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-14-Playing cat with Everette at school.jpg", "caption": "Playing cat with Everette at school", "date": "January 14, 2025"},
+    {"src": "data/January 2025/2025-01-13-Playing hide n seek with Daddy.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-13-Playing hide n seek with Daddy.jpg", "caption": "Playing hide n seek with Daddy", "date": "January 13, 2025"},
+    {"src": "data/January 2025/2025-01-12-Going out to dinner for cousin Soren's birthday.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-12-Going out to dinner for cousin Soren's birthday.jpg", "caption": "Going out to dinner for cousin Soren's birthday", "date": "January 12, 2025"},
+    {"src": "data/January 2025/2025-01-11-Jumping at Eva's birthday party.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-11-Jumping at Eva's birthday party.jpg", "caption": "Jumping at Eva's birthday party", "date": "January 11, 2025"},
+    {"src": "data/January 2025/2025-01-10-Eating pumpkin pie.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-10-Eating pumpkin pie.jpg", "caption": "Eating pumpkin pie", "date": "January 10, 2025"},
+    {"src": "data/January 2025/2025-01-09-Making a pumpkin pie with mommy.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-09-Making a pumpkin pie with mommy.jpg", "caption": "Making a pumpkin pie with mommy", "date": "January 09, 2025"},
+    {"src": "data/January 2025/2025-01-08-Sticking toothpicks into cookies.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-08-Sticking toothpicks into cookies.jpg", "caption": "Sticking toothpicks into cookies", "date": "January 08, 2025"},
+    {"src": "data/January 2025/2025-01-07-Teaching the mermaids to swim at bathtime.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-07-Teaching the mermaids to swim at bathtime.jpg", "caption": "Teaching the mermaids to swim at bathtime", "date": "January 07, 2025"},
+    {"src": "data/January 2025/2025-01-06-Going really fast on the zipline at the park at night.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-06-Going really fast on the zipline at the park at night.jpg", "caption": "Going really fast on the zipline at the park at night", "date": "January 06, 2025"},
+    {"src": "data/January 2025/2025-01-05-Picking up books at the library.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-05-Picking up books at the library.jpg", "caption": "Picking up books at the library", "date": "January 05, 2025"},
+    {"src": "data/January 2025/2025-01-04-Eating birthday cake with Eva and Hazel.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-04-Eating birthday cake with Eva and Hazel.jpg", "caption": "Eating birthday cake with Eva and Hazel", "date": "January 04, 2025"},
+    {"src": "data/January 2025/2025-01-03-Getting my gems at the museum.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-03-Getting my gems at the museum.jpg", "caption": "Getting my gems at the museum", "date": "January 03, 2025"},
+    {"src": "data/January 2025/2025-01-02-Playing at the park at night with Mommy.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-02-Playing at the park at night with Mommy.jpg", "caption": "Playing at the park at night with Mommy", "date": "January 02, 2025"},
+    {"src": "data/January 2025/2025-01-01-Swinging from my new ring set.jpg", "mobileSrc": "data/mobile/January 2025/2025-01-01-Swinging from my new ring set.jpg", "caption": "Swinging from my new ring set", "date": "January 01, 2025"},
+    {"src": "data/December 2024/2024-12-31-Going to the library with Mom and Dad.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-31-Going to the library with Mom and Dad.jpg", "caption": "Going to the library with Mom and Dad", "date": "December 31, 2024"},
+    {"src": "data/December 2024/2024-12-30-Building a snow fort with Cass.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-30-Building a snow fort with Cass.jpg", "caption": "Building a snow fort with Cass", "date": "December 30, 2024"},
+    {"src": "data/December 2024/2024-12-29-Going to dinner with Charlotte.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-29-Going to dinner with Charlotte.jpg", "caption": "Going to dinner with Charlotte", "date": "December 29, 2024"},
+    {"src": "data/December 2024/2024-12-28-Playing Tacos vs Burritos.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-28-Playing Tacos vs Burritos.jpg", "caption": "Playing Tacos vs Burritos", "date": "December 28, 2024"},
+    {"src": "data/December 2024/2024-12-27-Ice skating with Mila.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-27-Ice skating with Mila.jpg", "caption": "Ice skating with Mila", "date": "December 27, 2024"},
+    {"src": "data/December 2024/2024-12-26-Playing with Cass and Kenna at the playground.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-26-Playing with Cass and Kenna at the playground.jpg", "caption": "Playing with Cass and Kenna at the playground", "date": "December 26, 2024"},
+    {"src": "data/December 2024/2024-12-25-Opening my Christmas Stocking.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-25-Opening my Christmas Stocking.jpg", "caption": "Opening my Christmas Stocking", "date": "December 25, 2024"},
+    {"src": "data/December 2024/2024-12-24-Watching Charlie Brown Christmas.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-24-Watching Charlie Brown Christmas.jpg", "caption": "Watching Charlie Brown Christmas", "date": "December 24, 2024"},
+    {"src": "data/December 2024/2024-12-23-Playing Tacos vs Burritos.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-23-Playing Tacos vs Burritos.jpg", "caption": "Playing Tacos vs Burritos", "date": "December 23, 2024"},
+    {"src": "data/December 2024/2024-12-22-Laying on the couch watching tv.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-22-Laying on the couch watching tv.jpg", "caption": "Laying on the couch watching tv", "date": "December 22, 2024"},
+    {"src": "data/December 2024/2024-12-21-Building a cat house with Mommy.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-21-Building a cat house with Mommy.jpg", "caption": "Building a cat house with Mommy", "date": "December 21, 2024"},
+    {"src": "data/December 2024/2024-12-20-Snuggling and talking with Daddy before bed.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-20-Snuggling and talking with Daddy before bed.jpg", "caption": "Snuggling and talking with Daddy before bed", "date": "December 20, 2024"},
+    {"src": "data/December 2024/2024-12-19-Building a Gingerbread house.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-19-Building a Gingerbread house.jpg", "caption": "Building a Gingerbread house", "date": "December 19, 2024"},
+    {"src": "data/December 2024/2024-12-18-Playing in the mud with my friends at school.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-18-Playing in the mud with my friends at school.jpg", "caption": "Playing in the mud with my friends at school", "date": "December 18, 2024"},
+    {"src": "data/December 2024/2024-12-17-Making Christmas cards for my teachers.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-17-Making Christmas cards for my teachers.jpg", "caption": "Making Christmas cards for my teachers", "date": "December 17, 2024"},
+    {"src": "data/December 2024/2024-12-16-Celebrating Everette's birthday at school.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-16-Celebrating Everette's birthday at school.jpg", "caption": "Celebrating Everette's birthday at school", "date": "December 16, 2024"},
+    {"src": "data/December 2024/2024-12-15-Watching the Polish Christmas Singers.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-15-Watching the Polish Christmas Singers.jpg", "caption": "Watching the Polish Christmas Singers", "date": "December 15, 2024"},
+    {"src": "data/December 2024/2024-12-14-Watching the Christmas Ice Skating show with Mila.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-14-Watching the Christmas Ice Skating show with Mila.jpg", "caption": "Watching the Christmas Ice Skating show with Mila", "date": "December 14, 2024"},
+    {"src": "data/December 2024/2024-12-13-My Holiday Party.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-13-My Holiday Party.jpg", "caption": "My Holiday Party", "date": "December 13, 2024"},
+    {"src": "data/December 2024/2024-12-12-A pinecone scavenger hunt with Mommy.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-12-A pinecone scavenger hunt with Mommy.jpg", "caption": "A pinecone scavenger hunt with Mommy", "date": "December 12, 2024"},
+    {"src": "data/December 2024/2024-12-11-Making candy cane cookies with Mommy.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-11-Making candy cane cookies with Mommy.jpg", "caption": "Making candy cane cookies with Mommy", "date": "December 11, 2024"},
+    {"src": "data/December 2024/2024-12-10-Playing with Isley, Lucy, and Oliver after school.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-10-Playing with Isley, Lucy, and Oliver after school.jpg", "caption": "Playing with Isley, Lucy, and Oliver after school", "date": "December 10, 2024"},
+    {"src": "data/December 2024/2024-12-09-I can't remember.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-09-I can't remember.jpg", "caption": "I can't remember", "date": "December 09, 2024"},
+    {"src": "data/December 2024/2024-12-08-Seeing Rudolph the red nosed reindeer.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-08-Seeing Rudolph the red nosed reindeer.jpg", "caption": "Seeing Rudolph the red nosed reindeer", "date": "December 08, 2024"},
+    {"src": "data/December 2024/2024-12-07-Exploring the cookie cave.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-07-Exploring the cookie cave.jpg", "caption": "Exploring the cookie cave", "date": "December 07, 2024"},
+    {"src": "data/December 2024/2024-12-06-Watching the Grinch.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-06-Watching the Grinch.jpg", "caption": "Watching the Grinch", "date": "December 06, 2024"},
+    {"src": "data/December 2024/2024-12-05-Making invitations for Isley and Charlotte.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-05-Making invitations for Isley and Charlotte.jpg", "caption": "Making invitations for Isley and Charlotte", "date": "December 05, 2024"},
+    {"src": "data/December 2024/2024-12-04-Having Santa cookie ice cream with daddy.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-04-Having Santa cookie ice cream with daddy.jpg", "caption": "Having Santa cookie ice cream with daddy", "date": "December 04, 2024"},
+    {"src": "data/December 2024/2024-12-03-Making my computer.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-03-Making my computer.jpg", "caption": "Making my computer", "date": "December 03, 2024"},
+    {"src": "data/December 2024/2024-12-02-Creating Christmas decorations with Mommy.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-02-Creating Christmas decorations with Mommy.jpg", "caption": "Creating Christmas decorations with Mommy", "date": "December 02, 2024"},
+    {"src": "data/December 2024/2024-12-01-Decorating for Christmas.jpg", "mobileSrc": "data/mobile/December 2024/2024-12-01-Decorating for Christmas.jpg", "caption": "Decorating for Christmas", "date": "December 01, 2024"},
+    {"src": "data/November 2024/2024-11-30-Climbing the mountain with Johanna.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-30-Climbing the mountain with Johanna.jpg", "caption": "Climbing the mountain with Johanna", "date": "November 30, 2024"},
+    {"src": "data/November 2024/2024-11-29-Watching TV with Johanna.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-29-Watching TV with Johanna.jpg", "caption": "Watching TV with Johanna", "date": "November 29, 2024"},
+    {"src": "data/November 2024/2024-11-28-Eating pumpkin pie at the Thanksgiving buffet.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-28-Eating pumpkin pie at the Thanksgiving buffet.jpg", "caption": "Eating pumpkin pie at the Thanksgiving buffet", "date": "November 28, 2024"},
+    {"src": "data/November 2024/2024-11-27-Going to the red yarn concert with Charlotte.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-27-Going to the red yarn concert with Charlotte.jpg", "caption": "Going to the red yarn concert with Charlotte", "date": "November 27, 2024"},
+    {"src": "data/November 2024/2024-11-26-Listening to the Lumineers record while swinging on my trapeze.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-26-Listening to the Lumineers record while swinging on my trapeze.jpg", "caption": "Listening to the Lumineers record while swinging on my trapeze", "date": "November 26, 2024"},
+    {"src": "data/November 2024/2024-11-25-Going to the soaking pool with Lucy.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-25-Going to the soaking pool with Lucy.jpg", "caption": "Going to the soaking pool with Lucy", "date": "November 25, 2024"},
+    {"src": "data/November 2024/2024-11-24-Holding my two cats on the couch.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-24-Holding my two cats on the couch.jpg", "caption": "Holding my two cats on the couch", "date": "November 24, 2024"},
+    {"src": "data/November 2024/2024-11-23-Watching Mickey Mouse with Pete the Seaweed Monster.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-23-Watching Mickey Mouse with Pete the Seaweed Monster.jpg", "caption": "Watching Mickey Mouse with Pete the Seaweed Monster", "date": "November 23, 2024"},
+    {"src": "data/November 2024/2024-11-22-Having lunch with Grandma at Kindergarten.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-22-Having lunch with Grandma at Kindergarten.jpg", "caption": "Having lunch with Grandma at Kindergarten", "date": "November 22, 2024"},
+    {"src": "data/November 2024/2024-11-21-Showing Grandma around my room.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-21-Showing Grandma around my room.jpg", "caption": "Showing Grandma around my room", "date": "November 21, 2024"},
+    {"src": "data/November 2024/2024-11-20-Coloring pictures for Grandma.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-20-Coloring pictures for Grandma.jpg", "caption": "Coloring pictures for Grandma", "date": "November 20, 2024"},
+    {"src": "data/November 2024/2024-11-19-Bathtime with Mommy.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-19-Bathtime with Mommy.jpg", "caption": "Bathtime with Mommy", "date": "November 19, 2024"},
+    {"src": "data/November 2024/2024-11-18-Playing witches at school with Nia.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-18-Playing witches at school with Nia.jpg", "caption": "Playing witches at school with Nia", "date": "November 18, 2024"},
+    {"src": "data/November 2024/2024-11-17-Coloring a strawberry heart at Lucy's birthday party.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-17-Coloring a strawberry heart at Lucy's birthday party.jpg", "caption": "Coloring a strawberry heart at Lucy's birthday party", "date": "November 17, 2024"},
+    {"src": "data/November 2024/2024-11-16-Doing a backflip around a wheel at gymnastics.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-16-Doing a backflip around a wheel at gymnastics.jpg", "caption": "Doing a backflip around a wheel at gymnastics", "date": "November 16, 2024"},
+    {"src": "data/November 2024/2024-11-15-Reading stories with Daddy.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-15-Reading stories with Daddy.jpg", "caption": "Reading stories with Daddy", "date": "November 15, 2024"},
+    {"src": "data/November 2024/2024-11-14-Saw a rainbow across the entire city.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-14-Saw a rainbow across the entire city.jpg", "caption": "Saw a rainbow across the entire city", "date": "November 14, 2024"},
+    {"src": "data/November 2024/2024-11-13-Carpooling with my friend Lucy after school.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-13-Carpooling with my friend Lucy after school.jpg", "caption": "Carpooling with my friend Lucy after school", "date": "November 13, 2024"},
+    {"src": "data/November 2024/2024-11-12-Having my friend Mila over for dinner.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-12-Having my friend Mila over for dinner.jpg", "caption": "Having my friend Mila over for dinner", "date": "November 12, 2024"},
+    {"src": "data/November 2024/2024-11-11-Putting a beet lid on top of my glass of water.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-11-Putting a beet lid on top of my glass of water.jpg", "caption": "Putting a beet lid on top of my glass of water", "date": "November 11, 2024"},
+    {"src": "data/November 2024/2024-11-10-Jumping to the spinning monkey bars and pulling my feet up.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-10-Jumping to the spinning monkey bars and pulling my feet up.jpg", "caption": "Jumping to the spinning monkey bars and pulling my feet up", "date": "November 10, 2024"},
+    {"src": "data/November 2024/2024-11-09-Watching the Cat Kid Comedy Club Musical.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-09-Watching the Cat Kid Comedy Club Musical.jpg", "caption": "Watching the Cat Kid Comedy Club Musical", "date": "November 09, 2024"},
+    {"src": "data/November 2024/2024-11-08-Going on the school Lantern walk with Nia.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-08-Going on the school Lantern walk with Nia.jpg", "caption": "Going on the school Lantern walk with Nia", "date": "November 08, 2024"},
+    {"src": "data/November 2024/2024-11-07-Coloring Mermaids and Sea Monsters with Mommy.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-07-Coloring Mermaids and Sea Monsters with Mommy.jpg", "caption": "Coloring Mermaids and Sea Monsters with Mommy", "date": "November 07, 2024"},
+    {"src": "data/November 2024/2024-11-06-Standing on daddy's legs bridged between two chairs.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-06-Standing on daddy's legs bridged between two chairs.jpg", "caption": "Standing on daddy's legs bridged between two chairs", "date": "November 06, 2024"},
+    {"src": "data/November 2024/2024-11-05-Music class with Eva and Mila.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-05-Music class with Eva and Mila.jpg", "caption": "Music class with Eva and Mila", "date": "November 05, 2024"},
+    {"src": "data/November 2024/2024-11-04-Making a nut pie outside.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-04-Making a nut pie outside.jpg", "caption": "Making a nut pie outside", "date": "November 04, 2024"},
+    {"src": "data/November 2024/2024-11-03-Going to a Diwali festival with Juniper.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-03-Going to a Diwali festival with Juniper.jpg", "caption": "Going to a Diwali festival with Juniper", "date": "November 03, 2024"},
+    {"src": "data/November 2024/2024-11-02-Watching The Secret Life of Pets.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-02-Watching The Secret Life of Pets.jpg", "caption": "Watching The Secret Life of Pets", "date": "November 02, 2024"},
+    {"src": "data/November 2024/2024-11-01-Making cat potions with Mommy outside.jpg", "mobileSrc": "data/mobile/November 2024/2024-11-01-Making cat potions with Mommy outside.jpg", "caption": "Making cat potions with Mommy outside", "date": "November 01, 2024"},
+    {"src": "data/October 2024/2024-10-31-Going trick or treating as a butterfly princess with Eva who was a robot.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-31-Going trick or treating as a butterfly princess with Eva who was a robot.jpg", "caption": "Going trick or treating as a butterfly princess with Eva who was a robot", "date": "October 31, 2024"},
+    {"src": "data/October 2024/2024-10-30-Doing my Halloween sticker book.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-30-Doing my Halloween sticker book.jpg", "caption": "Doing my Halloween sticker book", "date": "October 30, 2024"},
+    {"src": "data/October 2024/2024-10-29-Bathtime with my mermaids.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-29-Bathtime with my mermaids.jpg", "caption": "Bathtime with my mermaids", "date": "October 29, 2024"},
+    {"src": "data/October 2024/2024-10-28-Eating spaghetti and meatballs.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-28-Eating spaghetti and meatballs.jpg", "caption": "Eating spaghetti and meatballs", "date": "October 28, 2024"},
+    {"src": "data/October 2024/2024-10-27-Halloween monster march in the rain.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-27-Halloween monster march in the rain.jpg", "caption": "Halloween monster march in the rain", "date": "October 27, 2024"},
+    {"src": "data/October 2024/2024-10-26-Getting a balloon at Cora's birthday party.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-26-Getting a balloon at Cora's birthday party.jpg", "caption": "Getting a balloon at Cora's birthday party", "date": "October 26, 2024"},
+    {"src": "data/October 2024/2024-10-25-Looking at the spooky house.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-25-Looking at the spooky house.jpg", "caption": "Looking at the spooky house", "date": "October 25, 2024"},
+    {"src": "data/October 2024/2024-10-24-Sneaking a sour candy.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-24-Sneaking a sour candy.jpg", "caption": "Sneaking a sour candy", "date": "October 24, 2024"},
+    {"src": "data/October 2024/2024-10-23-Building a pillow fort downstairs.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-23-Building a pillow fort downstairs.jpg", "caption": "Building a pillow fort downstairs", "date": "October 23, 2024"},
+    {"src": "data/October 2024/2024-10-22-Playing big ball game on the stairs.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-22-Playing big ball game on the stairs.jpg", "caption": "Playing big ball game on the stairs", "date": "October 22, 2024"},
+    {"src": "data/October 2024/2024-10-21-Eating a big frozen strawberry.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-21-Eating a big frozen strawberry.jpg", "caption": "Eating a big frozen strawberry", "date": "October 21, 2024"},
+    {"src": "data/October 2024/2024-10-20-Playing with Juniper on the playground.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-20-Playing with Juniper on the playground.jpg", "caption": "Playing with Juniper on the playground", "date": "October 20, 2024"},
+    {"src": "data/October 2024/2024-10-19-Building a house with a fence around it.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-19-Building a house with a fence around it.jpg", "caption": "Building a house with a fence around it", "date": "October 19, 2024"},
+    {"src": "data/October 2024/2024-10-18-Watching Scaredy Cats.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-18-Watching Scaredy Cats.jpg", "caption": "Watching Scaredy Cats", "date": "October 18, 2024"},
+    {"src": "data/October 2024/2024-10-17-Sewing a bag at kindergarten.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-17-Sewing a bag at kindergarten.jpg", "caption": "Sewing a bag at kindergarten", "date": "October 17, 2024"},
+    {"src": "data/October 2024/2024-10-16-Going to dinner for Aunt Monica's Birthday.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-16-Going to dinner for Aunt Monica's Birthday.jpg", "caption": "Going to dinner for Aunt Monica's Birthday", "date": "October 16, 2024"},
+    {"src": "data/October 2024/2024-10-15-Playing on the playground after school.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-15-Playing on the playground after school.jpg", "caption": "Playing on the playground after school", "date": "October 15, 2024"},
+    {"src": "data/October 2024/2024-10-14-Playing with Lucy, Henry, Martin, and Cass at the playground.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-14-Playing with Lucy, Henry, Martin, and Cass at the playground.jpg", "caption": "Playing with Lucy, Henry, Martin, and Cass at the playground", "date": "October 14, 2024"},
+    {"src": "data/October 2024/2024-10-13-Making mushroom spore prints with Mommy.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-13-Making mushroom spore prints with Mommy.jpg", "caption": "Making mushroom spore prints with Mommy", "date": "October 13, 2024"},
+    {"src": "data/October 2024/2024-10-12-Eating chips by the campfire on Daddy's lap after dark.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-12-Eating chips by the campfire on Daddy's lap after dark.jpg", "caption": "Eating chips by the campfire on Daddy's lap after dark", "date": "October 12, 2024"},
+    {"src": "data/October 2024/2024-10-11-Finding treasures at the playground with Cass.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-11-Finding treasures at the playground with Cass.jpg", "caption": "Finding treasures at the playground with Cass", "date": "October 11, 2024"},
+    {"src": "data/October 2024/2024-10-10-Hanging from her silks at Aerial Arts.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-10-Hanging from her silks at Aerial Arts.jpg", "caption": "Hanging from her silks at Aerial Arts", "date": "October 10, 2024"},
+    {"src": "data/October 2024/2024-10-09-Baking bread at Kindergarten.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-09-Baking bread at Kindergarten.jpg", "caption": "Baking bread at Kindergarten", "date": "October 09, 2024"},
+    {"src": "data/October 2024/2024-10-08-Playing outside after music class with Eva and Mila.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-08-Playing outside after music class with Eva and Mila.jpg", "caption": "Playing outside after music class with Eva and Mila", "date": "October 08, 2024"},
+    {"src": "data/October 2024/2024-10-07-Hiding from the Moo Moo Monster.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-07-Hiding from the Moo Moo Monster.jpg", "caption": "Hiding from the Moo Moo Monster", "date": "October 07, 2024"},
+    {"src": "data/October 2024/2024-10-06-Making fairy dust in my mud kitchen.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-06-Making fairy dust in my mud kitchen.jpg", "caption": "Making fairy dust in my mud kitchen", "date": "October 06, 2024"},
+    {"src": "data/October 2024/2024-10-05-Skipping a bar while doing the monkey bars at the park.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-05-Skipping a bar while doing the monkey bars at the park.jpg", "caption": "Skipping a bar while doing the monkey bars at the park", "date": "October 05, 2024"},
+    {"src": "data/October 2024/2024-10-04-Hanging ghosts with pink sparkles on a tree with Mommy.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-04-Hanging ghosts with pink sparkles on a tree with Mommy.jpg", "caption": "Hanging ghosts with pink sparkles on a tree with Mommy", "date": "October 04, 2024"},
+    {"src": "data/October 2024/2024-10-03-Doing my straddle stretch at Aerial Arts.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-03-Doing my straddle stretch at Aerial Arts.jpg", "caption": "Doing my straddle stretch at Aerial Arts", "date": "October 03, 2024"},
+    {"src": "data/October 2024/2024-10-02-Went and saw the cat sculptures.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-02-Went and saw the cat sculptures.jpg", "caption": "Went and saw the cat sculptures", "date": "October 02, 2024"},
+    {"src": "data/October 2024/2024-10-01-Playing at the park and music class with Eva.jpg", "mobileSrc": "data/mobile/October 2024/2024-10-01-Playing at the park and music class with Eva.jpg", "caption": "Playing at the park and music class with Eva", "date": "October 01, 2024"},
+    {"src": "data/September 2024/2024-09-30-Building a fairy house outside of school.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-30-Building a fairy house outside of school.jpg", "caption": "Building a fairy house outside of school", "date": "September 30, 2024"},
+    {"src": "data/September 2024/2024-09-29-Doing nothing.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-29-Doing nothing.jpg", "caption": "Doing nothing", "date": "September 29, 2024"},
+    {"src": "data/September 2024/2024-09-28-Doing a candlestick in gymnastics on the rings.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-28-Doing a candlestick in gymnastics on the rings.jpg", "caption": "Doing a candlestick in gymnastics on the rings", "date": "September 28, 2024"},
+    {"src": "data/September 2024/2024-09-27-Watching the dragon during the Michaelmas festival.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-27-Watching the dragon during the Michaelmas festival.jpg", "caption": "Watching the dragon during the Michaelmas festival", "date": "September 27, 2024"},
+    {"src": "data/September 2024/2024-09-26-Swinging on silks at aerial arts.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-26-Swinging on silks at aerial arts.jpg", "caption": "Swinging on silks at aerial arts", "date": "September 26, 2024"},
+    {"src": "data/September 2024/2024-09-25-Built a colorful photo family box with different cats and dogs.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-25-Built a colorful photo family box with different cats and dogs.jpg", "caption": "Built a colorful photo family box with different cats and dogs", "date": "September 25, 2024"},
+    {"src": "data/September 2024/2024-09-24-Going to school.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-24-Going to school.jpg", "caption": "Going to school", "date": "September 24, 2024"},
+    {"src": "data/September 2024/2024-09-23-Collecting chestnuts with Cass.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-23-Collecting chestnuts with Cass.jpg", "caption": "Collecting chestnuts with Cass", "date": "September 23, 2024"},
+    {"src": "data/September 2024/2024-09-22-Painting my popsicle sticks.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-22-Painting my popsicle sticks.jpg", "caption": "Painting my popsicle sticks", "date": "September 22, 2024"},
+    {"src": "data/September 2024/2024-09-21-Playing with my friend Charlotte at the Wonderlove food carts.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-21-Playing with my friend Charlotte at the Wonderlove food carts.jpg", "caption": "Playing with my friend Charlotte at the Wonderlove food carts", "date": "September 21, 2024"},
+    {"src": "data/September 2024/2024-09-20-Cutting up vegetables in Kindergarten class.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-20-Cutting up vegetables in Kindergarten class.jpg", "caption": "Cutting up vegetables in Kindergarten class", "date": "September 20, 2024"},
+    {"src": "data/September 2024/2024-09-19-Playing in my outdoor mud kitchen at night.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-19-Playing in my outdoor mud kitchen at night.jpg", "caption": "Playing in my outdoor mud kitchen at night", "date": "September 19, 2024"},
+    {"src": "data/September 2024/2024-09-18-Picking rainbow chard from the garden.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-18-Picking rainbow chard from the garden.jpg", "caption": "Picking rainbow chard from the garden", "date": "September 18, 2024"},
+    {"src": "data/September 2024/2024-09-17-Played rat-a-tat-cat, on the floor, while eating lunch with mommy and the cats.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-17-Played rat-a-tat-cat, on the floor, while eating lunch with mommy and the cats.jpg", "caption": "Played rat a tat cat, on the floor, while eating lunch with mommy and the cats", "date": "September 17, 2024"},
+    {"src": "data/September 2024/2024-09-16-Painting my yellow picture at kindergarten.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-16-Painting my yellow picture at kindergarten.jpg", "caption": "Painting my yellow picture at kindergarten", "date": "September 16, 2024"},
+    {"src": "data/September 2024/2024-09-15-Drawing Halloween pictures, with Mommy.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-15-Drawing Halloween pictures, with Mommy.jpg", "caption": "Drawing Halloween pictures, with Mommy", "date": "September 15, 2024"},
+    {"src": "data/September 2024/2024-09-14-Watching the polish polka dance competition in the rain.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-14-Watching the polish polka dance competition in the rain.jpg", "caption": "Watching the polish polka dance competition in the rain", "date": "September 14, 2024"},
+    {"src": "data/September 2024/2024-09-13-Making the fall leaf rug for the tiny chef.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-13-Making the fall leaf rug for the tiny chef.jpg", "caption": "Making the fall leaf rug for the tiny chef", "date": "September 13, 2024"},
+    {"src": "data/September 2024/2024-09-12-Riding the carousel at the mall while shopping for boots.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-12-Riding the carousel at the mall while shopping for boots.jpg", "caption": "Riding the carousel at the mall while shopping for boots", "date": "September 12, 2024"},
+    {"src": "data/September 2024/2024-09-11-Making a birds nest with my friend Kenna and then picking snowberries.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-11-Making a birds nest with my friend Kenna and then picking snowberries.jpg", "caption": "Making a birds nest with my friend Kenna and then picking snowberries", "date": "September 11, 2024"},
+    {"src": "data/September 2024/2024-09-10-Coloring something that is super-secret at Kindergarten.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-10-Coloring something that is super-secret at Kindergarten.jpg", "caption": "Coloring something that is super secret at Kindergarten", "date": "September 10, 2024"},
+    {"src": "data/September 2024/2024-09-09-Hanging fall leaves on a branch for the tiny chef.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-09-Hanging fall leaves on a branch for the tiny chef.jpg", "caption": "Hanging fall leaves on a branch for the tiny chef", "date": "September 09, 2024"},
+    {"src": "data/September 2024/2024-09-08-Making soup in my outdoor mud kitchen with Momma.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-08-Making soup in my outdoor mud kitchen with Momma.jpg", "caption": "Making soup in my outdoor mud kitchen with Momma", "date": "September 08, 2024"},
+    {"src": "data/September 2024/2024-09-07-Sliding down the hill on cardboard with my friend Eva, with swift birds flying in the air.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-07-Sliding down the hill on cardboard with my friend Eva, with swift birds flying in the air.jpg", "caption": "Sliding down the hill on cardboard with my friend Eva, with swift birds flying in the air", "date": "September 07, 2024"},
+    {"src": "data/September 2024/2024-09-06-Creating the family out of paper, with glitter glue during arts and crafts.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-06-Creating the family out of paper, with glitter glue during arts and crafts.jpg", "caption": "Creating the family out of paper, with glitter glue during arts and crafts", "date": "September 06, 2024"},
+    {"src": "data/September 2024/2024-09-05-We made apples with red and white yarn in the Kindergarten classroom.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-05-We made apples with red and white yarn in the Kindergarten classroom.jpg", "caption": "We made apples with red and white yarn in the Kindergarten classroom", "date": "September 05, 2024"},
+    {"src": "data/September 2024/2024-09-04-Climbing on the playhouse in my kindergarten classroom while the babies sleep upstairs.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-04-Climbing on the playhouse in my kindergarten classroom while the babies sleep upstairs.jpg", "caption": "Climbing on the playhouse in my kindergarten classroom while the babies sleep upstairs", "date": "September 04, 2024"},
+    {"src": "data/September 2024/2024-09-03-Drawing the tooth fairy collecting tooth fairy flowers.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-03-Drawing the tooth fairy collecting tooth fairy flowers.jpg", "caption": "Drawing the tooth fairy collecting tooth fairy flowers", "date": "September 03, 2024"},
+    {"src": "data/September 2024/2024-09-02-Playing hide n seek at the Silver Falls State Park.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-02-Playing hide n seek at the Silver Falls State Park.jpg", "caption": "Playing hide n seek at the Silver Falls State Park", "date": "September 02, 2024"},
+    {"src": "data/September 2024/2024-09-01-The white feather capes at Cirque du Soleil.jpg", "mobileSrc": "data/mobile/September 2024/2024-09-01-The white feather capes at Cirque du Soleil.jpg", "caption": "The white feather capes at Cirque du Soleil", "date": "September 01, 2024"},
+    {"src": "data/August 2024/2024-08-31-Going to the summer concert in the park.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-31-Going to the summer concert in the park.jpg", "caption": "Going to the summer concert in the park", "date": "August 31, 2024"},
+    {"src": "data/August 2024/2024-08-30-Having beverages with Mommy and Daddy on the flagstone in the back yard.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-30-Having beverages with Mommy and Daddy on the flagstone in the back yard.jpg", "caption": "Having beverages with Mommy and Daddy on the flagstone in the back yard", "date": "August 30, 2024"},
+    {"src": "data/August 2024/2024-08-29-Played hide n go seek with Daddy.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-29-Played hide n go seek with Daddy.jpg", "caption": "Played hide n go seek with Daddy", "date": "August 29, 2024"},
+    {"src": "data/August 2024/2024-08-28-Showing teacher Julie the toys in my bedroom.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-28-Showing teacher Julie the toys in my bedroom.jpg", "caption": "Showing teacher Julie the toys in my bedroom", "date": "August 28, 2024"},
+    {"src": "data/August 2024/2024-08-27-Playing indoors on the monkey section at Cedarwood elementary.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-27-Playing indoors on the monkey section at Cedarwood elementary.jpg", "caption": "Playing indoors on the monkey section at Cedarwood elementary", "date": "August 27, 2024"},
+    {"src": "data/August 2024/2024-08-26-Making sand cakes with Juniper on the beach.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-26-Making sand cakes with Juniper on the beach.jpg", "caption": "Making sand cakes with Juniper on the beach", "date": "August 26, 2024"},
+    {"src": "data/August 2024/2024-08-25-Playing with Moo Moo, our orange cat, in the window sill.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-25-Playing with Moo Moo, our orange cat, in the window sill.jpg", "caption": "Playing with Moo Moo, our orange cat, in the window sill", "date": "August 25, 2024"},
+    {"src": "data/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-24-Playing soccer with Celeste and Charlotte.jpg", "caption": "Playing soccer with Celeste and Charlotte", "date": "August 24, 2024"},
+    {"src": "data/August 2024/2024-08-23-Playing tag with Tanner, who is a boy with a blue jacket, at the park.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-23-Playing tag with Tanner, who is a boy with a blue jacket, at the park.jpg", "caption": "Playing tag with Tanner, who is a boy with a blue jacket, at the park", "date": "August 23, 2024"},
+    {"src": "data/August 2024/2024-08-22-Coloring and writing with Mommy.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-22-Coloring and writing with Mommy.jpg", "caption": "Coloring and writing with Mommy", "date": "August 22, 2024"},
+    {"src": "data/August 2024/2024-08-21-Having Mommy and Daddy at aerial arts.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-21-Having Mommy and Daddy at aerial arts.jpg", "caption": "Having Mommy and Daddy at aerial arts", "date": "August 21, 2024"},
+    {"src": "data/August 2024/2024-08-20-Making my salad with kale, tomatoes, basil, chives, salt and olive oil.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-20-Making my salad with kale, tomatoes, basil, chives, salt and olive oil.jpg", "caption": "Making my salad with kale, tomatoes, basil, chives, salt and olive oil", "date": "August 20, 2024"},
+    {"src": "data/August 2024/2024-08-19-Going out to dinner for Aunt Janet's Birthday.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-19-Going out to dinner for Aunt Janet's Birthday.jpg", "caption": "Going out to dinner for Aunt Janet's Birthday", "date": "August 19, 2024"},
+    {"src": "data/August 2024/2024-08-18-Eating a rainbow popsicle for dessert.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-18-Eating a rainbow popsicle for dessert.jpg", "caption": "Eating a rainbow popsicle for dessert", "date": "August 18, 2024"},
+    {"src": "data/August 2024/2024-08-17-Climbing a big tree at the soap box derby.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-17-Climbing a big tree at the soap box derby.jpg", "caption": "Climbing a big tree at the soap box derby", "date": "August 17, 2024"},
+    {"src": "data/August 2024/2024-08-16-Swinging on the monkey bars at the park with Momma.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-16-Swinging on the monkey bars at the park with Momma.jpg", "caption": "Swinging on the monkey bars at the park with Momma", "date": "August 16, 2024"},
+    {"src": "data/August 2024/2024-08-15-Picking out new yellow shoes.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-15-Picking out new yellow shoes.jpg", "caption": "Picking out new yellow shoes", "date": "August 15, 2024"},
+    {"src": "data/August 2024/2024-08-14-Going swimming with Mamma at open swim.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-14-Going swimming with Mamma at open swim.jpg", "caption": "Going swimming with Mamma at open swim", "date": "August 14, 2024"},
+    {"src": "data/August 2024/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-13-Eating kid size pizzas for lunch with Aunt Monica.jpg", "caption": "Eating kid size pizzas for lunch with Aunt Monica", "date": "August 13, 2024"},
+    {"src": "data/August 2024/2024-08-12-Swimming with Gemma.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-12-Swimming with Gemma.jpg", "caption": "Swimming with Gemma", "date": "August 12, 2024"},
+    {"src": "data/August 2024/2024-08-11-The aerial arts show.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-11-The aerial arts show.jpg", "caption": "The aerial arts show", "date": "August 11, 2024"},
+    {"src": "data/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-10-Playing with Mommy, Daddy, and Celeste.jpg", "caption": "Playing with Mommy, Daddy, and Celeste", "date": "August 10, 2024"},
+    {"src": "data/August 2024/2024-08-09-Riding on a butterfly.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-09-Riding on a butterfly.jpg", "caption": "Riding on a butterfly", "date": "August 09, 2024"},
+    {"src": "data/August 2024/2024-08-08-Watch my new hanging trick.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-08-Watch my new hanging trick.jpg", "caption": "Watch my new hanging trick", "date": "August 08, 2024"},
+    {"src": "data/August 2024/2024-08-07-Daddy, I can do a flip.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-07-Daddy, I can do a flip.jpg", "caption": "Daddy, I can do a flip", "date": "August 07, 2024"},
+    {"src": "data/August 2024/2024-08-06-It's my birthday, Yippee.jpg", "mobileSrc": "data/mobile/August 2024/2024-08-06-It's my birthday, Yippee.jpg", "caption": "It's my birthday, Yippee", "date": "August 06, 2024"}
+    ];
+  </script>
+  <div class="overlay" id="overlay" onclick="hideOverlay()">
+    <div class="overlay-content">
+      <h2>About This Gallery</h2>
+      <p>Every day we ask our five year old daughter what her favorite thing was that day. Enjoy!</p>
+    </div>
+  </div>
+  <div class="nav-footer"><div class='nav-footer'><a href="archives/April 2025/April 2025.html">&larr; April 2025</a> | <a href="archives/February 2025/February 2025.html">February 2025 &rarr;</a></div></div>
+  <div class="notification" id="notification">URL Copied</div>
+  <script>
+    const background_image_mobile = "https://kwblackstone.github.io/FavoriteThingOfTheDay/data/mobile/background.jpg";
 
-            function toggleDropdown() {
-                const dropdown = document.getElementById('dropdown');
-                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-            }
+    const useMobileImages = (() => {
+      const lowRAM = navigator.deviceMemory && navigator.deviceMemory <= 2;
+      const fewCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+      const smallScreen = Math.max(screen.width, screen.height) <= 768;
+      return lowRAM || fewCores || smallScreen;
+    })();
 
-            let currentSlideIndex = -1;
-            let slideshowInterval;
-            const shuffleCheckbox = document.getElementById('shuffle-checkbox');
-            shuffleCheckbox.onclick = function(event) {
-                if (!this.checked) {
-                    const galleryItems = document.querySelectorAll('.gallery-item');
-                    currentSlideIndex = -1;
-                }
-                event.stopPropagation();
-            };
-            const shuffleLabel = document.getElementById('shuffle-label');
-            shuffleLabel.onclick = function(event) {
-                event.stopPropagation();
-                setTimeout(() => {
-                    if (!shuffleCheckbox.checked) {
-                        const galleryItems = document.querySelectorAll('.gallery-item');
-                        currentSlideIndex = -1;
-                    }
-                }, 0);
-            };
+    if (useMobileImages) document.body.classList.add('mobile');
 
-            function showOverlay() {
-                document.getElementById('overlay').style.display = 'flex';
-                document.getElementById('dropdown').style.display = 'none';
-            }
-            function hideOverlay() {
-                document.getElementById('overlay').style.display = 'none';
-            }
+    document.addEventListener('DOMContentLoaded', () => {
+      // Swap all image sources
+      document.querySelectorAll('img[data-mobile-src]').forEach(img => {
+        const mobileSrc = img.dataset.mobileSrc;
+        const fullSrc = img.dataset.src;
 
-            function startSlideshow() {
-                document.getElementById('fullscreen').style.display = 'flex';
-                document.body.classList.add('body-no-scroll');
-                nextSlide();
-                slideshowInterval = setInterval(nextSlide, 7000);
-                document.getElementById('dropdown').style.display = 'none';
-            }
+        img.src = (useMobileImages && mobileSrc) ? mobileSrc : fullSrc || '';
 
-            function nextSlide() {
-                const galleryItems = document.querySelectorAll('.gallery-item');
-                if (galleryItems.length === 0) return;
-                const fullscreenImg = document.getElementById('fullscreen-img');
-                const fullscreenCaption = document.getElementById('fullscreen-caption');
-                const fullscreenTitle = document.getElementById('fullscreen-title');
+        const link = img.closest('a');
+        if (link) {
+          const mobileHref = link.dataset.mobileHref;
+          const fallbackHref = link.dataset.href;
+          link.href = (useMobileImages && mobileHref) ? mobileHref : (fallbackHref || link.href);
+        }
+      });
 
-                fullscreenImg.style.opacity = 0;
+      // Background override
+      const bgStyle = document.getElementById('bg-style');
+      if (useMobileImages && bgStyle) {
+        bgStyle.textContent = `.bg-layer { background-image: url('https://kwblackstone.github.io/FavoriteThingOfTheDay/data/mobile/background.jpg'); }`;
+      }
 
-                setTimeout(() => {
-                    if (shuffleCheckbox.checked) {
-                        currentSlideIndex = Math.floor(Math.random() * galleryItems.length);
-                    } else {
-                        currentSlideIndex = (currentSlideIndex + 1) % galleryItems.length;
-                    }
+      // Slideshow auto-start (first load only)
+      try {
+        const seen = localStorage.getItem('hasSeenSlideshow');
+        if (!seen && useMobileImages && typeof startSlideshow === 'function') {
+          localStorage.setItem('hasSeenSlideshow', 'true');
+          startSlideshow();
+        }
+      } catch (e) {
+        if (useMobileImages && typeof startSlideshow === 'function') startSlideshow();
+      }
 
-                    const img = galleryItems[currentSlideIndex].querySelector('img');
-                    const captionText = galleryItems[currentSlideIndex].querySelector('.caption').innerText;
-                    const anchor = img.closest('a');
-                    const title = anchor.getAttribute('data-title') || '';
-                    const tooltip = img.title;
+      // Restore saved slideshow duration
+      const input = document.getElementById('slideshow-duration');
+      const saved = localStorage.getItem('slideshowDuration');
+      if (saved !== null) input.value = saved;
+      input.addEventListener('input', () => {
+        const val = parseFloat(input.value);
+        if (!isNaN(val) && val >= 0.1) {
+          localStorage.setItem('slideshowDuration', val);
+          if (slideshowInterval) {
+            clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(nextSlide, getSlideshowDurationMs());
+          }
+        }
+      });
+    });
 
-                    fullscreenImg.src = img.src;
-                    fullscreenImg.alt = img.alt;
-                    fullscreenImg.title = tooltip;
-                    fullscreenCaption.textContent = captionText;
-                    fullscreenTitle.textContent = title;
+    // Nav + overlay helpers
+    function toggleNav() {
+      const nav = document.getElementById('nav-links');
+      nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+    }
 
-                    fullscreenImg.style.opacity = 1;
-                }, 330);
-            }
+    function toggleDropdown() {
+      const d = document.getElementById('dropdown');
+      d.style.display = d.style.display === 'block' ? 'none' : 'block';
+    }
 
-            function stopSlideshow() {
-                clearInterval(slideshowInterval);
-                document.getElementById('fullscreen').style.display = 'none';
-                document.body.classList.remove('body-no-scroll');
-            }
+    function showOverlay() {
+      document.getElementById('overlay').style.display = 'flex';
+      document.getElementById('dropdown').style.display = 'none';
+    }
 
-            document.getElementById('fullscreen').addEventListener('click', stopSlideshow);
-            document.addEventListener('DOMContentLoaded', function() {
-                const calendarButton = document.querySelector('.calendar');
-                calendarButton.addEventListener('click', function(event) {
-                    toggleNav();
-                    event.stopPropagation();
-                });
-            });
+    function hideOverlay() {
+      document.getElementById('overlay').style.display = 'none';
+    }
 
-            function shareGallery() {
-                const galleryURL = window.location.href;
-                const title = document.title;
-                const text = "Check out this gallery!";
-                if (navigator.share) {
-                    navigator.share({
-                        title: title,
-                        text: text,
-                        url: galleryURL,
-                    }).then(() => {
-                        console.log("Successfully shared");
-                    }).catch((error) => {
-                        console.error("Error sharing", error);
-                    });
-                } else {
-                    navigator.clipboard.writeText(galleryURL).then(() => {
-                        const notification = document.getElementById('notification');
-                        notification.classList.add('show');
-                        setTimeout(() => {
-                            notification.classList.remove('show');
-                        }, 3000);
-                    });
-                }
-            }
+    // Collapse nav on outside click/tap
+    ['click', 'touchstart'].forEach(evt =>
+      document.addEventListener(evt, e => {
+        const nav = document.getElementById('nav-links');
+        const dropdown = document.getElementById('dropdown');
+        const target = e.target;
+        if (!target.closest('.calendar')) nav.style.display = 'none';
+        if (!target.closest('.menu') && !dropdown.contains(target)) dropdown.style.display = 'none';
+      })
+    );
 
-            window.onclick = function(event) {
-                if (!event.target.matches('.calendar')) {
-                    const nav = document.getElementById('nav-links');
-                    if (nav.style.display === 'block') {
-                        nav.style.display = 'none';
-                    }
-                }
-                if (!event.target.matches('.menu')) {
-                    const dropdown = document.getElementById('dropdown');
-                    if (dropdown.style.display === 'block') {
-                        dropdown.style.display = 'none';
-                    }
-                }
-            }
-        </script>
-    </body>
-    </html>
-    
+    ['click', 'touchstart'].forEach(evt =>
+      document.querySelectorAll('#nav-links a').forEach(a =>
+        a.addEventListener(evt, () => document.getElementById('nav-links').style.display = 'none')
+      )
+    );
+
+    function shareGallery() {
+      const u = window.location.href;
+      if (navigator.share) {
+        navigator.share({ title: document.title, text: 'Check out this gallery!', url: u });
+      } else {
+        navigator.clipboard.writeText(u).then(() => {
+          const n = document.getElementById('notification');
+          n.classList.add('show');
+          setTimeout(() => n.classList.remove('show'), 3000);
+        });
+      }
+    }
+
+    let currentSlideIndex = -1;
+    let slideshowInterval;
+    let wasInFullscreenBefore = false;
+
+    function getSlideshowDurationMs() {
+      const input = document.getElementById('slideshow-duration');
+      let val = parseFloat(input.value);
+      if (isNaN(val) || val < 0.1) {
+        val = 0.1;
+        input.value = val;
+      }
+      return val * 1000;
+    }
+
+    function startSlideshow() {
+      if (slideshowInterval) clearInterval(slideshowInterval);
+      wasInFullscreenBefore = !!document.fullscreenElement;
+
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+
+      const fs = document.createElement('div');
+      fs.id = 'fullscreen';
+      fs.className = 'fullscreen';
+      fs.innerHTML = `
+        <div id="fullscreen-title"></div>
+        <img id="fullscreen-img" src="" alt="" loading="eager">
+        <div class="caption" id="fullscreen-caption"></div>
+      `;
+      fs.addEventListener('click', stopSlideshow);
+      document.body.appendChild(fs);
+      document.body.classList.add('body-no-scroll');
+      document.getElementById('dropdown').style.display = 'none';
+
+      nextSlide();
+      slideshowInterval = setInterval(nextSlide, getSlideshowDurationMs());
+    }
+
+    function nextSlide() {
+      if (!SLIDESHOW_DATA.length) return;
+
+      currentSlideIndex = document.getElementById('shuffle-checkbox')?.checked
+        ? Math.floor(Math.random() * SLIDESHOW_DATA.length)
+        : (currentSlideIndex + 1) % SLIDESHOW_DATA.length;
+
+      const imgData = SLIDESHOW_DATA[currentSlideIndex];
+      const useMobile = useMobileImages && imgData.mobileSrc;
+      const src = useMobile ? imgData.mobileSrc : imgData.src;
+
+      const imgEl = document.getElementById('fullscreen-img');
+      imgEl.style.opacity = 0;
+      imgEl.onload = () => imgEl.style.opacity = 1;
+      imgEl.src = src;
+      imgEl.alt = imgData.caption;
+
+      document.getElementById('fullscreen-title').innerText = imgData.date;
+      document.getElementById('fullscreen-caption').innerText = imgData.caption;
+    }
+
+    function stopSlideshow() {
+      clearInterval(slideshowInterval);
+      slideshowInterval = null;
+      const fs = document.getElementById('fullscreen');
+      if (fs) fs.remove();
+      document.body.classList.remove('body-no-scroll');
+      if (!wasInFullscreenBefore && document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    ['click', 'touchstart'].forEach(evt => {
+      const el = document.getElementById('slideshow-link');
+      if (el) {
+        el.addEventListener(evt, e => {
+          e.preventDefault();
+          startSlideshow();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

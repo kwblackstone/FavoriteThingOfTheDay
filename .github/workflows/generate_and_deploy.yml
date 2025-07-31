@@ -10,6 +10,11 @@ on:
         description: 'Branch of the private repo to use'
         required: false
         default: 'main'
+      rebuild_image_pages:
+        description: 'rebuild image pages'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -27,36 +32,38 @@ jobs:
           path: ImageGalleryPrivate
           ref: ${{ github.event.inputs.private_branch || 'main' }}
 
+      - name: Clean Outputs (if forced)
+        if: ${{ github.event.inputs.rebuild_image_pages == 'true' }}
+        run: |
+          echo "Force rebuild enabled — cleaning output folders"
+          rm -rf image_pages/ index.html archives/
+          # Don't delete the folder; just clean contents so it still exists for git
+          rm -rf data/mobile/*
+
+      - name: Downscale Images for Mobile
+        run: |
+          pip install pillow
+          python3 ${{ github.workspace }}/downscale.py
+
       - name: Run HTML Generation Script
         run: |
+          python3 ${{ github.workspace }}/ImageGalleryPrivate/src/collect_slideshow_data.py ${{ github.workspace }}/ImageGalleryPrivate/src/slideshow_data.js
           python3 ${{ github.workspace }}/ImageGalleryPrivate/src/main.py ${{ github.workspace }}/data ${{ github.workspace }}/index.html
 
-      - name: Check for Changes
-        run: |
-          git status
-          if git diff --quiet; then
-            echo "No changes detected."
-            echo "changes=false" >> $GITHUB_ENV
-          else
-            echo "Changes detected."
-            echo "changes=true" >> $GITHUB_ENV
-          fi
-
-      - name: Commit and Push Changes
-        if: env.changes == 'true'
+      - name: Check and Commit Changes
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add index.html
-          if [ -d "archives" ]; then
-            git add archives/
-          fi
-          if [ -d "image_pages" ]; then
-            git add image_pages/
-          fi
-          git commit -m "Auto-update website"
-          git push origin main
 
-      - name: No Changes Detected
-        if: env.changes == 'false'
-        run: echo "No changes to deploy. Workflow completed without changes."
+          git add index.html || true
+          [ -d archives ] && git add -A archives/ || true
+          [ -d image_pages ] && git add -A image_pages/ || true
+          [ -d data/mobile ] && git add -A data/mobile/ || true
+          git add -A data/ || true
+
+          if git diff --cached --quiet; then
+            echo "No site changes detected."
+          else
+            git commit -m "Auto-update website"
+            git push origin main
+          fi
