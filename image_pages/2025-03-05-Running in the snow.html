@@ -72,20 +72,35 @@
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
-      width: 3rem;
-      height: 3rem;
-      line-height: 3rem; /* vertical centering */
-      font-size: 2.2rem;
-      font-weight: bold;
-      text-align: center;
-      font-family: "Segoe UI Symbol", "Arial", sans-serif;
-      color: white;
+      width: 60px;
+      height: 60px;
       background: rgba(0, 0, 0, 0.4);
       border-radius: 50%;
       cursor: pointer;
       z-index: 1001;
       user-select: none;
       transition: background 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    .arrow.left::before {
+      border-width: 15px 20px 15px 0;
+      border-color: transparent white transparent transparent;
+    }
+
+    .arrow.right::before {
+      border-width: 15px 0 15px 20px;
+      border-color: transparent transparent transparent white;
     }
 
     .arrow:hover {

@@ -231,6 +231,22 @@
       font-size: 32px;
     }
 
+    .header-title-wrapper {
+      margin: 0 auto;
+      padding: 0 80px; /* keeps room for calendar and menu buttons */
+      max-width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .header-title-wrapper h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      word-wrap: break-word;
+      color: #f4f4f4;
+    }
+
     @keyframes fadein {
       from { bottom: 0; opacity: 0; }
       to { bottom: 30px; opacity: 1; }
@@ -251,7 +267,7 @@
   <div class="bg-layer"></div>
   <button class="calendar" onclick="toggleNav()"><i class="material-icons">today</i></button>
   <div class="nav" id="nav-links"><a href="../FavoriteThingOfTheDay">Current</a><a href="archives/June 2025/June 2025.html">June 2025</a><a href="archives/May 2025/May 2025.html">May 2025</a><a href="archives/April 2025/April 2025.html">April 2025</a><a href="archives/March 2025/March 2025.html">March 2025</a><a href="archives/February 2025/February 2025.html">February 2025</a><a href="archives/January 2025/January 2025.html">January 2025</a><a href="archives/December 2024/December 2024.html">December 2024</a><a href="archives/November 2024/November 2024.html">November 2024</a><a href="archives/October 2024/October 2024.html">October 2024</a><a href="archives/September 2024/September 2024.html">September 2024</a><a href="archives/August 2024/August 2024.html">August 2024</a></div>
-  <h1>Favorite Thing Of The Day - January 2025</h1>
+  <div class="header-title-wrapper"><h1>Favorite Thing Of The Day - January 2025</h1></div>
   <div class="menu" onclick="toggleDropdown()">&#x22EE;</div>
   <div class="dropdown" id="dropdown">
     <a href="#" onclick="showOverlay()">About</a>
