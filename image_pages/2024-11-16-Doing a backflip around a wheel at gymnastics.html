@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/November 2024/2024-11-16-Doing a backflip around a wheel at gymnastics.jpg" data-mobile-src="data/mobile/November 2024/2024-11-16-Doing a backflip around a wheel at gymnastics.jpg" alt="Doing a backflip around a wheel at gymnastics" title="She had gymnastics today, then went over to Eva's house for dinner and got to play Mario Wonder." loading="lazy">
     </a>
     <div class="caption">Doing a backflip around a wheel at gymnastics</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-17-Coloring%20a%20strawberry%20heart%20at%20Lucy%27s%20birthday%20party.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-15-Reading%20stories%20with%20Daddy.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-17-Coloring%20a%20strawberry%20heart%20at%20Lucy%27s%20birthday%20party.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-15-Reading%20stories%20with%20Daddy.html?from=main')"></div>
   </div>
 </body>
 </html>

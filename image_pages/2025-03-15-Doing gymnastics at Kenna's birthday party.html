@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/March 2025/2025-03-15-Doing gymnastics at Kenna's birthday party.jpg" data-mobile-src="data/mobile/March 2025/2025-03-15-Doing gymnastics at Kenna's birthday party.jpg" alt="Doing gymnastics at Kenna's birthday party" title="She had gymnastics today and then Kenna's birthday party was right after and at the same place!" loading="lazy">
     </a>
     <div class="caption">Doing gymnastics at Kenna's birthday party</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-16-Playing%20with%20Cass%20in%20their%20Queendom.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-14-Playing%20hide%20n%20seek%20with%20Juniper.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-16-Playing%20with%20Cass%20in%20their%20Queendom.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-14-Playing%20hide%20n%20seek%20with%20Juniper.html?from=main')"></div>
   </div>
 </body>
 </html>

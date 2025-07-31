@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/May 2025/2025-05-19-Painting with Gold and Red.jpg" data-mobile-src="data/mobile/May 2025/2025-05-19-Painting with Gold and Red.jpg" alt="Painting with Gold and Red" title="Back at school after a long weekend, mostly recovered still has a minor cough." loading="lazy">
     </a>
     <div class="caption">Painting with Gold and Red</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-20-Playing%20with%20my%20classmates%20after%20music%20class.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-18-Biking%20to%20the%20playground%20with%20Lucy.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-20-Playing%20with%20my%20classmates%20after%20music%20class.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-18-Biking%20to%20the%20playground%20with%20Lucy.html?from=main')"></div>
   </div>
 </body>
 </html>

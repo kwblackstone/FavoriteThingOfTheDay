@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/September 2024/2024-09-13-Making the fall leaf rug for the tiny chef.jpg" data-mobile-src="data/mobile/September 2024/2024-09-13-Making the fall leaf rug for the tiny chef.jpg" alt="Making the fall leaf rug for the tiny chef" title="She loves to make stuff for the tiny chef who lives under the tree out front" loading="lazy">
     </a>
     <div class="caption">Making the fall leaf rug for the tiny chef</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-14-Watching%20the%20polish%20polka%20dance%20competition%20in%20the%20rain.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-12-Riding%20the%20carousel%20at%20the%20mall%20while%20shopping%20for%20boots.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-14-Watching%20the%20polish%20polka%20dance%20competition%20in%20the%20rain.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-12-Riding%20the%20carousel%20at%20the%20mall%20while%20shopping%20for%20boots.html?from=main')"></div>
   </div>
 </body>
 </html>

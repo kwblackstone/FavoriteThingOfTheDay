@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/January 2025/2025-01-31-Stringing up valentines decorations.jpg" data-mobile-src="data/mobile/January 2025/2025-01-31-Stringing up valentines decorations.jpg" alt="Stringing up valentines decorations" title="She stayed home another day but is feeling much better and was helping to decorate the house" loading="lazy">
     </a>
     <div class="caption">Stringing up valentines decorations</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-01-Yurts%20of%20fun.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-30-Watching%20Dee%20and%20friends.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-01-Yurts%20of%20fun.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-30-Watching%20Dee%20and%20friends.html?from=main')"></div>
   </div>
 </body>
 </html>

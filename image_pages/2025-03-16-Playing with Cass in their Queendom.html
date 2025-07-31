@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/March 2025/2025-03-16-Playing with Cass in their Queendom.jpg" data-mobile-src="data/mobile/March 2025/2025-03-16-Playing with Cass in their Queendom.jpg" alt="Playing with Cass in their Queendom" title="She went to the St. Patrick's Day parade with Cass, then we all went over to her house for the firepit and backyard fun!" loading="lazy">
     </a>
     <div class="caption">Playing with Cass in their Queendom</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-17-Going%20to%20dinner%20with%20Eva%20at%20Kennedy%20School.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-15-Doing%20gymnastics%20at%20Kenna%27s%20birthday%20party.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-17-Going%20to%20dinner%20with%20Eva%20at%20Kennedy%20School.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-15-Doing%20gymnastics%20at%20Kenna%27s%20birthday%20party.html?from=main')"></div>
   </div>
 </body>
 </html>

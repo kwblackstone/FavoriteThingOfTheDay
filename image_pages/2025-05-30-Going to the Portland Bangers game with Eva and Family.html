@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/May 2025/2025-05-30-Going to the Portland Bangers game with Eva and Family.jpg" data-mobile-src="data/mobile/May 2025/2025-05-30-Going to the Portland Bangers game with Eva and Family.jpg" alt="Going to the Portland Bangers game with Eva and Family" title="We went to our first Portland Bangers game and had lots of fun." loading="lazy">
     </a>
     <div class="caption">Going to the Portland Bangers game with Eva and Family</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-31-Ms%20Pearl%20the%20clown%20at%20Isa%27s%20birthday%20party%20in%20the%20park.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-29-Getting%20my%20crown%20at%20school%20today.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-31-Ms%20Pearl%20the%20clown%20at%20Isa%27s%20birthday%20party%20in%20the%20park.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-05-29-Getting%20my%20crown%20at%20school%20today.html?from=main')"></div>
   </div>
 </body>
 </html>

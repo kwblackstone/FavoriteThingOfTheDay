@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/July 2025/2025-07-29-Running from the Daddy Snow Monster with Alma.jpg" data-mobile-src="data/mobile/July 2025/2025-07-29-Running from the Daddy Snow Monster with Alma.jpg" alt="Running from the Daddy Snow Monster with Alma" title="We ran some errands, grabbed some sushi on the West side and then had some play time with Alma before music class.  And Melon ate like a king on his birthday." loading="lazy">
     </a>
     <div class="caption">Running from the Daddy Snow Monster with Alma</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-30-Swimming%20in%20the%20pond%20with%20Lucy.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-28-Building%20a%20cat%20habitat%20in%20my%20closet.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-30-Swimming%20in%20the%20pond%20with%20Lucy.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-28-Building%20a%20cat%20habitat%20in%20my%20closet.html?from=main')"></div>
   </div>
 </body>
 </html>

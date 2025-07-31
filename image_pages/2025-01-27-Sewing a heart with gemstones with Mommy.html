@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/January 2025/2025-01-27-Sewing a heart with gemstones with Mommy.jpg" data-mobile-src="data/mobile/January 2025/2025-01-27-Sewing a heart with gemstones with Mommy.jpg" alt="Sewing a heart with gemstones with Mommy" title="Started the week off with a good day at school.  She came home and did lots of sewing, also more play on her gymnastics bar." loading="lazy">
     </a>
     <div class="caption">Sewing a heart with gemstones with Mommy</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-28-Doing%20my%20gymnastics%20bar%20tricks%20downstairs.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-26-Eating%20strawberry%20ice%20cream%20at%20salt%20n%20straw.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-28-Doing%20my%20gymnastics%20bar%20tricks%20downstairs.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-26-Eating%20strawberry%20ice%20cream%20at%20salt%20n%20straw.html?from=main')"></div>
   </div>
 </body>
 </html>

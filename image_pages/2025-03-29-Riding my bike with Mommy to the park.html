@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/March 2025/2025-03-29-Riding my bike with Mommy to the park.jpg" data-mobile-src="data/mobile/March 2025/2025-03-29-Riding my bike with Mommy to the park.jpg" alt="Riding my bike with Mommy to the park" title="A pretty relaxing Friday. Still practicing her bike riding on the way to the park. Afterwards Uncle and Aja came over for beef bulgogi." loading="lazy">
     </a>
     <div class="caption">Riding my bike with Mommy to the park</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-30-Making%20dessert%20for%20everyone%20with%20Uncle.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-28-Playing%20at%20the%20wave%20pool%20with%20Eva.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-30-Making%20dessert%20for%20everyone%20with%20Uncle.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-28-Playing%20at%20the%20wave%20pool%20with%20Eva.html?from=main')"></div>
   </div>
 </body>
 </html>

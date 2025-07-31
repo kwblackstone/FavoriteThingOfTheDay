@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/November 2024/2024-11-09-Watching the Cat Kid Comedy Club Musical.jpg" data-mobile-src="data/mobile/November 2024/2024-11-09-Watching the Cat Kid Comedy Club Musical.jpg" alt="Watching the Cat Kid Comedy Club Musical" title="She had gymnastics today and then we all went to the Cat Kid Comedy Club Musical performance.  Aftwerwards we had a good dinner at the Friendship Kitchen." loading="lazy">
     </a>
     <div class="caption">Watching the Cat Kid Comedy Club Musical</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-10-Jumping%20to%20the%20spinning%20monkey%20bars%20and%20pulling%20my%20feet%20up.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-08-Going%20on%20the%20school%20Lantern%20walk%20with%20Nia.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-10-Jumping%20to%20the%20spinning%20monkey%20bars%20and%20pulling%20my%20feet%20up.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-08-Going%20on%20the%20school%20Lantern%20walk%20with%20Nia.html?from=main')"></div>
   </div>
 </body>
 </html>

@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/February 2025/2025-02-20-Playing on the playground near the Golden Gate Bridge.jpg" data-mobile-src="data/mobile/February 2025/2025-02-20-Playing on the playground near the Golden Gate Bridge.jpg" alt="Playing on the playground near the Golden Gate Bridge" title="Last day of the trip, finished off at a beautiful park overlooking the Golden Gate Bridge!  Beware the Waymo, they are everywhere!" loading="lazy">
     </a>
     <div class="caption">Playing on the playground near the Golden Gate Bridge</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-21-Music%20class%20with%20Juniper.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-19-Taking%20the%20trolley%20with%20Mommy%20and%20Daddy.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-21-Music%20class%20with%20Juniper.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-19-Taking%20the%20trolley%20with%20Mommy%20and%20Daddy.html?from=main')"></div>
   </div>
 </body>
 </html>

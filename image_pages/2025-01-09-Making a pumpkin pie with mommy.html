@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/January 2025/2025-01-09-Making a pumpkin pie with mommy.jpg" data-mobile-src="data/mobile/January 2025/2025-01-09-Making a pumpkin pie with mommy.jpg" alt="Making a pumpkin pie with mommy" title="She played on the playground after school, then it was off to the pet store.  Afterwards they made a pumpkin pie together and had hot dogs for dinner." loading="lazy">
     </a>
     <div class="caption">Making a pumpkin pie with mommy</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-10-Eating%20pumpkin%20pie.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-08-Sticking%20toothpicks%20into%20cookies.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-10-Eating%20pumpkin%20pie.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-08-Sticking%20toothpicks%20into%20cookies.html?from=main')"></div>
   </div>
 </body>
 </html>

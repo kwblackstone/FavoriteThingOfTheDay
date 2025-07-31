@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/July 2025/2025-07-07-Cake at Aunt Monicas for Miss Monster's Birthday.jpg" data-mobile-src="data/mobile/July 2025/2025-07-07-Cake at Aunt Monicas for Miss Monster's Birthday.jpg" alt="Cake at Aunt Monicas for Miss Monster's Birthday" title="Soren made a fantastic orange and vanilla cake in honor of Miss Monster's birthday.  We headed over there after dinner." loading="lazy">
     </a>
     <div class="caption">Cake at Aunt Monicas for Miss Monster's Birthday</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-08-Swimming%20with%20Eva%20and%20the%20Mommy%20noodle%20monster.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-06-Picking%20raspberries%20from%20the%20garden.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-08-Swimming%20with%20Eva%20and%20the%20Mommy%20noodle%20monster.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-06-Picking%20raspberries%20from%20the%20garden.html?from=main')"></div>
   </div>
 </body>
 </html>

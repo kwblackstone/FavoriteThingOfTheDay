@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/April 2025/2025-04-27-Making flower crowns for Mommy and Daddy.jpg" data-mobile-src="data/mobile/April 2025/2025-04-27-Making flower crowns for Mommy and Daddy.jpg" alt="Making flower crowns for Mommy and Daddy" title="A relaxing home day, lots of play, watched Aristocats, and played outside." loading="lazy">
     </a>
     <div class="caption">Making flower crowns for Mommy and Daddy</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-28-Pedaling%20on%20my%20bike.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-26-Playing%20on%20the%20teeter%20totter%20at%20the%20park%20with%20Qianna%20and%20Dash.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-28-Pedaling%20on%20my%20bike.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-26-Playing%20on%20the%20teeter%20totter%20at%20the%20park%20with%20Qianna%20and%20Dash.html?from=main')"></div>
   </div>
 </body>
 </html>

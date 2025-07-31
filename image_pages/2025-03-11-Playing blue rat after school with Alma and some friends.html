@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/March 2025/2025-03-11-Playing blue rat after school with Alma and some friends.jpg" data-mobile-src="data/mobile/March 2025/2025-03-11-Playing blue rat after school with Alma and some friends.jpg" alt="Playing blue rat after school with Alma and some friends" title="Back to school today, the kids love playing blue rat, which is a game where everyone puts their shoe in until someone is it.  Then they play tag, when you are tagged you are also a blue rat and tag people as well." loading="lazy">
     </a>
     <div class="caption">Playing blue rat after school with Alma and some friends</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-12-Getting%20a%20sticker%20at%20the%20eye%20doctors.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-10-Playing%20hungry%20hungry%20hippos%20with%20Mommy%20and%20Daddy.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-12-Getting%20a%20sticker%20at%20the%20eye%20doctors.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-10-Playing%20hungry%20hungry%20hippos%20with%20Mommy%20and%20Daddy.html?from=main')"></div>
   </div>
 </body>
 </html>

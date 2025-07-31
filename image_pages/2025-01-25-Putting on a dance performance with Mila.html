@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/January 2025/2025-01-25-Putting on a dance performance with Mila.jpg" data-mobile-src="data/mobile/January 2025/2025-01-25-Putting on a dance performance with Mila.jpg" alt="Putting on a dance performance with Mila" title="Mila and her family came over for a homemade pasta dinner.  It was excellent!" loading="lazy">
     </a>
     <div class="caption">Putting on a dance performance with Mila</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-26-Eating%20strawberry%20ice%20cream%20at%20salt%20n%20straw.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-24-Playing%20Go%20Fish%20at%20Uncle%20and%20Ajas.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-26-Eating%20strawberry%20ice%20cream%20at%20salt%20n%20straw.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-24-Playing%20Go%20Fish%20at%20Uncle%20and%20Ajas.html?from=main')"></div>
   </div>
 </body>
 </html>

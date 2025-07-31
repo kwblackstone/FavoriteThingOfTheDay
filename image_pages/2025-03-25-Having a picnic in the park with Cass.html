@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/March 2025/2025-03-25-Having a picnic in the park with Cass.jpg" data-mobile-src="data/mobile/March 2025/2025-03-25-Having a picnic in the park with Cass.jpg" alt="Having a picnic in the park with Cass" title="Second day of bicycle camp followed by more buddy time with Cass." loading="lazy">
     </a>
     <div class="caption">Having a picnic in the park with Cass</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-26-Riding%20on%20the%20bike%20with%20Mommy%20to%20get%20ice%20cream.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-24-Going%20to%20bike%20camp%20with%20Lucy%2C%20Willa%2C%20and%20Sally.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-26-Riding%20on%20the%20bike%20with%20Mommy%20to%20get%20ice%20cream.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-24-Going%20to%20bike%20camp%20with%20Lucy%2C%20Willa%2C%20and%20Sally.html?from=main')"></div>
   </div>
 </body>
 </html>

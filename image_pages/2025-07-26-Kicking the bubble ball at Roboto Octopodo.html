@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/July 2025/2025-07-26-Kicking the bubble ball at Roboto Octopodo.jpg" data-mobile-src="data/mobile/July 2025/2025-07-26-Kicking the bubble ball at Roboto Octopodo.jpg" alt="Kicking the bubble ball at Roboto Octopodo" title="We went to " loading="lazy">
     </a>
     <div class="caption">Kicking the bubble ball at Roboto Octopodo</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-27-Watching%20Phineas%20and%20Ferb%20with%20Mommy%20and%20Daddy.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-25-Playing%20the%20fishing%20game%20at%20camp.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-27-Watching%20Phineas%20and%20Ferb%20with%20Mommy%20and%20Daddy.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-07-25-Playing%20the%20fishing%20game%20at%20camp.html?from=main')"></div>
   </div>
 </body>
 </html>

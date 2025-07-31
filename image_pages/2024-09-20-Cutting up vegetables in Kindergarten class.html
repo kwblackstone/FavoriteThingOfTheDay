@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/September 2024/2024-09-20-Cutting up vegetables in Kindergarten class.jpg" data-mobile-src="data/mobile/September 2024/2024-09-20-Cutting up vegetables in Kindergarten class.jpg" alt="Cutting up vegetables in Kindergarten class" title="Friday is cutting day at school." loading="lazy">
     </a>
     <div class="caption">Cutting up vegetables in Kindergarten class</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-21-Playing%20with%20my%20friend%20Charlotte%20at%20the%20Wonderlove%20food%20carts.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-19-Playing%20in%20my%20outdoor%20mud%20kitchen%20at%20night.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-21-Playing%20with%20my%20friend%20Charlotte%20at%20the%20Wonderlove%20food%20carts.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-09-19-Playing%20in%20my%20outdoor%20mud%20kitchen%20at%20night.html?from=main')"></div>
   </div>
 </body>
 </html>

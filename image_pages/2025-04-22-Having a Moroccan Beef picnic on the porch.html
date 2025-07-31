@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/April 2025/2025-04-22-Having a Moroccan Beef picnic on the porch.jpg" data-mobile-src="data/mobile/April 2025/2025-04-22-Having a Moroccan Beef picnic on the porch.jpg" alt="Having a Moroccan Beef picnic on the porch" title="Another night of Moroccan Beef with Mom's custom spice blend. Once again it was fantastic, so much so she wanted the leftovers in her lunch tomorrow." loading="lazy">
     </a>
     <div class="caption">Having a Moroccan Beef picnic on the porch</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-23-Digging%20for%20treasure%20in%20front%20of%20the%20house%20with%20Cass.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-21-Making%20potions%20in%20my%20room.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-23-Digging%20for%20treasure%20in%20front%20of%20the%20house%20with%20Cass.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-04-21-Making%20potions%20in%20my%20room.html?from=main')"></div>
   </div>
 </body>
 </html>

@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/August 2024/2024-08-28-Showing teacher Julie the toys in my bedroom.jpg" data-mobile-src="data/mobile/August 2024/2024-08-28-Showing teacher Julie the toys in my bedroom.jpg" alt="Showing teacher Julie the toys in my bedroom" title="Teacher Julie came over today to see her room, and get to know us better before school starts" loading="lazy">
     </a>
     <div class="caption">Showing teacher Julie the toys in my bedroom</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-08-29-Played%20hide%20n%20go%20seek%20with%20Daddy.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-08-27-Playing%20indoors%20on%20the%20monkey%20section%20at%20Cedarwood%20elementary.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-08-29-Played%20hide%20n%20go%20seek%20with%20Daddy.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-08-27-Playing%20indoors%20on%20the%20monkey%20section%20at%20Cedarwood%20elementary.html?from=main')"></div>
   </div>
 </body>
 </html>

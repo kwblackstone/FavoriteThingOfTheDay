@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/October 2024/2024-10-02-Went and saw the cat sculptures.jpg" data-mobile-src="data/mobile/October 2024/2024-10-02-Went and saw the cat sculptures.jpg" alt="Went and saw the cat sculptures" title="Portland has a bunch of cat sculptures all around the city, she got to go find a coupe after school and climb on them!" loading="lazy">
     </a>
     <div class="caption">Went and saw the cat sculptures</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-03-Doing%20my%20straddle%20stretch%20at%20Aerial%20Arts.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-01-Playing%20at%20the%20park%20and%20music%20class%20with%20Eva.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-03-Doing%20my%20straddle%20stretch%20at%20Aerial%20Arts.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-01-Playing%20at%20the%20park%20and%20music%20class%20with%20Eva.html?from=main')"></div>
   </div>
 </body>
 </html>

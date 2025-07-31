@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/December 2024/2024-12-07-Exploring the cookie cave.jpg" data-mobile-src="data/mobile/December 2024/2024-12-07-Exploring the cookie cave.jpg" alt="Exploring the cookie cave" title="Today was the winter faire and so many of her buddies came out to celebrate.  She saw the wizard, made arts and crafts, had some treats, raided the pocket peddler (who was mommy) and loved the cookie save so much she went twice!" loading="lazy">
     </a>
     <div class="caption">Exploring the cookie cave</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-12-08-Seeing%20Rudolph%20the%20red%20nosed%20reindeer.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-12-06-Watching%20the%20Grinch.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-12-08-Seeing%20Rudolph%20the%20red%20nosed%20reindeer.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-12-06-Watching%20the%20Grinch.html?from=main')"></div>
   </div>
 </body>
 </html>

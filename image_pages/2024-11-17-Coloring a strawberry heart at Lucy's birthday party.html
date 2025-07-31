@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/November 2024/2024-11-17-Coloring a strawberry heart at Lucy's birthday party.jpg" data-mobile-src="data/mobile/November 2024/2024-11-17-Coloring a strawberry heart at Lucy's birthday party.jpg" alt="Coloring a strawberry heart at Lucy's birthday party" title="Today her friend from school, Lucy, had her 6th birthday party." loading="lazy">
     </a>
     <div class="caption">Coloring a strawberry heart at Lucy's birthday party</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-18-Playing%20witches%20at%20school%20with%20Nia.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-16-Doing%20a%20backflip%20around%20a%20wheel%20at%20gymnastics.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-18-Playing%20witches%20at%20school%20with%20Nia.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-11-16-Doing%20a%20backflip%20around%20a%20wheel%20at%20gymnastics.html?from=main')"></div>
   </div>
 </body>
 </html>

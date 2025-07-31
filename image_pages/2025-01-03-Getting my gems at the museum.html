@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/January 2025/2025-01-03-Getting my gems at the museum.jpg" data-mobile-src="data/mobile/January 2025/2025-01-03-Getting my gems at the museum.jpg" alt="Getting my gems at the museum" title="Her and Mommy went to OMSI today and came home with some great gems!  That evening we made homemade pasta together." loading="lazy">
     </a>
     <div class="caption">Getting my gems at the museum</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-04-Eating%20birthday%20cake%20with%20Eva%20and%20Hazel.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-02-Playing%20at%20the%20park%20at%20night%20with%20Mommy.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-04-Eating%20birthday%20cake%20with%20Eva%20and%20Hazel.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-01-02-Playing%20at%20the%20park%20at%20night%20with%20Mommy.html?from=main')"></div>
   </div>
 </body>
 </html>

@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/October 2024/2024-10-30-Doing my Halloween sticker book.jpg" data-mobile-src="data/mobile/October 2024/2024-10-30-Doing my Halloween sticker book.jpg" alt="Doing my Halloween sticker book" title="Rainy day today, so came home after school, decorated some pumpkins, worked on the sticker book and Momma made pumpkin seeds!" loading="lazy">
     </a>
     <div class="caption">Doing my Halloween sticker book</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-31-Going%20trick%20or%20treating%20as%20a%20butterfly%20princess%20with%20Eva%20who%20was%20a%20robot.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-29-Bathtime%20with%20my%20mermaids.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-31-Going%20trick%20or%20treating%20as%20a%20butterfly%20princess%20with%20Eva%20who%20was%20a%20robot.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2024-10-29-Bathtime%20with%20my%20mermaids.html?from=main')"></div>
   </div>
 </body>
 </html>

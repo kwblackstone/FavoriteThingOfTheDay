@@ -83,6 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: auto;
     }
 
     .arrow::before {
@@ -94,12 +95,12 @@
     }
 
     .arrow.left::before {
-      border-width: 15px 20px 15px 0;
+      border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
     }
 
     .arrow.right::before {
-      border-width: 15px 0 15px 20px;
+      border-width: 20px 0 20px 28px;
       border-color: transparent transparent transparent white;
     }
 
@@ -109,11 +110,13 @@
     }
 
     .arrow.left {
-      left: 10px;
+      left: 0;
+      padding-left: 10px;
     }
 
     .arrow.right {
-      right: 10px;
+      right: 0;
+      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
@@ -178,8 +181,8 @@
       <img data-src="data/February 2025/2025-02-28-Flossing with Aunt Monica.jpg" data-mobile-src="data/mobile/February 2025/2025-02-28-Flossing with Aunt Monica.jpg" alt="Flossing with Aunt Monica" title="Aunt Monica came over for home made friend chicken tonight and then helped her get ready for bed." loading="lazy">
     </a>
     <div class="caption">Flossing with Aunt Monica</div>
-    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-01-Climbing%20the%20rope%20net%20at%20gymnastics.html?from=main')">&#8592;</div>
-    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-27-Playing%20Hide%20n%20Seek%20with%20Lucy%2C%20Willa%2C%20and%20Sally.html?from=main')">&#8594;</div>
+    <div class='arrow left' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-03-01-Climbing%20the%20rope%20net%20at%20gymnastics.html?from=main')"></div>
+    <div class='arrow right' onclick="navigateToImage('https://kwblackstone.github.io/FavoriteThingOfTheDay/image_pages/2025-02-27-Playing%20Hide%20n%20Seek%20with%20Lucy%2C%20Willa%2C%20and%20Sally.html?from=main')"></div>
   </div>
 </body>
 </html>
