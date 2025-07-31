@@ -72,12 +72,15 @@
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 3rem;
-      font-weight: 900; /* Make arrow bold */
-      font-family: Arial, sans-serif; /* Use a solid, wide font */
+      width: 3rem;
+      height: 3rem;
+      line-height: 3rem; /* vertical centering */
+      font-size: 2.2rem;
+      font-weight: bold;
+      text-align: center;
+      font-family: "Segoe UI Symbol", "Arial", sans-serif;
       color: white;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 0.5rem 1rem;
+      background: rgba(0, 0, 0, 0.4);
       border-radius: 50%;
       cursor: pointer;
       z-index: 1001;
@@ -86,21 +89,16 @@
     }
 
     .arrow:hover {
-      background: rgba(0, 0, 0, 0.6);
-      transform: translateY(-50%) scale(1.1);
+      background: rgba(0, 0, 0, 0.7);
+      transform: translateY(-50%) scale(1.15);
     }
-
 
     .arrow.left {
       left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
     }
 
     .arrow.right {
       right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
     }
   </style>
   <style id="bg-style">
