@@ -80,23 +80,30 @@
       z-index: 1001;
       user-select: none;
       transition: background 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       pointer-events: auto;
     }
 
     .arrow::before {
       content: "";
-      display: block;
+      position: absolute;
+      inset: 0;
+      margin: auto;
       width: 0;
       height: 0;
       border-style: solid;
     }
 
+    .arrow.left {
+      left: calc(5px);
+    }
+
     .arrow.left::before {
       border-width: 20px 28px 20px 0;
       border-color: transparent white transparent transparent;
+    }
+
+    .arrow.right {
+      right: calc(5px);
     }
 
     .arrow.right::before {
@@ -107,16 +114,6 @@
     .arrow:hover {
       background: rgba(0, 0, 0, 0.7);
       transform: translateY(-50%) scale(1.15);
-    }
-
-    .arrow.left {
-      left: 0;
-      padding-left: 10px;
-    }
-
-    .arrow.right {
-      right: 0;
-      padding-right: 10px;
     }
   </style>
   <style id="bg-style">
