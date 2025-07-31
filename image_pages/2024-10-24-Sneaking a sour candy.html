@@ -69,17 +69,27 @@
     }
 
     .arrow {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      font-size: 24px;
-      line-height: 50px;
-      text-align: center;
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      font-weight: 900; /* Make arrow bold */
+      font-family: Arial, sans-serif; /* Use a solid, wide font */
+      color: white;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
       cursor: pointer;
-      z-index: 5;
+      z-index: 1001;
+      user-select: none;
+      transition: background 0.3s, transform 0.2s;
     }
+
+    .arrow:hover {
+      background: rgba(0, 0, 0, 0.6);
+      transform: translateY(-50%) scale(1.1);
+    }
+
 
     .arrow.left {
       left: 10px;
@@ -114,6 +124,10 @@
     return lowRAM || fewCores || smallScreen;
   })();
 
+  function navigateToImage(link) {
+    if (link) window.location.href = link;
+  }
+
   if (useMobileImages) document.body.classList.add('mobile');
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img[data-mobile-src]').forEach(img => {
@@ -135,10 +149,7 @@
         }
       }
     });
-
-  function navigateToImage(link) {
-    if (link) window.location.href = link;
-  }
+  });
 </script>
 </head>
 <body>
